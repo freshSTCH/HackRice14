@@ -11,35 +11,17 @@ function Room(lengthXTiles,lengthYTiles,TileSize)
 	var lengthYTiles=lengthYTiles;
 
 	var grid=new Array(lengthXTiles);
-	var StartTile
-	var EndTile
+	var StartTile;
+	var EndTile;
 
     var timeFactor = 1;
-    var players = []
-    var turrets = []
+    var pos = [0,0];
+    var players = [];
+    var turrets = [];
 
     var update = function(){
         for (var i = 0; i < turrets.length; i++){turrets[i].update(timeFactor);}
         for (var i = 0; i < players.length; i++){players[i].update(timeFactor);}
-
-        //collision detection
-        
-        //player- bullet
-        for(var i = 0; i < players.length; i++){
-            var player = players[i];
-            for(var j= 0; j< turrets.length; j++){
-                var turret = turrets[j];
-                for(var k= 0; k < turrets[j].bullets.length; k++){
-                    var bullet = bullet[k];
-                    if (bullet.velocity != 0){
-                        if (player.rect.intersectsPoint(turret.bullet.pos)){
-                            //player.takehit();
-                            //bullet.hitplayer();
-                        }
-                    }
-                }
-            }
-        }
     };
 
     var draw = function(){
@@ -50,7 +32,7 @@ function Room(lengthXTiles,lengthYTiles,TileSize)
         	for (var y=0; y<lengthYTiles; y++){
         		var tilename = grid[x][y];
         		var tileImage = assets.getImage(tilename);
-        		canvas.drawImage(tileImage, x*TileSize, y*TileSize, TileSize, TileSize);
+        		canvas.drawImage(tileImage, pos[0] + x*TileSize, pos[1] + y*TileSize, TileSize, TileSize);
         	};
         };
     };
