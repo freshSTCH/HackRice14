@@ -11,26 +11,29 @@ function Room(lengthXTiles,lengthYTiles,TileSize,Enemies)
 		while (x<lengthXTiles){
 			var y=0;
 			while (y<lengthYTiles){
-				grid[x][y] = [Null];		
+				grid[x][y] = Null;		
 
-	}}}
+	}}};
 	var addTile=function(Tile,x,y){
 		grid[x][y] = Tile;
+		//should probably add something to check
+		//that the location is valid
 	};
 	var getGrid=function(){
-		return grid
+		return grid;
 	};
 	var getGridSpot=function(pixelX, pixelY){
 		//check what tile is on the grid at the given pixel location
 		//!I need to double check this formula works!
 		var gridX=floor(pixelX/TileSize);
 		var gridY=floor(pixelY/TileSize);
-		return grid[gridX,gridY];
-	}
+		return grid[gridX][gridY];
+	};
 
-
-	initializeGrid()
-
-
+	/* */
+	//not working yet	Room.initializeGrid();
+	var FOOROOM=Room(10,15,10,["FOO"])
+	FOOROOM.addTile("BLAH",2,4)
+	FOOROOM.getGrid
 }
 
