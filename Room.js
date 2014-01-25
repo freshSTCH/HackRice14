@@ -4,15 +4,20 @@ function Room(lengthXTiles,lengthYTiles,TileSize,Turrets)
 	/*
 	Stores tiles in a grid, stores enemies in a seperate array
 	*/
-	var grid=[];
+
 	var Turrets=Turrets;
+	var TileSize=TileSize;
+	var lengthXTiles=lengthXTiles;
+	var lengthYTiles=lengthYTiles;
+
+	var grid=[];
 	var StartTile=null;
 	var initializeGrid=function(){
 		var x=0;
 		while (x<lengthXTiles){
 			var y=0;
 			while (y<lengthYTiles){
-				grid[x][y] = null;
+				grid[x][y]=null;
 				y++;
 			x++;		
 
@@ -33,7 +38,6 @@ function Room(lengthXTiles,lengthYTiles,TileSize,Turrets)
 	};
 	var getGridSpot=function(pixelX, pixelY){
 		//check what tile is on the grid at the given pixel location
-		//!I need to double check this formula works!
 		var gridX=Math.floor(pixelX/TileSize);
 		var gridY=Math.floor(pixelY/TileSize);
 		return grid[gridX][gridY];
