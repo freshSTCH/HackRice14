@@ -11,9 +11,31 @@ function Room(lengthXTiles,lengthYTiles,TileSize)
 	var lengthYTiles=lengthYTiles;
 
 	var grid=new Array(lengthXTiles);
-	var turrets=[ ]
 	var StartTile=null;
 
+    var timeFactor = 1;
+    var players = []
+    var turrets = []
+    var bullets = []
+
+    var update = function()
+        for (turret in turrets){turret.update(timeFactor);}
+        for (bullet in bullets){bullet.update(timeFactor);}
+        for (player in players){player.update(timeFactor);}
+        // checkwin, pause etc
+    };
+
+    var draw = function(){
+        for (turret in turrets){turret.draw();}
+        for (bullet in bullets){bullet.draw();}
+        for (tile in grid){
+            //draw tile
+            //which isn't its own object...
+        }
+    };
+
+    //Grid Initialization functions
+    //
 	var initializeGrid=function(){
 		var x=0;
 		while (x<lengthXTiles){
@@ -50,6 +72,7 @@ function Room(lengthXTiles,lengthYTiles,TileSize)
 	};
 	
 	initializeGrid();
+    //end Grid initialization
 	return {initializeGrid:initializeGrid, addTile:addTile, addTurret:addTurret, getGrid:getGrid, getTurrets:getTurrets,getGridSpot:getGridSpot,setStart:setStart, setEnd:setEnd}
 }
 
@@ -57,23 +80,4 @@ function Room(lengthXTiles,lengthYTiles,TileSize)
 //add this to Room at some point
 // down here to avoid merge conflicts
 
-var timeFactor = 1;
-var players = []
-var turrets = []
-var bullets = []
 
-var update = function(){
-    for (turret in turrets){turret.update(timeFactor);}
-    for (bullet in bullets){bullet.update(timeFactor);}
-    for (player in players){player.update(timeFactor);}
-    // checkwin, pause etc
-};
-
-var draw = function(){
-    for (turret in turrets){turret.draw();}
-    for (bullet in bullets){bullet.draw();}
-    for (tile in grid){
-        //draw tile
-        //which isn't its own object...
-    }
-};
