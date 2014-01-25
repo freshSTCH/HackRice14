@@ -12,7 +12,7 @@ function Point(x, y)
     return {x:x, y:y, isInRect:isInRect};
 }
 
-function Rect(x, y, width, height, angle)
+function Rect(x, y, width, height, angle=0)
 {
     var x = x, y = y, width = width, height = height, angle = angle;
 
