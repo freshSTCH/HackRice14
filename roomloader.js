@@ -53,9 +53,13 @@ function RoomLoader(roomName,assets)
                     room.setEnd(x,y);
                     break;
 
-                case "Turrent":
+                case "Turret":
                     var turret = Turret(x,y);
                     room.addTurret(turret);
+                    break;
+
+                default:
+                    console.error("No such tile?");
                     break;
             }
         }
