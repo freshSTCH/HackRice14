@@ -1,19 +1,20 @@
-function Room(lengthXTiles,lengthYTiles,TileSize,Enemies)
+function Room(lengthXTiles,lengthYTiles,TileSize,Turrets)
 {
 	"use strict";
 	/*
 	Stores tiles in a grid, stores enemies in a seperate array
 	*/
 	var grid=[];
-	var Enemies=Enemies;
+	var Turrets=Turrets;
+	var StartTile=null;
 	var initializeGrid=function(){
 		var x=0;
 		while (x<lengthXTiles){
-			x++;
 			var y=0;
 			while (y<lengthYTiles){
+				grid[x][y] = null;
 				y++;
-				grid[x][y] = null;		
+			x++;		
 
 	}}};
 	var addTile=function(Tile,x,y){
@@ -21,8 +22,14 @@ function Room(lengthXTiles,lengthYTiles,TileSize,Enemies)
 		//should probably add something to check
 		//that the location is valid
 	};
+	var addTurret=function(Turret,x,y){
+		Turrets[x][y]=Turret;
+	};
 	var getGrid=function(){
 		return grid;
+	};
+	var getTurrets=function(){
+		return Turrets;
 	};
 	var getGridSpot=function(pixelX, pixelY){
 		//check what tile is on the grid at the given pixel location
@@ -31,9 +38,15 @@ function Room(lengthXTiles,lengthYTiles,TileSize,Enemies)
 		var gridY=Math.floor(pixelY/TileSize);
 		return grid[gridX][gridY];
 	};
+	var setStart=function(x, y){
+		addTile("StartTile",x,y);
 
-	/* */
-	//not working yet	
+	};
+	var setEnd=function(x, y){
+		addTile("EndTile",x,y);
+
+	};
+	
 	initializeGrid();
 }
 
