@@ -1,13 +1,14 @@
-function Bullet(pos, shooter, velocity){
-    var pos = pos, shooter = shooter, velocity = velocity;
+function Bullet(pos, velocity){
+    var pos = pos, velocity = velocity;
 
     var update = function(multiplier){
-        pass;
+        pos = pos.add(velocity.scale(multiplier));
+        // Add sprite animation here
     }
 
     var draw = function(){
         pass;
     }
 
-    return {pos:pos, shooter:shooter, velocity:velocity, vel:velocity, v:velocity, update:update, draw:draw};
+    return {pos:pos, velocity:velocity, vel:velocity, v:velocity, update:update, draw:draw};
 }
