@@ -1,4 +1,4 @@
-function Room(lengthXTiles,lengthYTiles,TileSize)
+function Room(lengthXTiles,lengthYTiles,tileSize)
 {
 	"use strict";
 	/*
@@ -6,7 +6,7 @@ function Room(lengthXTiles,lengthYTiles,TileSize)
 	*/
 
 	
-	var TileSize=TileSize;
+	var tileSize=tileSize;
 	var lengthXTiles=lengthXTiles;
 	var lengthYTiles=lengthYTiles;
 
@@ -32,7 +32,7 @@ function Room(lengthXTiles,lengthYTiles,TileSize)
         	for (var y=0; y<lengthYTiles; y++){
         		var tilename = grid[x][y];
         		var tileImage = assets.getImage(tilename);
-        		canvas.drawImage(tileImage, pos[0] + x*TileSize, pos[1] + y*TileSize, TileSize, TileSize);
+        		canvas.drawImage(tileImage, pos[0] + x*tileSize, pos[1] + y*tileSize, tileSize, tileSize);
         	};
         };
     };
@@ -61,8 +61,8 @@ function Room(lengthXTiles,lengthYTiles,TileSize)
 	};
 	var getGridSpot=function(pixelX, pixelY){
 		//check what tile is on the grid at the given pixel location
-		var gridX=Math.floor(pixelX/TileSize);
-		var gridY=Math.floor(pixelY/TileSize);
+		var gridX=Math.floor(pixelX/tileSize);
+		var gridY=Math.floor(pixelY/tileSize);
 		return grid[gridX][gridY];
 	};
 	var setStart=function(x, y){
