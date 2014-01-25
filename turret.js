@@ -7,6 +7,8 @@ function Turret(pos, ai, health){
 
     var update = function(multiplier){
         pass;
+        // Write a simple point-at-player
+        // Check for your own bullets' collisions
     }
 
     var draw = function(){
