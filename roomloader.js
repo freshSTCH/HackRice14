@@ -56,6 +56,7 @@ function RoomLoader(roomName)
                 case "Turret":
                     var turret = Turret([x,y]);
                     room.addTurret(turret);
+                    room.addTile("Floor",x,y);
                     break;
 
                 default:
