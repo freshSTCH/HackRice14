@@ -1,4 +1,4 @@
-function RoomLoader(roomName,assets)
+function RoomLoader(roomName)
 {
     "use strict";
     var pixels = PixelImage(assets.getRoomImage(roomName));

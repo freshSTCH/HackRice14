@@ -57,10 +57,17 @@ function GameLoader(callback)
             load(roomNames,roomNameTransform,Image,"load",function(roomLoaded) {
                 console.log("The rooms are now loaded.");
 
+                function getOrLogError(name,obj,title)
+                {
+                    if (name in obj)
+                        return obj[name];
+                    console.error("There is no "+name+" "+title);
+                }
+
                 var myself = {
-                    getImage: function(name) { return imgLoaded[name]; }, 
-                    getSound: function(name) { return soundLoaded[name]; },
-                    getRoomImage: function (name) { return roomLoaded[name]; }
+                    getImage: function(name) {      return getOrLogError(name,imgLoaded,"image"); }, 
+                    getSound: function(name) {      return getOrLogError(name,soundLoaded,"sound"); },
+                    getRoomImage: function (name) { return getOrLogError(name,roomLoaded,"room"); }
                 };
 
                 callback(myself);
@@ -68,6 +75,3 @@ function GameLoader(callback)
         });
     });
 }
-
-var debugAssets;
-GameLoader(function(assets){debugAssets = assets;});

@@ -11,7 +11,8 @@ function Room(lengthXTiles,lengthYTiles,TileSize)
 	var lengthYTiles=lengthYTiles;
 
 	var grid=new Array(lengthXTiles);
-	var StartTile=null;
+	var StartTile
+	var EndTile
 
     var timeFactor = 1;
     var players = []
@@ -42,12 +43,16 @@ function Room(lengthXTiles,lengthYTiles,TileSize)
     };
 
     var draw = function(){
-        for (turret in turrets){turret.draw();}
-        for (bullet in bullets){bullet.draw();}
-        for (tile in grid){
-            //draw tile
-            //which isn't its own object...
-        }
+        turrets.forEach(function(turret) {turret.draw()})
+        bullets.forEach(function(bullet) {bullet.draw()})
+        //draw all the tiles
+        for (var x=0; x<lengthXTiles; x++){
+        	for (var y=0; y<lengthYTiles; y++){
+        		var tilename = grid[x][y];
+        		var tileImage = assets.getImage(tilename);
+        		canvas.drawImage(tileImage, x*TileSize, y*TileSize, TileSize, TileSize);
+        	};
+        };
     };
 
     //Grid Initialization functions
@@ -79,12 +84,12 @@ function Room(lengthXTiles,lengthYTiles,TileSize)
 		return grid[gridX][gridY];
 	};
 	var setStart=function(x, y){
-		addTile("StartTile",x,y);
-
+		addTile("Start",x,y);
+		StartTile=[x,y];
 	};
 	var setEnd=function(x, y){
-		addTile("EndTile",x,y);
-
+		addTile("End",x,y);
+		EndTile=[x,y];
 	};
 	
 	initializeGrid();

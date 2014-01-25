@@ -1,6 +1,8 @@
-GameLoader(function(assets){
-    var name = 'asdf'
-    var room = RoomLoader(name, assests)
+var assets;
+GameLoader(function(a){
+    assets = a;
+    var name = "1";
+    var room = RoomLoader(name)
 
     var loop = function(){
         room.update();
@@ -9,4 +11,4 @@ GameLoader(function(assets){
         setTimeOut(loop, 1000/FPS);
     }
     loop()
-};
+});
