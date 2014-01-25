@@ -5,6 +5,7 @@ function Player(pos, health, settings){
     var dims = [20, 20];
     var rect = Rect(pos, dims);
     var speed = 20;
+    var bullets = [];
 
     var input = function(inputs){
         pass;
@@ -20,8 +21,11 @@ function Player(pos, health, settings){
             vel[1] ++;
         if(canvas.state[settings.up]) // Remember, y axis is flipped in computers because reasons
             vel[1] --;
-        vel = vel.unit()
-        pos = pos.add(vel.scale(Math.abs(multiplier) * speed))
+        vel = vel.unit();
+        pos = pos.add(vel.scale(Math.abs(multiplier) * speed));
+
+        nearbyGrid = [];
+        posInGrid = pos.scale(1 / room.gridSize);
         // add collision detection with walls and turrets
         // Also check where YOUR bullets are... not which hit you
     }
@@ -30,5 +34,5 @@ function Player(pos, health, settings){
         pass;
     }
 
-    return {health:health, rect:rect, input:input, update:update, draw:draw};
+    return {health:health, rect:rect, bullets:bullets, input:input, update:update, draw:draw};
 }
