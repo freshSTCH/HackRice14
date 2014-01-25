@@ -1,15 +1,21 @@
-function Player(x, y, health=10){
-    var x = x, y = y, health = health;
-    var width = 20, height = 20;
-    var rect = Rect(x, y, width, height);
+function Player(pos, health){
+    health = typeof health !== 'undefined' ? health : 10;
 
-    function update(timeMultiplier){
+    var health = health;
+    var dims = [20, 20];
+    var rect = Rect(pos, dims);
+
+    var input = function(inputs){
         pass;
     }
 
-    function draw(){
+    var update = function(multiplier){
         pass;
     }
 
-    return {x:x, y:y, health:health, h:health, rect:rect, r:rect};
+    var draw = function(){
+        pass;
+    }
+
+    return {health:health, rect:rect, input:input, update:update, draw:draw};
 }

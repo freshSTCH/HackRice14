@@ -1,27 +1,45 @@
-function Point(x, y)
-{
-    var x = x, var y = y;
-
-    function isInRect(rect)
-    {
-        var c1 = Math.abs(x - rect.x) < 0.5 * rect.width;
-        var c2 = Math.abs(y - rect.y) < 0.5 * rect.height;
-        return c1 && c2
-    }
-
-    return {x:x, y:y, isInRect:isInRect};
+Array.prototype.add = function(b){
+    for(var i=0, result=[]; i<this.length; i++)
+        result[i] = this[i] + b[i];
+    return result;
 }
 
-function Rect(x, y, width, height, angle=0)
-{
-    var x = x, y = y, width = width, height = height, angle = angle;
+Array.prototype.subtract = function(b){
+    for(var i=0, result=[]; i<this.length; i++)
+        result[i] = this[i] - b[i];
+    return result;
+}
 
-    function isInRect(rect)
-    {
-        var c1 = Math.abs(x - rect.x) < 0.5 * (width + rect.width);
-        var c2 = Math.abs(y - rect.y) < 0.5 * (height + rect.height);
-        return c1 && c2
+Array.prototype.multiply = function(b){
+    for(var i=0, result=[]; i<this.length; i++)
+        result[i] = this[i] * b[i];
+    return result;
+}
+
+Array.prototype.dot = function(b){
+    for(var i=0, result=0; i<this.length; i++)
+        result += this[i] * b[i];
+    return result;
+}
+
+function Rect(pos, dims, angle){
+    angle = typeof angle !== 'undefined' ? angle : 0;
+
+    var pos = pos, dims = dims, angle = angle;
+
+    var intersectsRect = function(rect){
+        isIntersecting = true;
+        for i in [0, 1]:
+            isIntersecting &= Math.abs(pos[i] - rect.pos[i]) < 0.5 * (dims[i] + rect.dims[i]);
+        return isIntersecting;
     }
 
-    return {x:x, y:y, width:width, w:width, height:height, h:height, angle:angle, a:angle, isInRect:isInRect};
+    var intersectsPoint = function(point){
+        isIntersecting = true;
+        for i in [0, 1]:
+            isIntersecting &= Math.abs(pos[i] - point[i]) < 0.5 * dims[i];
+        return isIntersecting;
+    }
+
+    return {pos:pos, dims:dims, angle:angle, a:angle, intersectsRect:intersectsRect, intersectsPoint:intersectsPoint};
 }

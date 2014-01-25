@@ -1,14 +1,13 @@
-function Bullet(x, y, shooter, angle){
-    var x = x, y = y, shooter = shooter, angle = angle;
-    var point = Point(x, y);
+function Bullet(pos, shooter, velocity){
+    var pos = pos, shooter = shooter, velocity = velocity;
 
-    function update(timeMultiplier){
+    var update = function(multiplier){
         pass;
     }
 
-    function draw(){
+    var draw = function(){
         pass;
     }
 
-    return {x:x, y:y, shooter:shooter, s:shooter, angle:angle, a:angle, point:point, p:point};
+    return {pos:pos, shooter:shooter, velocity:velocity, vel:velocity, v:velocity, update:update, draw:draw};
 }

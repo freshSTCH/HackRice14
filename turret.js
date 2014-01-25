@@ -1,15 +1,17 @@
-function Turret(x, y, ai, health=3){
-    var x = x, y = y, ai = ai, health = health;
-    var width = 20, height = 20;
-    var rect = Rect(x, y, width, height);
+function Turret(pos, ai, health){
+    health = typeof health !== 'undefined' ? health : 3;
 
-    function update(timeMultiplier){
+    var pos = pos, ai = ai, health = health;
+    var dims = [20, 20];
+    var rect = Rect(pos, dims);
+
+    var update = function(multiplier){
         pass;
     }
 
-    function draw(){
+    var draw = function(){
         pass;
     }
 
-    return {x:x, y:y, ai:ai, health:health, h:health, rect:rect, r:rect, update:update, draw:draw};
+    return {pos, ai:ai, health:health, rect:rect, update:update, draw:draw};
 }
