@@ -1,6 +1,8 @@
-GameLoader(function(assets){
+var assets;
+GameLoader(function(a){
+    assets = a;
     var name = 'asdf'
-    var room = RoomLoader(name, assests)
+    var room = RoomLoader(name)
 
     var loop = function(){
         room.update();

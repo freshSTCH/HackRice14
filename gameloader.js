@@ -75,6 +75,3 @@ function GameLoader(callback)
         });
     });
 }
-
-var debugAssets;
-GameLoader(function(assets){debugAssets = assets;});
