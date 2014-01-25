@@ -29,7 +29,7 @@ function Room(lengthXTiles,lengthYTiles,TileSize,Enemies)
 	}
 
 
-	intializeGrid()
+	initializeGrid()
 
 
 }
