@@ -22,7 +22,6 @@ function GameLoader(callback)
                 }
 
             },false);
-            
 
             loadItem.src = nameTransform(item);
 
