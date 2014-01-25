@@ -16,13 +16,29 @@ function Room(lengthXTiles,lengthYTiles,TileSize)
     var timeFactor = 1;
     var players = []
     var turrets = []
-    var bullets = []
 
-    var update = function()
-        for (turret in turrets){turret.update(timeFactor);}
-        for (bullet in bullets){bullet.update(timeFactor);}
-        for (player in players){player.update(timeFactor);}
-        // checkwin, pause etc
+    var update = function(){
+        for (var i = 0; i < turrets.length; i++){turrets[i].update(timeFactor);}
+        for (var i = 0; i < players.length; i++){players[i].update(timeFactor);}
+
+        //collision detection
+        
+        //player- bullet
+        for(var i = 0; i < players.length; i++){
+            var player = players[i];
+            for(var j= 0; j< turrets.length; j++){
+                var turret = turrets[j];
+                for(var k= 0; k < turrets[j].bullets.length; k++){
+                    var bullet = bullet[k];
+                    if (bullet.velocity != 0){
+                        if (player.rect.intersectsPoint(turret.bullet.pos)){
+                            //player.takehit();
+                            //bullet.hitplayer();
+                        }
+                    }
+                }
+            }
+        }
     };
 
     var draw = function(){
