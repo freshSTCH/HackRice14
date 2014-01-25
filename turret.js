@@ -13,5 +13,5 @@ function Turret(pos, ai, health){
         pass;
     }
 
-    return {pos, ai:ai, health:health, rect:rect, update:update, draw:draw};
+    return {pos:pos, ai:ai, health:health, rect:rect, update:update, draw:draw};
 }
