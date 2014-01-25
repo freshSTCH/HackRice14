@@ -1,14 +1,17 @@
 var assets;
 GameLoader(function(a){
     assets = a;
-    var name = "1";
-    var room = RoomLoader(name)
+    Menu(function() {
+        var name = "1";
+        var room = RoomLoader(name);
 
-    var loop = function(){
-        room.update();
+        var loop = function(){
+            room.update();
 
-        room.draw();
-        setTimeOut(loop, 1000/FPS);
-    }
-    loop()
+            room.draw();
+            setTimeOut(loop, 1000/FPS);
+        };
+        loop();
+    });
+
 });
