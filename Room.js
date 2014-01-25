@@ -75,9 +75,3 @@ function Room(lengthXTiles,lengthYTiles,TileSize)
     //end Grid initialization
 	return {initializeGrid:initializeGrid, addTile:addTile, addTurret:addTurret, getGrid:getGrid, getTurrets:getTurrets,getGridSpot:getGridSpot,setStart:setStart, setEnd:setEnd}
 }
-
-
-//add this to Room at some point
-// down here to avoid merge conflicts
-
-
