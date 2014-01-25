@@ -3,11 +3,14 @@ function RoomLoader(roomName,assets)
     "use strict";
     var pixels = PixelImage(assets.getRoomImage(roomName));
 
-    //var room = Room(pixels.width,pixels.height);
+    var room = Room(pixels.width,pixels.height,32);
 
     var roomMapping = [
         [[0,0,0],      "Wall"],
         [[255,255,255],"Floor"],
+        [[0,0,255],   "Turret"],
+        [[0,255,0],   "Start"],
+        [[255,0,0],   "End"  ],
     ];
 
     function getTile(color){
@@ -19,8 +22,6 @@ function RoomLoader(roomName,assets)
             {
                 result = tileInfo[1];
             }
-
-
         });
 
         if (result)
@@ -34,10 +35,31 @@ function RoomLoader(roomName,assets)
         for (var y = 0; y < pixels.height; y++)
         {
             var pixelColor = pixels.getColor(x,y);
-            var tile = getTile(pixelColor);
+            var tileName = getTile(pixelColor);
 
-            console.log(tile);
 
+            switch(tileName)
+            {
+                case "Wall":
+                case "Floor":
+                    room.addTile(tileName,x,y);
+                    break;
+
+                case "Start":
+                    room.setStart(x,y);
+                    break;
+
+                case "End":
+                    room.setEnd(x,y);
+                    break;
+
+                case "Turrent":
+                    var turret = Turret(x,y);
+                    room.addTurret(turret);
+                    break;
+            }
         }
     }
+
+    return room;
 }
