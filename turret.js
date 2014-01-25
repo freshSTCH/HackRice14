@@ -6,9 +6,7 @@ function Turret(pos, ai, health){
     var rect = Rect(pos, dims);
 
     var update = function(multiplier){
-        pass;
-        // Write a simple point-at-player
-        // Check for your own bullets' collisions
+        ai();
     }
 
     var draw = function(){
@@ -17,3 +15,5 @@ function Turret(pos, ai, health){
 
     return {pos:pos, ai:ai, health:health, rect:rect, update:update, draw:draw};
 }
+
+//tracking = function(range, 
