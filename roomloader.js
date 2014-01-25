@@ -1,17 +1,18 @@
 function RoomLoader(roomName,assets)
 {
     "use strict";
-    var pixels = new PixelImage(assets.getRoom(roomName));
+    var pixels = PixelImage(assets.getRoom(roomName));
 
-    var room = new Room(pixels.width,pixels.height);
+    var room = Room(pixels.width,pixels.height);
 
     var roomMapping = new Map([
         [[0,0,0],"Foo"],
         [[255,255,255],"Blah"],
     ]);
 
-    function getTile(){
-        
+    function getTile(color){
+        var colorArr = [color.r,color.g,color.g];
+        return roomMapping(colorArr);
     }
 
     for (var x = 0; x < pixels.width; x++)
@@ -20,6 +21,7 @@ function RoomLoader(roomName,assets)
         {
             var pixelColor = pixels.getColor(x,y);
 
+            console.log(getTile(pixelColor));
 
         }
     }
