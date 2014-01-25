@@ -11,4 +11,4 @@ GameLoader(function(a){
         setTimeOut(loop, 1000/FPS);
     }
     loop()
-};
+});
