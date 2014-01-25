@@ -38,7 +38,7 @@ function GameLoader(callback)
     }
 
     function roomNameTransform(name) {
-        return "Levels/" + name + ".png";
+        return "Rooms/" + name + ".png";
     }
 
 
