@@ -26,12 +26,16 @@ function Room(lengthXTiles,lengthYTiles,TileSize)
     };
 
     var draw = function(){
-        for (turret in turrets){turret.draw();}
-        for (bullet in bullets){bullet.draw();}
-        for (tile in grid){
-            //draw tile
-            //which isn't its own object...
-        }
+        turrets.forEach(function(turret) {turret.draw()})
+        bullets.forEach(function(bullet) {bullet.draw()})
+        //draw all the tiles
+        for (var x=0; i<lengthXTiles; x++){
+        	for (var y=0; i<lengthYTiles; y++){
+        		grid[x][y].draw()
+        	}}
+
+
+
     };
 
     //Grid Initialization functions
