@@ -1,6 +1,6 @@
 var FPS = 50;
-var WIDTH = 700;
-var HEIGHT = 500;
+var WIDTH = 640;
+var HEIGHT = 640;
 var canvas = (function(elem){return (function(canvas){
     elem.width = WIDTH;
     elem.height = HEIGHT;
