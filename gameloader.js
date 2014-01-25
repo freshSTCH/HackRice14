@@ -37,23 +37,34 @@ function GameLoader(callback)
         return "Sounds/" + name + ".wav";
     }
 
+    function roomNameTransform(name) {
+        return "Levels/" + name + ".png";
+    }
+
 
 
     var imgNames = ["BlackSquare","BlueSquare"];
+    var roomNames = ["1"];
 
     var soundNames = ["test","test2"];
 
     load(imgNames,imageNameTransform,Image,"load",function(imgLoaded) {
         console.log("The images are now loaded.");
+
         load(soundNames,soundNameTransform,Audio,"canplaythrough",function (soundLoaded){
             console.log("The sounds are now loaded.");
 
-            var myself = {
-                getImage: function(name) { return imgLoaded[name]; }, 
-                getSound: function(name) { return soundLoaded[name]; }
-            };
+            load(roomNames,roomNameTransform,Image,"load",function(roomLoaded) {
+                console.log("The rooms are now loaded.");
 
-            callback(myself);
+                var myself = {
+                    getImage: function(name) { return imgLoaded[name]; }, 
+                    getSound: function(name) { return soundLoaded[name]; },
+                    getRoomImage: function (name) { return roomLoaded[name]; }
+                };
+
+                callback(myself);
+            });
         });
     });
 }

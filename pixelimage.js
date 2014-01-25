@@ -1,5 +1,7 @@
 function PixelImage(image)
 {
+    "use strict";
+
     var internalCanvas = document.createElement("canvas");
     internalCanvas.width = image.width;
     internalCanvas.height = image.height;
@@ -18,7 +20,9 @@ function PixelImage(image)
                 g : imageData[1],
                 b : imageData[2]
             };
-        }
+        },
+        width: image.width,
+        height: image.height
     };
 
     return myself;
