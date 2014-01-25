@@ -42,7 +42,10 @@ function Room(lengthXTiles,lengthYTiles,TileSize,Enemies)
 // down here to avoid merge conflicts
 
 var timeFactor = 1;
-var
+var players = []
+var turrets = []
+var bullets = []
+
 var update = function(){
     for (turret in turrets){turret.update(timeFactor);}
     for (bullet in bullets){bullet.update(timeFactor);}
