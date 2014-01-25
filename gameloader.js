@@ -43,7 +43,7 @@ function GameLoader(callback)
 
 
 
-    var imgNames = ["BlackSquare","BlueSquare"];
+    var imgNames = ["Wall","Floor","Start","End","Turret"];
     var roomNames = ["1"];
 
     var soundNames = ["test","test2"];
@@ -70,4 +70,4 @@ function GameLoader(callback)
 }
 
 var debugAssets;
-GameLoader(function(assets){debugAssets = assets});
+GameLoader(function(assets){debugAssets = assets;});
