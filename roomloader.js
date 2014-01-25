@@ -54,7 +54,7 @@ function RoomLoader(roomName,assets)
                     break;
 
                 case "Turret":
-                    var turret = Turret(x,y);
+                    var turret = Turret([x,y]);
                     room.addTurret(turret);
                     break;
 
