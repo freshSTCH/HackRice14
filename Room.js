@@ -31,7 +31,9 @@ function Room(lengthXTiles,lengthYTiles,TileSize)
         //draw all the tiles
         for (var x=0; i<lengthXTiles; x++){
         	for (var y=0; i<lengthYTiles; y++){
-        		grid[x][y].draw()
+        		var tilename = grid[x][y]
+        		var tileImage = assets.getImage(tilename)
+        		canvas.drawImage(tileImage, x*TileSize, y*TileSize, TileSize, TileSize)
         	}}
 
 
