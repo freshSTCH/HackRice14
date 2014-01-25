@@ -1,7 +1,7 @@
 var assets;
 GameLoader(function(a){
     assets = a;
-    var name = 'asdf'
+    var name = "1";
     var room = RoomLoader(name)
 
     var loop = function(){
