@@ -8,12 +8,12 @@ function Room(lengthXTiles,lengthYTiles,TileSize,Enemies)
 	var Enemies=Enemies;
 	var initializeGrid=function(){
 		var x=0;
-		while (x<lengthXTiles):
+		while (x<lengthXTiles){
 			var y=0;
-			while (y<lengthYTiles):
+			while (y<lengthYTiles){
 				grid[x][y] = [Null];		
-	}
 
+	}}}
 	var addTile=function(Tile,x,y){
 		grid[x][y] = Tile;
 	};
@@ -27,4 +27,10 @@ function Room(lengthXTiles,lengthYTiles,TileSize,Enemies)
 		var gridY=floor(pixelY/TileSize);
 		return grid[gridX,gridY];
 	}
+
+
+	intializeGrid()
+
+
 }
+
