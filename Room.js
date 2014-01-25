@@ -9,19 +9,17 @@ function Room(lengthXTiles,lengthYTiles,TileSize,Turrets)
 	var TileSize=TileSize;
 	var lengthXTiles=lengthXTiles;
 	var lengthYTiles=lengthYTiles;
+	var grid=new Array(lengthXTiles);
 
-	var grid=[];
 	var StartTile=null;
 	var initializeGrid=function(){
 		var x=0;
 		while (x<lengthXTiles){
-			var y=0;
-			while (y<lengthYTiles){
-				grid[x][y]=null;
-				y++;
+			grid[x]=new Array(lengthYTiles)
 			x++;		
 
-	}}};
+			
+	}};
 	var addTile=function(Tile,x,y){
 		grid[x][y] = Tile;
 		//should probably add something to check
