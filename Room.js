@@ -50,6 +50,7 @@ var update = function(){
     for (turret in turrets){turret.update(timeFactor);}
     for (bullet in bullets){bullet.update(timeFactor);}
     for (player in players){player.update(timeFactor);}
+    //
 };
 
 var draw = function(){
