@@ -14,7 +14,6 @@ function PixelImage(image)
         getColor: function(x,y) {
 
             var imageData = context.getImageData(x,y,1,1).data;
-            console.log(imageData);
             return {
                 r : imageData[0],
                 g : imageData[1],

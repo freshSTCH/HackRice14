@@ -1,18 +1,32 @@
 function RoomLoader(roomName,assets)
 {
     "use strict";
-    var pixels = PixelImage(assets.getRoom(roomName));
+    var pixels = PixelImage(assets.getRoomImage(roomName));
 
-    var room = Room(pixels.width,pixels.height);
+    //var room = Room(pixels.width,pixels.height);
 
-    var roomMapping = new Map([
-        [[0,0,0],"Foo"],
-        [[255,255,255],"Blah"],
-    ]);
+    var roomMapping = [
+        [[0,0,0],      "Wall"],
+        [[255,255,255],"Floor"],
+    ];
 
     function getTile(color){
-        var colorArr = [color.r,color.g,color.g];
-        return roomMapping(colorArr);
+        var result;
+        roomMapping.forEach(function(tileInfo)
+        {
+            var tileColor = tileInfo[0];
+            if ((color.r === tileColor[0]) && (color.g === tileColor[1]) && (color.b === tileColor[2]))
+            {
+                result = tileInfo[1];
+            }
+
+
+        });
+
+        if (result)
+            return result;
+
+        console.error("No such color for ",color);
     }
 
     for (var x = 0; x < pixels.width; x++)
@@ -20,8 +34,9 @@ function RoomLoader(roomName,assets)
         for (var y = 0; y < pixels.height; y++)
         {
             var pixelColor = pixels.getColor(x,y);
+            var tile = getTile(pixelColor);
 
-            console.log(getTile(pixelColor));
+            console.log(tile);
 
         }
     }
