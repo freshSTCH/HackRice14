@@ -5,15 +5,14 @@ function GameLoader(callback)
 
     function loadImages(imgNames,callback)
     {
-        var imgsToLoad = imgNames.size;
-        var loadedImages = {}
+        var imgsToLoad = imgNames.length;
+        var loadedImages = {};
 
         imgNames.forEach(function(item)
         {
-            var imgObject = new Image()
-            imgObject.addEventListener("load",function () 
+            var imgObject = new Image();
+            imgObject.addEventListener("load",function ()
             {
-
                 loadedImages[item] = imgObject;
 
                 imgsToLoad -= 1;
@@ -22,16 +21,26 @@ function GameLoader(callback)
                 {
                     callback(loadedImages);
                 }
+
             },false);
 
-            imgObject.src = item + '.png';
+            imgObject.src = "Images/" + item + ".png";
 
         });
     }
 
-    var imgNames = ["foo","blah"];
-    loadImages(imgNames,function(loaded) {
-        console.log(loaded);
+    var imgNames = ["BlackSquare","BlueSquare"];
+    loadImages(imgNames,function(imgObject) {
+        console.log("The images are now loaded ",loaded);
+
+        var myself = {
+            getImage: function(name) { return imgObject[name]; }
+
+        }
+
+        callback(myself);
+
     });
-    
+
+
 }
