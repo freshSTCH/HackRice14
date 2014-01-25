@@ -1,36 +1,30 @@
-function Room(xLength,yLength,Enemies,Tiles)
+function Room(lengthXTiles,lengthYTiles,TileSize,Enemies)
 {
 	"use strict";
 	/*
-	Has a function to take in pixel locations, multiply to
-	figure out where on the grid that actually is.
+	Stores tiles in a grid, stores enemies in a seperate array
 	*/
 	var grid=[];
-	var Enemies=Enemies
-	var Tiles=Tiles
-
-	var initializeGrid()=function(){
-		var i=0;
-		while (i<SizeRoom):
-			var j=0;
-			while (j<SizeRoom):
-				grid[i][j] = ["Empty";		
+	var Enemies=Enemies;
+	var initializeGrid=function(){
+		var x=0;
+		while (x<lengthXTiles):
+			var y=0;
+			while (y<lengthYTiles):
+				grid[x][y] = [Null];		
 	}
 
-	var addEnemy=function(Enemy,x,y){
-		grid[x][y] = Enemy
-	};
 	var addTile=function(Tile,x,y){
-		grid[x][y] = Tile
+		grid[x][y] = Tile;
 	};
 	var getGrid=function(){
 		return grid
 	};
-	var checkSpot=function(pixelX, pixelY){
-		//check what is on the grid at the given pixel location
-		//double check this formula works
-		var gridX=pixelX/floor(xLength) 
-		var gridY=floor(pixelY/(yLength))
-		return grid[gridX,gridY]
+	var getGridSpot=function(pixelX, pixelY){
+		//check what tile is on the grid at the given pixel location
+		//!I need to double check this formula works!
+		var gridX=floor(pixelX/TileSize);
+		var gridY=floor(pixelY/TileSize);
+		return grid[gridX,gridY];
 	}
 }
