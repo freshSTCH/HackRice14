@@ -2,45 +2,59 @@ function GameLoader(callback)
 {
     "use strict";
 
-
-    function loadImages(imgNames,callback)
+    function load(names,nameTransform,TypeToLoad,readyName,callback)
     {
-        var imgsToLoad = imgNames.length;
-        var loadedImages = {};
+        var objToLoad = names.length;
+        var loaded = {};
 
-        imgNames.forEach(function(item)
+        names.forEach(function(item)
         {
-            var imgObject = new Image();
-            imgObject.addEventListener("load",function ()
+            var loadItem = new TypeToLoad();
+            loadItem.addEventListener(readyName,function ()
             {
-                loadedImages[item] = imgObject;
+                loaded[item] = loadItem;
 
-                imgsToLoad -= 1;
+                objToLoad -= 1;
 
-                if (imgsToLoad === 0)
+                if (objToLoad === 0)
                 {
-                    callback(loadedImages);
+                    callback(loaded);
                 }
 
             },false);
+            
 
-            imgObject.src = "Images/" + item + ".png";
+            loadItem.src = nameTransform(item);
 
         });
     }
 
+    function imageNameTransform(name){
+        return "Images/" + name + ".png";
+    }
+
+    function soundNameTransform(name)
+    {
+        return "Sounds/" + name + ".wav";
+    }
+
+
+
     var imgNames = ["BlackSquare","BlueSquare"];
-    loadImages(imgNames,function(imgObject) {
-        console.log("The images are now loaded ",loaded);
 
-        var myself = {
-            getImage: function(name) { return imgObject[name]; }
+    var soundNames = ["test","test2"];
 
-        }
+    load(imgNames,imageNameTransform,Image,"load",function(imgLoaded) {
+        console.log("The images are now loaded.");
+        load(soundNames,soundNameTransform,Audio,"canplaythrough",function (soundLoaded){
+            console.log("The sounds are now loaded.");
 
-        callback(myself);
+            var myself = {
+                getImage: function(name) { return imgLoaded[name]; }, 
+                getSound: function(name) { return soundLoaded[name]; }
+            };
 
+            callback(myself);
+        });
     });
-
-
 }
