@@ -3,7 +3,7 @@ function RoomLoader(roomName,assets)
     "use strict";
     var pixels = PixelImage(assets.getRoomImage(roomName));
 
-    var room = Room(pixels.width,pixels.height);
+    var room = Room(pixels.width,pixels.height,32);
 
     var roomMapping = [
         [[0,0,0],      "Wall"],
