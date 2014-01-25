@@ -11,7 +11,8 @@ function Room(lengthXTiles,lengthYTiles,TileSize)
 	var lengthYTiles=lengthYTiles;
 
 	var grid=new Array(lengthXTiles);
-	var StartTile=null;
+	var StartTile
+	var EndTile
 
     var timeFactor = 1;
     var players = []
@@ -67,12 +68,12 @@ function Room(lengthXTiles,lengthYTiles,TileSize)
 		return grid[gridX][gridY];
 	};
 	var setStart=function(x, y){
-		addTile("StartTile",x,y);
-
+		addTile("Start",x,y);
+		StartTile=[x,y];
 	};
 	var setEnd=function(x, y){
-		addTile("EndTile",x,y);
-
+		addTile("End",x,y);
+		EndTile=[x,y];
 	};
 	
 	initializeGrid();
