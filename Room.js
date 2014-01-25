@@ -11,7 +11,7 @@ function Room(lengthXTiles,lengthYTiles,TileSize)
 	var lengthYTiles=lengthYTiles;
 
 	var grid=new Array(lengthXTiles);
-	var turrets=[ ]
+	var turrets=[ ];
 	var StartTile=null;
 
 	var initializeGrid=function(){
