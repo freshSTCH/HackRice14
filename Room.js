@@ -37,3 +37,23 @@ function Room(lengthXTiles,lengthYTiles,TileSize,Enemies)
 	initializeGrid();
 }
 
+
+//add this to Room at some point
+// down here to avoid merge conflicts
+
+var timeFactor = 1;
+var
+var update = function(){
+    for (turret in turrets){turret.update(timeFactor);}
+    for (bullet in bullets){bullet.update(timeFactor);}
+    for (player in players){player.update(timeFactor);}
+};
+
+var draw = function(){
+    for (turret in turrets){turret.draw();}
+    for (bullet in bullets){bullet.draw();}
+    for (tile in grid){
+        //draw tile
+        //which isn't its own object...
+    }
+};

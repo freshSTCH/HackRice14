@@ -1,11 +1,12 @@
-var play = function(){
-    GameLoader(function(assets){
-        //load level
-    };
+GameLoader(function(assets){
+    var name = 'asdf'
+    var room = RoomLoader(name, assests)
 
     var loop = function(){
+        room.update();
 
-    setTimeOut(loop, 1000/FPS);
+        room.draw();
+        setTimeOut(loop, 1000/FPS);
     }
-}
-play()
+    loop()
+};
