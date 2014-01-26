@@ -7,7 +7,7 @@ var Bullet = function(pos, velocity, img, growth){
     var radius = 0;
     var growth = growth || 1; //pxls?
 
-    var active = True;
+    var active = true;
     var update = function(timeFactor){
         if(active){
              rect.pos = rect.pos.add(velocity.scale(timeFactor));
