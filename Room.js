@@ -64,6 +64,7 @@ function Room(lengthXTiles,lengthYTiles)
                     if (turret.rect.intersectsRect(bullet.rect))
                     {
                         bullet.hit();
+                        turret.hit();
                     }
                 });  
             }

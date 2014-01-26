@@ -42,7 +42,7 @@ var Turret = function(pos, ai, health, img){
         assets.playSound("TurretDeath");
         //temporary; I don't have a good "normal" hit sound yet
         //AND this function needs to actually do hurt the turret
-    }
+    };
 
     //AI's
     var AI = (function(ai){
@@ -107,5 +107,5 @@ var Turret = function(pos, ai, health, img){
             break;
         }
     })(ai);
-    return {pos:pos, ai:ai, health:health, rect:rect, update:update, draw:draw};
+    return {pos:pos, ai:ai, health:health, rect:rect, update:update, draw:draw, hit:hit};
 }
