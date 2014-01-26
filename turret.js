@@ -26,6 +26,8 @@ var Turret = function(pos, ai, health, img){
 
     function getImgName()
     {
+        if (health > 3)
+            return img;
         switch(health)
         {
             case 3:

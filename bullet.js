@@ -42,6 +42,9 @@ var Bullet = function(pos, velocity, img, growth, rgba, owner){
                     }
                     else if (timeFactor < 0){
                         reverseHit();
+                        if (owner == "player"){
+                            room.players[0].unshootMissed(); // CHANGE THIS IF MULTIPLAYER IS IMPLEMENTED
+                        }
                     }
                 }
 
