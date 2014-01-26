@@ -101,17 +101,17 @@ var Turret = function(pos, ai, health, img){
                     switch (ai.settings){
                         case 'sniper':
                             var range = 13;
-                            var speed = ((Math.PI / 8) / FPS);
-                            var timer = FPS * 0.5; //bullets per sec
+                            var speed = ((Math.PI / 4) / FPS);
+                            var timer = FPS * 1; //bullets per sec
                             var tolerance = (Math.PI / 16);
-                            bulletSpeed = (5 / FPS);
+                            bulletSpeed = (10 / FPS);
                             break;
                         case 'machinegun':
                             var range = 7;
                             var speed = ((Math.PI / 2) / FPS);
                             var timer = FPS * 5; //bullets per sec
                             var tolerance = (Math.PI / 4);
-                            bulletSpeed = (2 / FPS);
+                            bulletSpeed = (5 / FPS);
                             break;
                     }
 

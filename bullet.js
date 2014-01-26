@@ -17,7 +17,7 @@ var Bullet = function(pos, velocity, img, growth, rgba, owner){
     var update = function(timeFactor){
         switch(state){
             case 'stuck':
-                rect.setPos(rect.pos.add(velocity.scale(timeFactor * TILESIZE)));
+                rect.setPos(rect.pos.add(velocity.scale(timeFactor)));
                 var unstuck = true;
                 if (room.hittingTileType("Wall", rect) || room.hittingTileType("Field", rect))
                     unstuck = false;
@@ -35,7 +35,7 @@ var Bullet = function(pos, velocity, img, growth, rgba, owner){
                     state = 'active';
                 break;
             case 'active':
-                rect.setPos(rect.pos.add(velocity.scale(timeFactor * TILESIZE)));
+                rect.setPos(rect.pos.add(velocity.scale(timeFactor)));
                 if (room.hittingTileType("Wall", rect) || room.hittingTileType("Field", rect)){
                     if (timeFactor > 0){
                         hit('room');

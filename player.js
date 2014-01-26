@@ -14,7 +14,7 @@ function Player(pos, health, settings, img, integrity){
 
     var catchTolerance = 0.125 * Math.PI;
 
-    var bulletSpeed = .01; //units? idk
+    var bulletSpeed = 5 / FPS; //tiles per second
     var timer = FPS / 2;
 
     var dead = false;
