@@ -71,7 +71,7 @@ function GameLoader(callback)
 
 
 
-    var imgNames = ["Wall","Floor","Start","End","Turret","Menu","Player"];
+    var imgNames = ["Wall","Floor","Start","End","Turret","Menu","Player","Bullet"];
     var roomNames = ["1"];
 
     var soundNames = ["test","test2"];

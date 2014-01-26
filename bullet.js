@@ -10,6 +10,8 @@ var Bullet = function(pos, velocity, img, growth, rgb){
     var decay = decay || Math.pow(.5,(1/FPS));
     var rgba = rgba || [0,255,0,1]
 
+    img = assets.getImage("Bullet");
+
     var active = true;
     var update = function(timeFactor){
         if(active){
@@ -24,17 +26,10 @@ var Bullet = function(pos, velocity, img, growth, rgb){
         }
 
 
-        var corners = rect.corners();
-
-        corners.forEach(function(corner)
+        if (room.hittingWall(rect))
         {
-            //console.log(corner);
-            var rounded = corner.map(function(val){return Math.floor(val);});
-            var tile = room.getTypeOfTile(rounded[0],rounded[1]);
-            if (tile === "Wall")
-                active = false;
-            //console.log(tile);
-        });
+            active = false;
+        }
 
         // Add sprite animation here
     }

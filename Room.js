@@ -97,9 +97,26 @@ function Room(lengthXTiles,lengthYTiles)
         EndTile=[x,y];
     };
 
+    var hittingWall = function(rect)
+    {
+        var corners = rect.corners();
+
+        var result = false;
+
+        corners.forEach(function(corner)
+        {
+            var rounded = corner.map(function(val){return Math.floor(val);});
+            var tile = room.getTypeOfTile(rounded[0],rounded[1]);
+            if (tile === "Wall")
+                result = true;
+        });
+
+        return result;
+    }
+
     initializeGrid();
     //end Grid initialization
     //
-    return {getTypeOfTile:getTypeOfTile,addBullet:addBullet,offset:offset,players:players,initializeGrid:initializeGrid, addTile:addTile, addTurret:addTurret, getGrid:getGrid, getTurrets:getTurrets,getGridSpot:getGridSpot,setStart:setStart, setEnd:setEnd, update:update, draw:draw}
+    return {hittingWall:hittingWall,getTypeOfTile:getTypeOfTile,addBullet:addBullet,offset:offset,players:players,initializeGrid:initializeGrid, addTile:addTile, addTurret:addTurret, getGrid:getGrid, getTurrets:getTurrets,getGridSpot:getGridSpot,setStart:setStart, setEnd:setEnd, update:update, draw:draw}
 
 }
