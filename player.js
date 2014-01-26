@@ -1,21 +1,20 @@
-var Player = function(pos, health, settings, img){
+function Player(pos, health, settings, img){
     health =  health || 10;
 
-    var health = health;
-    var dims = [.47, .47];
+
+    var dims = [0.47, 0.47];
     var rect = Rect(pos, dims);
-    var speed = .1;
+    var speed = 0.1;
     var bullets = [];
-    var settings = settings;
 
     var imageDims = [1,1];
 
     canvas.addMouseDownListener(function(pos)
     {
-        var velocity = pos.scale(1/TILESIZE).subtract(rect.pos).unit().scale(.1);
+        var velocity = pos.scale(1/TILESIZE).subtract(rect.pos).unit().scale(0.1);
         console.log("Make bullet");
 
-        room.addBullet(Bullet([rect.pos[0],rect.pos[1]],velocity,assets.getImage("Start")));
+        room.addPlayerBullet(Bullet([rect.pos[0],rect.pos[1]],velocity,"Bullet"));
     });
 
     var update = function(timeFactor){
@@ -41,7 +40,7 @@ var Player = function(pos, health, settings, img){
         rect.angle = Math.atan2(canvas.mousePos[1]/TILESIZE - rect.pos[1],canvas.mousePos[0]/TILESIZE - rect.pos[0]);
         // add collision detection with walls and turrets
         // Also check where YOUR bullets are... not which hit you
-    }
+    };
 
     var draw = function(){
 
@@ -49,7 +48,7 @@ var Player = function(pos, health, settings, img){
 
 
         canvas.putImageEasy(Rect(rect.pos,imageDims,rect.angle), img);
-    }
+    };
 
     return {health:health, rect:rect, bullets:bullets, update:update, draw:draw};
 }
