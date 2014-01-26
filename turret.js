@@ -22,13 +22,42 @@ var Turret = function(pos, ai, health, img){
         //bullets.push(Bullet(pos, angleToVector(rect.angle).scale(speed),assets.getImage("Wall")));
     }
 
+    var simpleShoot = function(){
+        room.addEnemyBullet(Bullet([pos[0],pos[1]], angleToVector(rect.angle).scale(.01),"EnemyBullet"));
+    }
+
+
+
+
+    function simpleAI(settings)
+    {
+        var radsPerSecond = .01;
+
+        var timeTillNextShot = 0;
+
+        function update()
+        {
+            rect.angle += radsPerSecond;
+            if (timeTillNextShot === 0)
+            {
+                simpleShoot();
+                timeTillNextShot = 1000;
+            }
+            else
+                timeTillNextShot -=1;
+
+        }
+
+        return update;
+    }
 
     //AI's
     var AI = (function(ai){
         switch(ai.type){
-            /*case 'another ai':
-             * break;
-             */
+            case 'simpleAI':
+                return simpleAI(ai.settings);
+                break;
+             
             case 'tracker':
             default:
                 return (function(settings){//range, speed, timer, tolerance, bulletSpeed

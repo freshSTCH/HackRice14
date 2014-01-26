@@ -6,7 +6,15 @@
             "type": "tracker",
             "settings":{}
         } 
+        }],
+
+    [ [6,13], {
+        "ai": {
+            "type": "simpleAI",
+            "settings":{}
+        } 
         }]
+
 
 
         ]

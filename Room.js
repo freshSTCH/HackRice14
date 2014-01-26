@@ -13,14 +13,18 @@ function Room(lengthXTiles,lengthYTiles)
     var pos = [0,0];
     var players = [];
     var turrets = [];
-    var bullets = [];
+
+    var enemyBullets = [];
+    var playerBullets = [];
+
 
     var offset = [0,0];
 
     var update = function(){
         turrets.forEach(function(turret){turret.update(timeFactor);});
         players.forEach(function(player){player.update(timeFactor);});
-        bullets.forEach(function(bullet){bullet.update(timeFactor);});
+        enemyBullets.forEach(function(bullet){bullet.update(timeFactor);});
+        playerBullets.forEach(function(bullet){bullet.update(timeFactor);});
     };
 
     var draw = function(){
@@ -34,7 +38,8 @@ function Room(lengthXTiles,lengthYTiles)
 
         
         turrets.forEach(function(turret) {turret.draw(pos);});
-        bullets.forEach(function(bullet) {bullet.draw(pos);});
+        enemyBullets.forEach(function(bullet) {bullet.draw(pos);});
+        playerBullets.forEach(function(bullet) {bullet.draw(pos);});
         players.forEach(function(player) {player.draw(pos);});
             //draw all the tiles
             
@@ -42,10 +47,15 @@ function Room(lengthXTiles,lengthYTiles)
 
     //Grid Initialization functions
     //
-    var addBullet = function(bullet)
+    var addEnemyBullet = function(bullet)
     {
-        bullets.push(bullet);
+        enemyBullets.push(bullet);
     };
+
+    var addPlayerBullet = function(bullet)
+    {
+        playerBullets.push(bullet);
+    }
 
     var initializeGrid=function(){
         var x=0;
@@ -117,6 +127,6 @@ function Room(lengthXTiles,lengthYTiles)
     initializeGrid();
     //end Grid initialization
     //
-    return {hittingWall:hittingWall,getTypeOfTile:getTypeOfTile,addBullet:addBullet,offset:offset,players:players,initializeGrid:initializeGrid, addTile:addTile, addTurret:addTurret, getGrid:getGrid, getTurrets:getTurrets,getGridSpot:getGridSpot,setStart:setStart, setEnd:setEnd, update:update, draw:draw}
+    return {hittingWall:hittingWall,getTypeOfTile:getTypeOfTile,addEnemyBullet:addEnemyBullet,addPlayerBullet:addPlayerBullet,offset:offset,players:players,initializeGrid:initializeGrid, addTile:addTile, addTurret:addTurret, getGrid:getGrid, getTurrets:getTurrets,getGridSpot:getGridSpot,setStart:setStart, setEnd:setEnd, update:update, draw:draw}
 
 }
