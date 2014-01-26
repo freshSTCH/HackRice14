@@ -1,18 +1,18 @@
 {
     "turretData":[
 
-    [ [9,3], {
+   [ [9,3], {
         "ai": {
             "type": "tracker",
-            "settings":{}
+            "settings":"sniper"
         },
         "image": "Turret2"
         }],
 
     [ [6,13], {
         "ai": {
-            "type": "simple",
-            "settings":{}
+            "type": "tracker",
+            "settings":"machinegun"
         },
         "image": "Turret1"
         }]
