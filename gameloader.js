@@ -32,10 +32,6 @@ function GameLoader(callback)
         return "Images/" + name + ".png";
     }
 
-    function soundNameTransform(name)
-    {
-        return "Sounds/" + name + ".wav";
-    }
 
     function roomNameTransform(name) {
         return "Rooms/" + name + ".png";
@@ -72,8 +68,32 @@ function GameLoader(callback)
     function loadSounds(names,callback)
     {
 
-        var soundBuffers = {};
+        var soundBuffers = {forward:{},reverse:{}};
         var numberOfSounds = names.length;
+
+        function cloneAudioBuffer(audioBuffer){
+    var channels = [],
+        numChannels = audioBuffer.numberOfChannels;
+
+    //clone the underlying Float32Arrays
+    for (var i = 0; i < numChannels; i++){
+        channels[i] = new Float32Array(audioBuffer.getChannelData(i));
+    }
+
+    //create the new AudioBuffer (assuming AudioContext variable is in scope)
+    var newBuffer = context.createBuffer(
+                        audioBuffer.numberOfChannels,
+                        audioBuffer.length,
+                        audioBuffer.sampleRate
+                    );
+
+    //copy the cloned arrays to the new AudioBuffer
+    for (var i = 0; i < numChannels; i++){
+        newBuffer.getChannelData(i).set(channels[i]);
+    }
+
+    return newBuffer;
+}
 
         function loadSound(name) {
             var url = "Sounds/" + name + ".wav";
@@ -83,7 +103,14 @@ function GameLoader(callback)
 
             request.onload = function() {
                 context.decodeAudioData(request.response, function(buffer) {
-                    soundBuffers[name] = buffer;
+                    soundBuffers.forward[name] = buffer;
+                    soundBuffers.reverse[name] = cloneAudioBuffer(buffer);
+
+                    for (var i =0 ; i<buffer.numberOfChannels;i++)
+                    {
+                        Array.prototype.reverse.call( soundBuffers.reverse[name].getChannelData(i) );
+                    }
+                    
                     numberOfSounds-=1;
 
                     if (numberOfSounds === 0)
@@ -102,9 +129,10 @@ function GameLoader(callback)
 
 
 
-    var imgNames = ["Wall","Floor","Start","End","Menu","Player","Bullet","EnemyBullet","LevelSelect","TimeMachine","GameOver",
+    var imgNames = ["Wall","Floor","Start","End","Menu","Player","Bullet","EnemyBullet","LevelSelect","GameOver",
     "Turret1","DamagedTurret1","NearDeathTurret1",
-    "Turret2","DamagedTurret2","NearDeathTurret2"];
+    "Turret2","DamagedTurret2","NearDeathTurret2",
+    "TimeMachine","SlightlyDamagedTimeMachine","ModeratelyDamagedTimeMachine","HeavilyDamagedTimeMachine","NearDeathTimeMachine"];
 
     var roomNames = ["1","2"];
 
@@ -129,16 +157,27 @@ function GameLoader(callback)
 
                     function playSound(name)
                     {
-                        var sound = getOrLogError(name,soundLoaded,"sound");
+                        var sound = getOrLogError(name,soundLoaded.forward,"sound");
                         var source = context.createBufferSource(); // creates a sound source
                         source.buffer = sound;                    // tell the source which sound to play
                         source.connect(context.destination);       // connect the source to the context's destination (the speakers)
                         source.start(0);  
                     }
 
+                   
+
+                    function playReversedSound(name)
+                    {
+                        var sound = getOrLogError(name,soundLoaded.reverse,"sound");
+                        var source = context.createBufferSource(); // creates a sound source
+                        source.buffer = sound;                    // tell the source which sound to play
+                        source.connect(context.destination);       // connect the source to the context's destination (the speakers)
+                        source.start(0); 
+                    }
+
                     var myself = {
                         getImage: function(name) {      return getOrLogError(name,imgLoaded,"image"); }, 
-                        playSound: function(name) {      playSound(name); },
+                        playSound: function(name,backward) { if (backward) playReversedSound(name); else playSound(name);},
                         getRoomImage: function (name) { return getOrLogError(name,roomLoaded,"room"); },
                         getRoomMetadata: function(name){return getOrLogError(name,roomMetaDataLoaded,"room metadata");}
                     };

@@ -2,7 +2,7 @@ function TimeMachine(pos)
 {
     var dim = [1,1]
     var rect = Rect(pos,dim);
-    var img = assets.getImage("TimeMachine");
+    var img = "TimeMachine";
     var health = 10;
 
     var radsPerTick = .02;
@@ -16,8 +16,37 @@ function TimeMachine(pos)
 
     }
 
+    function getImgName()
+    {
+        switch (health)
+        {
+            case 10:
+                return img;
+
+            case 9:
+            case 8:
+            case 7:
+                return "SlightlyDamaged"+img;
+
+            case 6:
+            case 5:
+            case 4:
+                return "ModeratelyDamaged"+img;
+
+            case 3:
+            case 2:
+            case 1:
+                return "HeavilyDamaged"+img;
+
+            case 0:
+            default:
+                return "NearDeath"+img;
+
+        }
+    }
+
     var draw = function(){
-        canvas.putImageEasy(rect, img);
+        canvas.putImageEasy(rect, assets.getImage(getImgName()));
     }
 
     function hit()
