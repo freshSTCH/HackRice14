@@ -2,12 +2,13 @@ var Player = function(pos, health, settings, img){
     health =  health || 10;
 
     var health = health;
-    var dims = [1, 1];
+    var dims = [.47, .47];
     var rect = Rect(pos, dims);
     var speed = .1;
     var bullets = [];
-    var img = img;
     var settings = settings;
+
+    var imageDims = [1,1];
 
     canvas.addMouseDownListener(function(pos)
     {
@@ -29,23 +30,13 @@ var Player = function(pos, health, settings, img){
         if(canvas.state[settings.up]) // Remember, y axis is flipped in computers because reasons
             vel[1] --;
         vel = vel.unit();
-        new_pos = rect.pos.add(vel.scale(Math.abs(timeFactor) * speed));
+        var oldPos = [rect.pos[0],rect.pos[1]];
+        rect.setPos(rect.pos.add(vel.scale(Math.abs(timeFactor) * speed)));
 
-        var collided = false;
-        var nearestTile = [Math.round(pos[0]), Math.round(pos[1])];
-        var tilesToCheck = []
-            for (var i=-1; i<=1; i++){
-                for (var j=-1; j<=1; j++){
-                    var tile = nearestTile.add([i, j]);
-                    tilesToCheck.push(tile)
-                }
-            }
-        for (var i=0; i<tilesToCheck.length; i++){
-            //if (room.tileToRect(tilesToCheck[i]).intersectsRect(rect))
-            //    collided = true
-        }
-        if (!collided){
-            rect.pos = new_pos;
+        var collided = room.hittingWall(rect);
+
+        if (collided){
+            rect.setPos(oldPos);
         }
         rect.angle = Math.atan2(canvas.mousePos[1]/TILESIZE - rect.pos[1],canvas.mousePos[0]/TILESIZE - rect.pos[0]);
         // add collision detection with walls and turrets
@@ -57,7 +48,7 @@ var Player = function(pos, health, settings, img){
          for(var i = 0; i < bullets.length;i++){bullets[i].draw();}
 
 
-        canvas.putImageEasy(rect, img);
+        canvas.putImageEasy(Rect(rect.pos,imageDims,rect.angle), img);
     }
 
     return {health:health, rect:rect, bullets:bullets, update:update, draw:draw};
