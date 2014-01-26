@@ -25,8 +25,8 @@ function Turret(pos, ai, health, img){
 }
 
 //ai functions
-tracking = function(range, speed, timer, tolerance){return 
-    function(state){
+tracking = function(range, speed, timer, tolerance){
+    return function(state){
         if (state.timer == undefined){
             state.timer = 0;
             state.tracking = false;
