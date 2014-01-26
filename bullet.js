@@ -4,7 +4,8 @@ var Bullet = function(pos, velocity, img, growth, rgb){
      var dims = [.3, .3];
      var rect = Rect(pos,dims);
 
-    var hitpos = [];
+     var hitObj;//room, player
+
     var radius = 1;
     var growth = growth || 20; //Math.pow(2, (1/FPS));
     var decay = decay || Math.pow(.5, (1/FPS));
@@ -21,13 +22,20 @@ var Bullet = function(pos, velocity, img, growth, rgb){
             rgba[3] *= Math.pow(decay, timeFactor);
             if (time <= 0){
                 active = true;
+                if (hitObj == 'player'){
+                    for(var i = 0; i < room.players.length; i++){
+                        if (room.players[i].rect.interectsRect(rect)){
+                            room.players[i].unhit();
+                        }
+                    }
+                }
             }
         }
 
 
         if (room.hittingTileType("Wall", rect) || room.hittingTileType("Field", rect))
         {
-            hit();
+            hit('room');
         }
 
         // Add sprite animation here
@@ -67,8 +75,8 @@ var Bullet = function(pos, velocity, img, growth, rgb){
         }
     }
 
-    var hit = function(hitpos){
-        hitpos = hitpos;
+    var hit = function(obj){
+        hitObj = obj
         active = false;
     }
 
