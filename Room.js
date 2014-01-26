@@ -36,6 +36,13 @@ function Room(lengthXTiles,lengthYTiles)
                 }
 
             });
+
+            turrets.forEach(function(turret){
+                if (turret.rect.intersectsRect(player.rect))
+                {
+                    player.undo();
+                }
+            })
         });
 
         turrets.forEach(function(turret){
