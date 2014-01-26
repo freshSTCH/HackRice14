@@ -31,7 +31,7 @@ function Room(lengthXTiles,lengthYTiles)
 
         players.forEach(function(player){
             enemyBullets.forEach(function (bullet){
-                    if (bullet.state=='active' && player.rect.intersectsRect(bullet.rect))
+                    if (bullet.getState()=='active' && player.rect.intersectsRect(bullet.rect))
                     {
                         if(timeFactor > 0){
                             player.hit();
@@ -52,7 +52,7 @@ function Room(lengthXTiles,lengthYTiles)
         });
 
         playerBullets.forEach(function (bullet){
-            if (bullet.state=='active')
+            if (bullet.getState()=='active')
             {
                 if (timeMachine.rect.intersectsRect(bullet.rect))
                 {

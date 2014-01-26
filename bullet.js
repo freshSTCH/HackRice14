@@ -112,6 +112,9 @@ var Bullet = function(pos, velocity, img, growth, rgb){
         hitObj = obj;
         state = 'ring';
     }
+    var getState = function(){
+        return state;
+    }
 
-    return {state:state, hit:hit, rect:rect,pos:pos, velocity:velocity, vel:velocity, v:velocity, update:update, draw:draw};
+    return {getState:getState, hit:hit, rect:rect,pos:pos, velocity:velocity, vel:velocity, v:velocity, update:update, draw:draw};
 }
