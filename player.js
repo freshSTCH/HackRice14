@@ -39,7 +39,7 @@ var Player = function(pos, health, settings, img){
     }
 
     var draw = function(){
-        var drawRect = Rect([TILESIZE * rect.pos[0] + room.offset[0], TILESIZE * rect.pos[1] + room.offset[1]], [TILESIZE* rect.dims[0], TILESIZE*rect.dims[1]]);
+        var drawRect = Rect([room.TILESIZE * rect.pos[0] + room.offset[0], room.TILESIZE * rect.pos[1] + room.offset[1]], [room.TILESIZE * rect.dims[0], room.TILESIZE*rect.dims[1]]);
         canvas.putImage(drawRect, img);
     }
 
