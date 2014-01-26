@@ -176,7 +176,7 @@ function GameLoader(callback)
 
                     var myself = {
                         getImage: function(name) {      return getOrLogError(name,imgLoaded,"image"); }, 
-                        playSound: function(name,backward) { if (backward) playReversedSound(name); else playSound(name);} 
+                        playSound: function(name,backward) { if (backward) playReversedSound(name); else playSound(name);},
                         getRoomImage: function (name) { return getOrLogError(name,roomLoaded,"room"); },
                         getRoomMetadata: function(name){return getOrLogError(name,roomMetaDataLoaded,"room metadata");}
                     };
