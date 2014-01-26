@@ -25,7 +25,7 @@ var Player = function(pos, health, settings){
         var nearestTile = [Math.round(pos[0]), Math.round(pos[1])];
         var tilesToCheck = []
             for (var i=-1; i<=1; i++){
-                for (var j=-1, j<=1, j++){
+                for (var j=-1; j<=1; j++){
                     var tile = nearestTile.add([i, j]);
                     tilesToCheck.append(tile)
                 }
