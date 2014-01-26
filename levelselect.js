@@ -5,7 +5,9 @@ function levelselect(callback)
     function convertToRect(objData)
     {
         for (var key in objData)
+        {
             objData[key] = Rect(objData[key][0],objData[key][1]);
+        }
     }
 
     function getButtonPressed(buttons,pos)
@@ -38,16 +40,16 @@ function levelselect(callback)
                         callback();
                         break; 
                     
-                    case "level2"
+                    case "level2":
                         canvas.removeMouseDownListener(id);
                         callback();
                         break; 
 
-                     case "level3"
+                     case "level3":
                         canvas.removeMouseDownListener(id);
                         callback();
                         break; 
-                     case "level4"
+                     case "level4":
                         canvas.removeMouseDownListener(id);
                         callback();
                         break;                         
