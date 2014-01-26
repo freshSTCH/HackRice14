@@ -8,6 +8,8 @@ var Turret = function(pos, ai, health, img){
     var time = 0; //time since death
     var dead = false;
 
+    var bulletSpeed;
+
     var update = function(timeFactor){
         if(timeFactor > 0){
             if(!dead){
@@ -50,7 +52,7 @@ var Turret = function(pos, ai, health, img){
 
     var shoot = function(){
         var bulletPos = pos.add(angleToVector(rect.angle).scale(rect.dims[0] / 2));
-        room.addEnemyBullet(Bullet(bulletPos, angleToVector(rect.angle).scale(ai.settings.bulletSpeed),assets.getImage("EnemyBullet"), 20, [0,255,0,1], 'turret'));
+        room.addEnemyBullet(Bullet(bulletPos, angleToVector(rect.angle).scale(bulletSpeed),assets.getImage("EnemyBullet"), 20, [0,255,0,1], 'turret'));
     }
 
     var hit = function(){
@@ -91,23 +93,24 @@ var Turret = function(pos, ai, health, img){
                     return update;
                 })(ai.settings);
             break;
+
                              
             case 'tracker':
             default:
                 return (function(settings){//range, speed, timer, tolerance, bulletSpeed
                     switch (ai.settings){
                         case 'sniper':
-                            range = 13;
-                            speed = ((Math.PI / 8) / FPS);
-                            timer = FPS * 0.5; //bullets per sec
-                            tolerance = (Math.PI / 16);
+                            var range = 13;
+                            var speed = ((Math.PI / 8) / FPS);
+                            var timer = FPS * 0.5; //bullets per sec
+                            var tolerance = (Math.PI / 16);
                             bulletSpeed = (5 / FPS);
                             break;
                         case 'machinegun':
-                            range = 7;
-                            speed = ((Math.PI / 2) / FPS);
-                            timer = FPS * 5; //bullets per sec
-                            tolerance = (Math.PI / 4);
+                            var range = 7;
+                            var speed = ((Math.PI / 2) / FPS);
+                            var timer = FPS * 5; //bullets per sec
+                            var tolerance = (Math.PI / 4);
                             bulletSpeed = (2 / FPS);
                             break;
                     }
