@@ -147,6 +147,23 @@ function Room(lengthXTiles,lengthYTiles)
         return result;
     }
 
+    var hittingObstacle = function(rect)
+    {
+        var corners = rect.corners();
+
+        var result = false;
+
+        corners.forEach(function(corner)
+        {
+            var rounded = corner.map(function(val){return Math.floor(val);});
+            var tile = room.getTypeOfTile(rounded[0],rounded[1]);
+            if (tile === "Obstacle")
+                result = true;
+        });
+
+        return result;
+    }
+
     initializeGrid();
     //end Grid initialization
     //
