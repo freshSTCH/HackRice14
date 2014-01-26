@@ -5,19 +5,21 @@ var Bullet = function(pos, velocity, img, growth, rgb){
      var rect = Rect(pos,dims);
 
     var hitpos = [];
-    var radius = 0;
-    var growth = growth || Math.pow(2,(1/FPS));
-    var decay = decay || Math.pow(.5,(1/FPS));
-    var rgba = rgba || [0,255,0,1]
+    var radius = 1;
+    var growth = growth || 2; //Math.pow(2, (1/FPS));
+    var decay = decay || Math.pow(.5, (1/FPS));
+    var rgba = rgba || [0,255,0,1];
+    var time = 0;
 
     var active = true;
     var update = function(timeFactor){
         if(active){
              rect.setPos(rect.pos.add(velocity.scale(timeFactor)));
         }else{
-            radius *= Math.pow(growth, timeFactor);
+            time += timeFactor;
+            radius = growth * Math.log(time);
             rgba[3] *= Math.pow(decay, timeFactor);
-            if (radius < 0){
+            if (time <= 0){
                 active = true;
                 radius = 0;
             }

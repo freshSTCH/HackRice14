@@ -7,7 +7,11 @@ var Turret = function(pos, ai, health, img){
     var state = {};
 
     var update = function(timeFactor){
-        state = AI(state);
+        if(timeFactor > 0){
+            state = AI(state);
+        }else{
+            //replay?
+        }
     }
 
     var draw = function(offset){
