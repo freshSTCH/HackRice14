@@ -38,7 +38,10 @@ Array.prototype.dist = function(b){
 
 Array.prototype.unit = function(){
     var mag = this.magnitude();
-    mag = (mag > 0) ? mag : 1;
+    
+    if (mag === 0)
+        mag = 1;
+
     var result = [];
     for (var i=0; i<this.length; i++)
         result[i] = this[i] / mag;
@@ -70,8 +73,6 @@ function dirTowardsAngle(angle1, angle2){
 function Rect(pos, dims, angle){
     angle = typeof angle !== 'undefined' ? angle : 0;
 
-    var pos = pos, dims = dims, angle = angle;
-
     var intersectsRect = function(rect){
         isIntersecting = true;
         for (var i=0; i<2; i++)
@@ -86,5 +87,21 @@ function Rect(pos, dims, angle){
         return isIntersecting;
     }
 
-    return {pos:pos, dims:dims, angle:angle, a:angle, intersectsRect:intersectsRect, intersectsPoint:intersectsPoint};
+    var corners = function(){
+        return [
+            [pos[0] + dims[0]*.5,pos[1]+dims[1]*.5],
+            [pos[0] - dims[0]*.5,pos[1]+dims[1]*.5],
+            [pos[0] + dims[0]*.5,pos[1]-dims[1]*.5],
+            [pos[0] - dims[0]*.5,pos[1]-dims[1]*.5]
+
+        ];
+    }
+
+    function setPos(newPos)
+    {
+        pos[0] = newPos[0];
+        pos[1] = newPos[1];
+    }
+
+    return {setPos:setPos,corners:corners,pos:pos, dims:dims, angle:angle, a:angle, intersectsRect:intersectsRect, intersectsPoint:intersectsPoint};
 }

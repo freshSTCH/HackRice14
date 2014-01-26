@@ -27,7 +27,7 @@ var canvas = (function(elem){return (function(canvas){
 
     var rect = elem.getBoundingClientRect(),root = document.documentElement;
     window.addEventListener('keyup',function(){canvas.state[event.keyCode]=false;},false);
-    window.addEventListener('keydown',function(){canvas.state[event.keyCode]=true;console.log(event.keyCode);},false);
+    window.addEventListener('keydown',function(){canvas.state[event.keyCode]=true;},false);
 
     elem.addEventListener('mousemove',function(evt){
         mousePos[0] = evt.clientX - rect.left + root.scrollLeft;
@@ -48,10 +48,18 @@ var canvas = (function(elem){return (function(canvas){
 
     canvas.clear=function(){canvas.clearRect(0,0,WIDTH,HEIGHT);};
     canvas.putImage=function(rect, img){
+
+        if (!rect.pos) debugger;
         canvas.save();
         canvas.translate(Math.round(rect.pos[0]),Math.round(rect.pos[1]));
         if(rect.angle){canvas.rotate(rect.angle);}
         canvas.drawImage(img,Math.round(-.5 * rect.dims[0]), Math.round(-.5 * rect.dims[1]), rect.dims[0], rect.dims[1]);
         canvas.restore();
+    };
+
+    canvas.putImageEasy = function(rect,img)
+    {
+        canvas.putImage(Rect(rect.pos.scale(TILESIZE),rect.dims.scale(TILESIZE)),img);
+
     };
 return canvas;}(elem.getContext("2d")));}(document.getElementById("canvas")));

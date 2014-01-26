@@ -1,5 +1,5 @@
 var Player = function(pos, health, settings, img){
-    health = typeof health !== 'undefined' ? health : 10;
+    health =  health || 10;
 
     var health = health;
     var dims = [1, 1];
@@ -9,8 +9,15 @@ var Player = function(pos, health, settings, img){
     var img = img;
     var settings = settings;
 
+    canvas.addMouseDownListener(function(pos)
+    {
+        var velocity = pos.scale(1/TILESIZE).subtract(rect.pos).unit().scale(.1);
+        console.log("Make bullet");
+
+        room.addBullet(Bullet([rect.pos[0],rect.pos[1]],velocity,assets.getImage("Start")));
+    });
+
     var update = function(timeFactor){
-        for(var i = 0; i < bullets.length;i++){bullets[i].update(timeFactor);}
 
         var vel = [0, 0];
         if(canvas.state[settings.right])
@@ -22,10 +29,9 @@ var Player = function(pos, health, settings, img){
         if(canvas.state[settings.up]) // Remember, y axis is flipped in computers because reasons
             vel[1] --;
         vel = vel.unit();
-        rect.pos = rect.pos.add(vel.scale(Math.abs(timeFactor) * speed));
+        new_pos = rect.pos.add(vel.scale(Math.abs(timeFactor) * speed));
 
-        rect.angle = Math.atan2(canvas.mousePos[1]/TILESIZE - rect.pos[1],canvas.mousePos[0]/TILESIZE - rect.pos[0]);
-
+        var collided = false;
         var nearestTile = [Math.round(pos[0]), Math.round(pos[1])];
         var tilesToCheck = []
             for (var i=-1; i<=1; i++){
@@ -35,15 +41,23 @@ var Player = function(pos, health, settings, img){
                 }
             }
         for (var i=0; i<tilesToCheck.length; i++){
-//            if tilesToCheck[i]
+            //if (room.tileToRect(tilesToCheck[i]).intersectsRect(rect))
+            //    collided = true
         }
+        if (!collided){
+            rect.pos = new_pos;
+        }
+        rect.angle = Math.atan2(canvas.mousePos[1]/TILESIZE - rect.pos[1],canvas.mousePos[0]/TILESIZE - rect.pos[0]);
         // add collision detection with walls and turrets
         // Also check where YOUR bullets are... not which hit you
     }
 
     var draw = function(){
-        var drawRect = Rect([room.TILESIZE * rect.pos[0] + room.offset[0], room.TILESIZE * rect.pos[1] + room.offset[1]], [room.TILESIZE * rect.dims[0], room.TILESIZE*rect.dims[1]]);
-        canvas.putImage(drawRect, img);
+
+         for(var i = 0; i < bullets.length;i++){bullets[i].draw();}
+
+
+        canvas.putImageEasy(rect, img);
     }
 
     return {health:health, rect:rect, bullets:bullets, update:update, draw:draw};
