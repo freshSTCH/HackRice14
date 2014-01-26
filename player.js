@@ -36,7 +36,7 @@ function Player(pos, health, settings, img){
         var oldPos = [rect.pos[0],rect.pos[1]];
         rect.setPos(rect.pos.add(vel.scale(Math.abs(timeFactor) * speed)));
 
-        var collided = room.hittingWall(rect);
+        var collided = (room.hittingTileType('Wall', rect) || room.hittingTileType('Obstacle', rect)) || room.hittingTileType('End', rect);
 
         if (collided){
             rect.setPos(oldPos);

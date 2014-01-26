@@ -26,6 +26,7 @@ function RoomLoader(roomName)
     var roomMapping = [
         [[0,0,0],      "Wall"],
         [[127,127,127], "Obstacle"],
+        [[0,255,255], "Field"],
         [[255,255,255],"Floor"],
         [[0,0,255],   "Turret"],
         [[0,255,0],   "Start"],
