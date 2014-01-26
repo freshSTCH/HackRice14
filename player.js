@@ -139,21 +139,20 @@ function Player(pos, health, settings, img, integrity){
             }
         else{
             health += 1;
-            health = max(health, maxHealth);
+            health = Math.max(health, maxHealth);
         }
         assets.playSound("Shoot");
     }
 
     function reverseHit(){
-        if (health !== 0)
-        {
-            health -=1;
-        }
-        if (health === 0)
+        health -= 1;
+        if (health <= 0){
+            health = 0;
             dead = true;
-
+        }
         integrity -= 1;
         if (integrity <= 0){
+            integrity = 0;
             superDead = true;
         }
         assets.playSound("PlayerTakingDamage");
