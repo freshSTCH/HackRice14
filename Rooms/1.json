@@ -4,7 +4,7 @@
     [ [9,3], {
         "ai": {
             "type": "tracker",
-            "settings":{'bulletSpeed':1}
+            "settings":{"bulletSpeed":1}
         },
         "image": "Turret2"
         }],
@@ -12,7 +12,7 @@
     [ [6,13], {
         "ai": {
             "type": "simple",
-            "settings":{'bulletSpeed':1}
+            "settings":{"bulletSpeed":1}
         },
         "image": "Turret1"
         }]
