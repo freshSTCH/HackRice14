@@ -24,8 +24,25 @@ var Turret = function(pos, ai, health, img){
         }
     }
 
+    function getImgName()
+    {
+        switch(health)
+        {
+            case 3:
+                return img;
+
+            case 2:
+            case 1:
+                return "Damaged"+img;
+
+            case 0:
+                return "NearDeath"+img;
+        }
+    }
+
     var draw = function(offset){
-        canvas.putImageEasy(rect, img);
+        var imgName = getImgName();
+        canvas.putImageEasy(rect, assets.getImage(imgName));
     }
 
     var shoot = function(){
