@@ -48,8 +48,7 @@ function Player(pos, health, settings, img){
     };
 
     var undo = function(){
-        pos = oldPos;
-        rect = Rect(pos, dims);
+        rect.setPos(oldPos);
     }
 
     var draw = function(){
