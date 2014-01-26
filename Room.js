@@ -5,11 +5,6 @@ function Room(lengthXTiles,lengthYTiles)
        Stores tiles in a grid, stores enemies in a seperate array
        */
 
-
-    var tileSize=TILESIZE;
-    var lengthXTiles=lengthXTiles;
-    var lengthYTiles=lengthYTiles;
-
     var grid=new Array(lengthXTiles);
     var StartTile;
     var EndTile;
@@ -21,21 +16,22 @@ function Room(lengthXTiles,lengthYTiles)
     var bullets = [];
 
     var update = function(){
-        for (var i = 0; i < turrets.length; i++){turrets[i].update(timeFactor);}
-        for (var i = 0; i < players.length; i++){players[i].update(timeFactor);}
+        turrets.forEach(function(turret){turret.update(timeFactor);});
+        players.forEach(function(player){player.update(timeFactor);});
     };
 
     var draw = function(){
-        turrets.forEach(function(turret) {turret.draw(pos)})
-            bullets.forEach(function(bullet) {bullet.draw(pos)})
+        turrets.forEach(function(turret) {turret.draw(pos);});
+        bullets.forEach(function(bullet) {bullet.draw(pos);});
+        players.forEach(function(player) {player.draw(pos);});
             //draw all the tiles
             for (var x=0; x<lengthXTiles; x++){
                 for (var y=0; y<lengthYTiles; y++){
                     var tilename = grid[x][y];
                     var tileImage = assets.getImage(tilename);
-                    canvas.drawImage(tileImage, pos[0] + x*tileSize, pos[1] + y*tileSize, tileSize, tileSize);
-                };
-            };
+                    canvas.drawImage(tileImage, pos[0] + x*TILESIZE, pos[1] + y*TILESIZE, TILESIZE, TILESIZE);
+                }
+            }
     };
 
     //Grid Initialization functions
@@ -62,13 +58,21 @@ function Room(lengthXTiles,lengthYTiles)
     };
     var getGridSpot=function(pixelX, pixelY){
         //check what tile is on the grid at the given pixel location
-        var gridX=Math.floor(pixelX/tileSize);
-        var gridY=Math.floor(pixelY/tileSize);
+        var gridX=Math.floor(pixelX/TILESIZE);
+        var gridY=Math.floor(pixelY/TILESIZE);
         return grid[gridX][gridY];
     };
+
+
     var setStart=function(x, y){
         addTile("Start",x,y);
         StartTile=[x,y];
+
+
+        var player = Player([x,y],10,{},assets.getImage("Player"));
+        players.push(player);
+
+
     };
     var setEnd=function(x, y){
         addTile("End",x,y);

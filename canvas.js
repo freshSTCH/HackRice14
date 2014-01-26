@@ -21,10 +21,12 @@ var canvas = (function(elem){return (function(canvas){
         mouseDownListeners[id] = null;
     };
 
+    canvas.state = {};
+
 
     var rect = elem.getBoundingClientRect(),root = document.documentElement;
     window.addEventListener('keyup',function(){canvas.state[event.keyCode]=false;},false);
-    window.addEventListener('keydown',function(){canvas.state[event.keyCode]=false;},false);
+    window.addEventListener('keydown',function(){canvas.state[event.keyCode]=true;},false);
 
     elem.addEventListener('mousemove',function(evt){
         mousePos[0] = evt.clientX - rect.left + root.scrollLeft;
