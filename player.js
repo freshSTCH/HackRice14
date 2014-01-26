@@ -24,8 +24,17 @@ function Player(pos, health, settings){
         vel = vel.unit();
         pos = pos.add(vel.scale(Math.abs(multiplier) * speed));
 
-        nearbyGrid = [];
-        posInGrid = pos.scale(1 / room.gridSize);
+        var nearestTile = [Math.round(pos[0]), Math.round(pos[1])];
+        var tilesToCheck = []
+        for (var i=-1; i<=1; i++){
+            for (var j=-1, j<=1, j++){
+                var tile = nearestTile.add([i, j]);
+                tilesToCheck.append(tile)
+            }
+        }
+        for (var i=0; i<tilesToCheck.length; i++){
+            if tilesToCheck[i]
+        }
         // add collision detection with walls and turrets
         // Also check where YOUR bullets are... not which hit you
     }
