@@ -74,6 +74,13 @@ function Room(lengthXTiles,lengthYTiles)
         return grid[gridX][gridY];
     };
 
+    var getTypeOfTile = function(x, y){
+        return grid[x][y];
+    }
+
+    var tileToRect = function(x, y){
+        return Rect([x, y], [TILESIZE, TILESIZE]);
+    }
 
     var setStart=function(x, y){
         addTile("Start",x,y);

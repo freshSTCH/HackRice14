@@ -29,10 +29,9 @@ var Player = function(pos, health, settings, img){
         if(canvas.state[settings.up]) // Remember, y axis is flipped in computers because reasons
             vel[1] --;
         vel = vel.unit();
-        rect.pos = rect.pos.add(vel.scale(Math.abs(timeFactor) * speed));
+        new_pos = rect.pos.add(vel.scale(Math.abs(timeFactor) * speed));
 
-        rect.angle = Math.atan2(canvas.mousePos[1]/TILESIZE - rect.pos[1],canvas.mousePos[0]/TILESIZE - rect.pos[0]);
-
+        var collided = false;
         var nearestTile = [Math.round(pos[0]), Math.round(pos[1])];
         var tilesToCheck = []
             for (var i=-1; i<=1; i++){
@@ -42,7 +41,12 @@ var Player = function(pos, health, settings, img){
                 }
             }
         for (var i=0; i<tilesToCheck.length; i++){
-//            if tilesToCheck[i]
+            if (room.tileToRect(tilesToCheck[i]).intersectsRect(rect))
+                collided = true
+        }
+        if (!collided){
+            rect.pos = new_pos;
+            rect.angle = Math.atan2(canvas.mousePos[1]/TILESIZE - rect.pos[1],canvas.mousePos[0]/TILESIZE - rect.pos[0]);
         }
         // add collision detection with walls and turrets
         // Also check where YOUR bullets are... not which hit you
