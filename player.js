@@ -88,5 +88,5 @@ function Player(pos, health, settings, img){
         health -=1;
     }
 
-    return {hit:hit,rect:rect,health:health, rect:rect, bullets:bullets, update:update, draw:draw};
+    return {undo:undo,hit:hit,rect:rect,health:health, rect:rect, bullets:bullets, update:update, draw:draw};
 }
