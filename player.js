@@ -146,10 +146,6 @@ function Player(pos, health, settings, img, integrity){
                 superDead = true;
             }
         }
-        else{
-            health += 1;
-            health = Math.min(health, maxHealth);
-        }
         assets.playSound("Shoot");
     }
 
