@@ -62,6 +62,10 @@ var Turret = function(pos, ai, health, img){
         //AND this function needs to actually do hurt the turret
     };
 
+    var unhit = function(){
+        health++;
+    }
+
     //AI's
     var AI = (function(ai){
         switch(ai.type){
@@ -125,5 +129,5 @@ var Turret = function(pos, ai, health, img){
             break;
         }
     })(ai);
-    return {pos:pos, ai:ai, health:health, rect:rect, update:update, draw:draw, hit:hit};
+    return {pos:pos, ai:ai, health:health, rect:rect, update:update, draw:draw, hit:hit, unhit:unhit};
 }
