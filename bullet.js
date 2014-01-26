@@ -39,7 +39,7 @@ var Bullet = function(pos, velocity, img, growth, rgb){
             canvas.putImageEasy(rect,img);
         }else{
             canvas.beginPath();
-            canvas.arc(room.offset[0] + pos[0], room.offset[1] + pos[1], radius, 0, 2 * Math.PI);
+            canvas.arc(room.offset[0] + TILESIZE * pos[0], room.offset[1] + TILESIZE * pos[1], radius, 0, 2 * Math.PI);
 
             canvas.strokeStyle = 'rgba(' + rgba[0] + ',' + rgba[1] + ',' + rgba[2] + ',' + rgba[3] +')';
             canvas.lineWidth = 3;
