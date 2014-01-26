@@ -2,6 +2,24 @@ function RoomLoader(roomName)
 {
     "use strict";
     var pixels = PixelImage(assets.getRoomImage(roomName));
+    var turretMetadata = assets.getRoomMetadata(roomName).turretData;
+
+    function getTurretMetadata(x,y)
+    {
+
+        var result;
+        turretMetadata.forEach(function (data)
+        {
+            var coords = data[0];
+
+            if (coords[0] === x && coords[1] === y)
+                result = data[1];
+        });
+
+        if (result)
+            return result;
+        console.error("There is no turret metadata for "+x+" , " + y);
+    }
 
     var room = Room(pixels.width,pixels.height);
 
@@ -54,6 +72,8 @@ function RoomLoader(roomName)
                     break;
 
                 case "Turret":
+
+                    var myMetadata = getTurretMetadata(x,y);
                     var turret = Turret([x,y], AI.tracker(),3,assets.getImage("Turret"));
                     room.addTurret(turret);
                     room.addTile("Floor",x,y);

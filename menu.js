@@ -6,7 +6,6 @@ function Menu(callback)
     {
         for (var key in objData)
         {
-            console.log(key);
             objData[key] = Rect(objData[key][0],objData[key][1]);
         }
     }
@@ -22,9 +21,7 @@ function Menu(callback)
 
     GetJSON("Data/menu.json",function(buttons)
     {
-        console.log(buttons);
         convertToRect(buttons);
-        console.log(buttons);
 
         var menuImage = assets.getImage("Menu");
         canvas.drawImage(menuImage,0,0,WIDTH,HEIGHT);
