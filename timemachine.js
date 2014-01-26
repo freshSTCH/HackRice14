@@ -23,7 +23,7 @@ function TimeMachine(pos)
     function hit()
     {
         health -=1;
-        gameloader.playSound("TimeMachineTakingDamage")
+        assets.playSound("TimeMachineTakingDamage")
         if (health === 0)
         {
             assets.playSound("TimeMachineRightBeforeExplosion")
