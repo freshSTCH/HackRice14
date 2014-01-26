@@ -11,7 +11,7 @@ GameLoader(function(a){
             room.update();
 
             room.draw();
-            setTimeOut(loop, 1000/FPS);
+            setTimeout(loop, 1000/FPS);
         };
         loop();
     });

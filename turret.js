@@ -15,7 +15,7 @@ var Turret = function(pos, ai, health, img){
     }
 
     var draw = function(offset){
-        var drawRect = Rect(tileSize * rect.pos[0] + offset[0], tileSize * rect.pos[1] + offset[1], rect.dim[0], rect.dim[1]);
+        var drawRect = Rect(TILESIZE * rect.pos[0] + offset[0], TILESIZE * rect.pos[1] + offset[1], rect.dims[0], rect.dims[1]);
         canvas.putImage(drawRect, img);
     }
 

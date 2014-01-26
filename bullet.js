@@ -7,7 +7,7 @@ var Bullet = function(pos, velocity, img){
     }
 
     var draw = function(){
-        canvas.drawImage(img, tileSize * pos[0] + offset[0], tileSize * pos[1] + offset[1])
+        canvas.drawImage(img, TILESIZE * pos[0] + offset[0], TILESIZE * pos[1] + offset[1])
     }
 
     return {pos:pos, velocity:velocity, vel:velocity, v:velocity, update:update, draw:draw};
