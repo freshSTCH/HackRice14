@@ -46,8 +46,8 @@ var Player = function(pos, health, settings, img){
         }
         if (!collided){
             rect.pos = new_pos;
-            rect.angle = Math.atan2(canvas.mousePos[1]/TILESIZE - rect.pos[1],canvas.mousePos[0]/TILESIZE - rect.pos[0]);
         }
+        rect.angle = Math.atan2(canvas.mousePos[1]/TILESIZE - rect.pos[1],canvas.mousePos[0]/TILESIZE - rect.pos[0]);
         // add collision detection with walls and turrets
         // Also check where YOUR bullets are... not which hit you
     }
