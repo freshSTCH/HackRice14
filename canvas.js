@@ -59,7 +59,7 @@ var canvas = (function(elem){return (function(canvas){
 
     canvas.putImageEasy = function(rect,img)
     {
-        canvas.putImage(Rect(rect.pos.scale(TILESIZE),rect.dims.scale(TILESIZE)),img);
+        canvas.putImage(Rect(rect.pos.scale(TILESIZE),rect.dims.scale(TILESIZE),rect.angle),img);
 
     };
 return canvas;}(elem.getContext("2d")));}(document.getElementById("canvas")));
