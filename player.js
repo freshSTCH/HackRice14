@@ -12,7 +12,7 @@ function Player(pos, health, settings, img){
 
     var update = function(timeFactor){
 
-        if(canvas.mousedown && timeFactor > 1){
+        if(canvas.mousedown && timeFactor > 0){
             var velocity = pos.scale(1/TILESIZE).subtract(rect.pos).unit().scale(0.1);
             assets.playSound("Shoot");
             room.addPlayerBullet(Bullet([rect.pos[0],rect.pos[1]],velocity,assets.getImage("Bullet")));
