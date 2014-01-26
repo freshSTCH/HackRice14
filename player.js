@@ -4,7 +4,7 @@ var Player = function(pos, health, settings, img){
     var health = health;
     var dims = [1, 1];
     var rect = Rect(pos, dims);
-    var speed = 20;
+    var speed = .1;
     var bullets = [];
     var img = img;
     var settings = settings;
@@ -12,7 +12,7 @@ var Player = function(pos, health, settings, img){
     var update = function(timeFactor){
         for(var i = 0; i < bullets.length;i++){bullets[i].update(timeFactor);}
 
-        vel = [0, 0];
+        var vel = [0, 0];
         if(canvas.state[settings.right])
             vel[0] ++;
         if(canvas.state[settings.left])
@@ -22,7 +22,9 @@ var Player = function(pos, health, settings, img){
         if(canvas.state[settings.up]) // Remember, y axis is flipped in computers because reasons
             vel[1] --;
         vel = vel.unit();
-        pos = pos.add(vel.scale(Math.abs(timeFactor) * speed));
+        rect.pos = rect.pos.add(vel.scale(Math.abs(timeFactor) * speed));
+
+        rect.angle = Math.atan2(canvas.mousePos[1]/TILESIZE - rect.pos[1],canvas.mousePos[0]/TILESIZE - rect.pos[0]);
 
         var nearestTile = [Math.round(pos[0]), Math.round(pos[1])];
         var tilesToCheck = []
@@ -40,7 +42,8 @@ var Player = function(pos, health, settings, img){
     }
 
     var draw = function(){
-        var drawRect = Rect([TILESIZE * rect.pos[0] + room.offset[0], TILESIZE * rect.pos[1] + room.offset[1]], [TILESIZE* rect.dims[0], TILESIZE*rect.dims[1]]);
+        var drawRect = Rect([TILESIZE * rect.pos[0] + room.offset[0], TILESIZE * rect.pos[1] + room.offset[1]], [TILESIZE* rect.dims[0], TILESIZE*rect.dims[1]],rect.angle);
+    ;
         canvas.putImage(drawRect, img);
     }
 
