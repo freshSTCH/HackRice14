@@ -69,7 +69,7 @@ var Turret = function(pos, ai, health, img){
                         }
                         return state;
                     }
-                };)(ai.settings);
+                })(ai.settings);
                 break;
         }
     })(ai);
