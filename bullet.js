@@ -16,6 +16,7 @@ var Bullet = function(pos, velocity, img, growth, rgb){
     var update = function(timeFactor){
         switch(state){
             case 'stuck':
+                console.log(state);
                 rect.setPos(rect.pos.add(velocity.scale(timeFactor)));
                 var unstuck = true;
                 if (room.hittingTileType("Wall", rect) || room.hittingTileType("Field", rect))
@@ -36,7 +37,12 @@ var Bullet = function(pos, velocity, img, growth, rgb){
             case 'active':
                 rect.setPos(rect.pos.add(velocity.scale(timeFactor)));
                 if (room.hittingTileType("Wall", rect) || room.hittingTileType("Field", rect)){
-                    hit('room');
+                    if (timeFactor > 0){
+                        hit('room');
+                    }
+                    else if (timeFactor < 0){
+                        state = "done";
+                    }
                 }
                 break;
             case 'ring':
@@ -44,6 +50,7 @@ var Bullet = function(pos, velocity, img, growth, rgb){
                 radius = growth * Math.log(time);
                 rgba[3] *= Math.pow(decay, timeFactor);
                 if (time <= 0){
+                    console.log('gotcha');
                     state = 'stuck';
                     if (hitObj == 'player'){
                         var paradox = false;
@@ -106,9 +113,5 @@ var Bullet = function(pos, velocity, img, growth, rgb){
         state = 'ring';
     }
 
-    var reverseHit = function(){
-        state = 'done';
-    }
-
-    return {state:state, hit:hit, reverseHit:reverseHit, rect:rect,pos:pos, velocity:velocity, vel:velocity, v:velocity, update:update, draw:draw};
+    return {state:state, hit:hit, rect:rect,pos:pos, velocity:velocity, vel:velocity, v:velocity, update:update, draw:draw};
 }

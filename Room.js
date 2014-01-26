@@ -56,7 +56,9 @@ function Room(lengthXTiles,lengthYTiles)
             {
                 if (timeMachine.rect.intersectsRect(bullet.rect))
                 {
-                    bullet.hit();
+                    if (timeFactor > 0){
+                        bullet.hit();
+                    }
                     timeMachine.hit();
                     if (timeMachine.isDead())
                     {
@@ -64,13 +66,14 @@ function Room(lengthXTiles,lengthYTiles)
                     }
                 }
 
-                 turrets.forEach(function(turret){
-                    if (turret.rect.intersectsRect(bullet.rect))
-                    {
-                        bullet.hit();
-                        turret.hit();
+                for(var i=0; i<turrets.length; i++){
+                    if (turrets[i].rect.intersectsRect(bullet.rect)){
+                        if (timeFactor > 0){
+                            bullet.hit();
+                            turrets[i].hit();
+                        }
                     }
-                });  
+                }  
             }
         });
 
