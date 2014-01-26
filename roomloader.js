@@ -3,7 +3,7 @@ function RoomLoader(roomName)
     "use strict";
     var pixels = PixelImage(assets.getRoomImage(roomName));
 
-    var room = Room(pixels.width,pixels.height,32);
+    var room = Room(pixels.width,pixels.height);
 
     var roomMapping = [
         [[0,0,0],      "Wall"],
@@ -54,7 +54,7 @@ function RoomLoader(roomName)
                     break;
 
                 case "Turret":
-                    var turret = Turret([x,y]);
+                    var turret = Turret([x,y], AI.tracking(),3,assets.getImage("Turret"));
                     room.addTurret(turret);
                     room.addTile("Floor",x,y);
                     break;

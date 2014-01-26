@@ -1,4 +1,4 @@
-function Room(lengthXTiles,lengthYTiles,tileSize)
+function Room(lengthXTiles,lengthYTiles)
 {
 	"use strict";
 	/*
@@ -6,7 +6,7 @@ function Room(lengthXTiles,lengthYTiles,tileSize)
 	*/
 
 	
-	var tileSize=tileSize;
+	var tileSize=TILESIZE;
 	var lengthXTiles=lengthXTiles;
 	var lengthYTiles=lengthYTiles;
 
