@@ -51,11 +51,8 @@ function GameLoader(callback)
         {
             var url = "Rooms/" + name + ".json";
 
-            console.log("DOING ", name);
-
             GetJSON(url,function(data)
             {
-                console.log(data);
                 metadataMap[name] = data;
                 numberOfNames -= 1;
 
