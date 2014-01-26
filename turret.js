@@ -5,12 +5,22 @@ var Turret = function(pos, ai, health, img){
     var dims = [1, 1];    //setting
     var rect = Rect(pos, dims);
     var state = {};
+    var time = 0; //time since death
+    var dead = false;
 
     var update = function(timeFactor){
         if(timeFactor > 0){
-            state = AI(state);
+            if(!dead){
+                state = AI(state);
+            }else{
+                time += timeFactor;
+            }
         }else{
-            //replay?
+            time += timeFactor;
+            if (time <= 0){
+                dead = false;
+                //img = ... //set the regular image here
+            }
         }
     }
 
@@ -23,6 +33,11 @@ var Turret = function(pos, ai, health, img){
     }
 
     var hit = function(){
+        health--;
+        if (health == 0){
+            dead = true;
+            //img = ... //set the dead image here
+        }
 
         assets.playSound("TurretDeath");
         //temporary; I don't have a good "normal" hit sound yet
