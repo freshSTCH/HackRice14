@@ -42,15 +42,20 @@ function LevelSelect(callback)
                         canvas.removeMouseDownListener(id);
                         callback("2");
                         break; 
-                     /*levels 3-6 not implemented
                     case "level3":
                         canvas.removeMouseDownListener(id);
                         callback("3");
                         break; 
+                    
+
+                   
+                     /*levels  4-6 not implemented
+                   
                     case "level4":
                         canvas.removeMouseDownListener(id);
                         callback("4");
-                        break;
+                        break;   
+                  
                    case "level5"
                         canvas.removeMouseDownListener(id);
                         callback();
@@ -64,7 +69,6 @@ function LevelSelect(callback)
                     For the json:
                     "level5":[[240, 210][390,85]],
                     "level6":[[450, 210][575,85]],
-                    "level3": [[513, 272], [124, 124]],
                     "level4": [[130, 497], [124, 124]]
                     */
                               
