@@ -122,7 +122,7 @@ var Bullet = function(pos, velocity, img, growth, rgba, owner){
                         }
                     }
                     else if (hitObj == 'timeMachine'){
-                        room.get_timeMachine().unhit();
+                        room.getTimeMachine().unhit();
                     }
                 }
                 break;
