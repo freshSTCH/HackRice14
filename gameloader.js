@@ -63,10 +63,41 @@ function GameLoader(callback)
 
             });
         });
+    }
 
 
+    window.AudioContext = window.AudioContext||window.webkitAudioContext;
+    var context = new window.AudioContext();
 
+    function loadSounds(names,callback)
+    {
 
+        var soundBuffers = {};
+        var numberOfSounds = names.length;
+
+        function loadSound(name) {
+            var url = "Sounds/" + name + ".wav";
+            var request = new XMLHttpRequest();
+            request.open("GET", url, true);
+            request.responseType = "arraybuffer";
+
+            request.onload = function() {
+                context.decodeAudioData(request.response, function(buffer) {
+                    console.log("decoded");
+                    soundBuffers[name] = buffer;
+                    numberOfSounds-=1;
+
+                    if (numberOfSounds === 0)
+                    {
+                        callback(soundBuffers);
+                    }
+
+                });
+            };
+            request.send();
+        }
+
+        names.forEach(loadSound);
     }
 
 
@@ -79,7 +110,7 @@ function GameLoader(callback)
     load(imgNames,imageNameTransform,Image,"load",function(imgLoaded) {
         console.log("The images are now loaded.");
 
-        load(soundNames,soundNameTransform,Audio,"canplaythrough",function (soundLoaded){
+        loadSounds(soundNames,function (soundLoaded){
             console.log("The sounds are now loaded.");
 
             load(roomNames,roomNameTransform,Image,"load",function(roomLoaded) {
@@ -93,9 +124,18 @@ function GameLoader(callback)
                         console.error("There is no "+name+" "+title);
                     }
 
+                    function playSound(name)
+                    {
+                        var sound = getOrLogError(name,soundLoaded,"sound");
+                        var source = context.createBufferSource(); // creates a sound source
+                        source.buffer = sound;                    // tell the source which sound to play
+                        source.connect(context.destination);       // connect the source to the context's destination (the speakers)
+                        source.start(0);  
+                    }
+
                     var myself = {
                         getImage: function(name) {      return getOrLogError(name,imgLoaded,"image"); }, 
-                        getSound: function(name) {      return getOrLogError(name,soundLoaded,"sound"); },
+                        playSound: function(name) {      playSound(name); },
                         getRoomImage: function (name) { return getOrLogError(name,roomLoaded,"room"); },
                         getRoomMetadata: function(name){return getOrLogError(name,roomMetaDataLoaded,"room metadata");}
                     };

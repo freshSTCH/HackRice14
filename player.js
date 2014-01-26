@@ -13,8 +13,7 @@ function Player(pos, health, settings, img){
     {
         var velocity = pos.scale(1/TILESIZE).subtract(rect.pos).unit().scale(0.1);
         console.log("Make bullet");
-        assets.getSound("Shoot").currentTime = 0;
-        assets.getSound("Shoot").play();
+        assets.playSound("Shoot");
 
         room.addPlayerBullet(Bullet([rect.pos[0],rect.pos[1]],velocity,assets.getImage("Bullet")));
     });
