@@ -33,7 +33,7 @@ var canvas = (function(elem){return (function(canvas){
     },false);
 
     elem.addEventListener('mousedown',function(){
-        mouseDown=true; 
+        canvas.mouseDown=true; 
         mouseDownListeners.forEach(function(callback){
             if(callback)
                 callback(mousePos);
@@ -41,7 +41,7 @@ var canvas = (function(elem){return (function(canvas){
     },false);
 
     elem.addEventListener('mouseup',function(){
-        mouseDown=false;
+        canvas.mouseDown=false;
     },false);
 
     canvas.clear=function(){canvas.clearRect(0,0,WIDTH,HEIGHT);};
