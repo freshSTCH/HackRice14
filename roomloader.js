@@ -74,7 +74,7 @@ function RoomLoader(roomName)
                 case "Turret":
 
                     var myMetadata = getTurretMetadata(x,y);
-                    var turret = Turret([x,y], myMetadata,3,assets.getImage("Turret"));
+                    var turret = Turret([x,y], myMetadata.ai,3,assets.getImage("Turret"));
                     room.addTurret(turret);
                     room.addTile("Floor",x,y);
                     break;
