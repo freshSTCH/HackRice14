@@ -98,7 +98,11 @@ function Room(lengthXTiles,lengthYTiles)
     };
 
     var getTypeOfTile = function(x, y){
-        return grid[x][y];
+
+        if (x<0||y<0||x>=lengthXTiles||y>=lengthYTiles)
+            return "Wall";
+        else
+            return grid[x][y];
     }
 
     var tileToRect = function(x, y){
@@ -150,16 +154,21 @@ function Room(lengthXTiles,lengthYTiles)
 
     function isGameWon()
     {
-        var playerPosition = players[0].rect.pos;
 
-        var tile = getTypeOfTile(Math.floor(playerPosition[0]),Math.floor(playerPosition[1]));
+        if (timeFactor > 0)
+            return false;
 
-        if (tile === "Start")
+        if (!hittingTileType("Start",players[0].rect))
         {
-            console.log(tile);
             return false;
         }
-        return false;
+
+        for (var i = playerBullets.length - 1; i >= 0; i--) {
+            if (playerBullets[i].getState() != "done")
+                return false;
+        }
+        return true;
+
 
     }
 
