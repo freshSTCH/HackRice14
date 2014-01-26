@@ -14,7 +14,7 @@ var Player = function(pos, health, settings, img){
         var velocity = pos.scale(1/TILESIZE).subtract(rect.pos).unit().scale(.1);
         console.log("Make bullet");
 
-        room.addBullet(Bullet(rect.pos,velocity,assets.getImage("Wall")));
+        room.addBullet(Bullet([rect.pos[0],rect.pos[1]],velocity,assets.getImage("Start")));
     });
 
     var update = function(timeFactor){
@@ -41,8 +41,8 @@ var Player = function(pos, health, settings, img){
                 }
             }
         for (var i=0; i<tilesToCheck.length; i++){
-            if (room.tileToRect(tilesToCheck[i]).intersectsRect(rect))
-                collided = true
+            //if (room.tileToRect(tilesToCheck[i]).intersectsRect(rect))
+            //    collided = true
         }
         if (!collided){
             rect.pos = new_pos;

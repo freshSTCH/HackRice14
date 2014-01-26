@@ -1,6 +1,6 @@
 var Bullet = function(pos, velocity, img, growth){
-    var pos = pos, velocity = velocity, img = img;
-     var dims = [.2, .2];
+
+     var dims = [.3, .3];
      var rect = Rect(pos,dims);
 
     var hitpos = [];
@@ -10,7 +10,7 @@ var Bullet = function(pos, velocity, img, growth){
     var active = true;
     var update = function(timeFactor){
         if(active){
-             rect.pos = rect.pos.add(velocity.scale(timeFactor));
+             rect.setPos(rect.pos.add(velocity.scale(timeFactor)));
         }else{
             radius += timeFactor * growth;
             if (radius < 0){
@@ -24,9 +24,12 @@ var Bullet = function(pos, velocity, img, growth){
 
         corners.forEach(function(corner)
         {
-            console.log(corner);
-            var rounded = corner.map(function(val){return Math.round(val);});
-            console.log(rounded);
+            //console.log(corner);
+            var rounded = corner.map(function(val){return Math.floor(val);});
+            var tile = room.getTypeOfTile(rounded[0],rounded[1]);
+            if (tile === "Wall")
+                active = false;
+            //console.log(tile);
         });
 
         // Add sprite animation here

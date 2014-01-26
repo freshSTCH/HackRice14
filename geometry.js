@@ -73,8 +73,6 @@ function dirTowardsAngle(angle1, angle2){
 function Rect(pos, dims, angle){
     angle = typeof angle !== 'undefined' ? angle : 0;
 
-    var pos = pos, dims = dims, angle = angle;
-
     var intersectsRect = function(rect){
         isIntersecting = true;
         for (var i=0; i<2; i++)
@@ -99,5 +97,11 @@ function Rect(pos, dims, angle){
         ];
     }
 
-    return {corners:corners,pos:pos, dims:dims, angle:angle, a:angle, intersectsRect:intersectsRect, intersectsPoint:intersectsPoint};
+    function setPos(newPos)
+    {
+        pos[0] = newPos[0];
+        pos[1] = newPos[1];
+    }
+
+    return {setPos:setPos,corners:corners,pos:pos, dims:dims, angle:angle, a:angle, intersectsRect:intersectsRect, intersectsPoint:intersectsPoint};
 }

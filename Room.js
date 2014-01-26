@@ -100,6 +100,6 @@ function Room(lengthXTiles,lengthYTiles)
     initializeGrid();
     //end Grid initialization
     //
-    return {addBullet:addBullet,offset:offset,players:players,initializeGrid:initializeGrid, addTile:addTile, addTurret:addTurret, getGrid:getGrid, getTurrets:getTurrets,getGridSpot:getGridSpot,setStart:setStart, setEnd:setEnd, update:update, draw:draw}
+    return {getTypeOfTile:getTypeOfTile,addBullet:addBullet,offset:offset,players:players,initializeGrid:initializeGrid, addTile:addTile, addTurret:addTurret, getGrid:getGrid, getTurrets:getTurrets,getGridSpot:getGridSpot,setStart:setStart, setEnd:setEnd, update:update, draw:draw}
 
 }
