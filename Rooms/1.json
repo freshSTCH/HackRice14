@@ -1,9 +1,13 @@
 {
     "turretData":[
 
-        [ [9,3], {}]
+    [ [9,3], {
+        "ai": {
+            "type": "tracker",
+            "settings":[]
+        } 
+        }]
 
 
-
-    ]
-}
+        ]
+    }
