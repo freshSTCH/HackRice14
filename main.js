@@ -5,9 +5,11 @@ function Main(levelName)
 {
     room = RoomLoader(levelName);
 
+    window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+                              window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+
     var loop = function(){
         room.update();
-        room.draw();
 
         if (!room.isGameOver())
             setTimeout(loop, 1000/FPS);
@@ -19,7 +21,16 @@ function Main(levelName)
         }
     };
 
+    var renderLoop = function(){
+
+        room.draw();
+
+        if (!room.isGameOver())
+            window.requestAnimationFrame(renderLoop)
+    }
+
     loop();
+    renderLoop();
 
 }
 
