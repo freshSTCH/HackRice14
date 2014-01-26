@@ -83,7 +83,6 @@ function GameLoader(callback)
 
             request.onload = function() {
                 context.decodeAudioData(request.response, function(buffer) {
-                    console.log("decoded");
                     soundBuffers[name] = buffer;
                     numberOfSounds-=1;
 
