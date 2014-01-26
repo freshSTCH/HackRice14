@@ -38,14 +38,16 @@ var Bullet = function(pos, velocity, img, growth, rgb){
         if(active){
             canvas.putImageEasy(rect,img);
         }else{
-            canvas.beginPath();
-            canvas.arc(room.offset[0] + TILESIZE * pos[0], room.offset[1] + TILESIZE * pos[1], radius, 0, 2 * Math.PI);
+            if(rgba[3] > .05){
+                canvas.beginPath();
+                canvas.arc(room.offset[0] + TILESIZE * pos[0], room.offset[1] + TILESIZE * pos[1], radius, 0, 2 * Math.PI);
 
-            canvas.strokeStyle = 'rgba(' + rgba[0] + ',' + rgba[1] + ',' + rgba[2] + ',' + rgba[3] +')';
-            canvas.lineWidth = 3;
-            canvas.shadowOffsetY = 10;
-            canvas.shadowBlur = 5;
-            canvas.stroke();
+                canvas.strokeStyle = 'rgba(' + rgba[0] + ',' + rgba[1] + ',' + rgba[2] + ',' + rgba[3] +')';
+                canvas.lineWidth = 3;
+                canvas.shadowOffsetY = 10;
+                canvas.shadowBlur = 5;
+                canvas.stroke();
+            }
         }
     }
 
