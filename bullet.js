@@ -26,7 +26,7 @@ var Bullet = function(pos, velocity, img, growth, rgb){
         }
 
 
-        if (room.hittingTileType("Wall", rect) || room.hittingTileType("Field", rect) || room.hittingTileType("End", rect))
+        if (room.hittingTileType("Wall", rect) || room.hittingTileType("Field", rect))
         {
             hit();
         }

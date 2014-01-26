@@ -54,7 +54,10 @@ function Room(lengthXTiles,lengthYTiles)
                 {
                     bullet.hit();
                     timeMachine.hit();
-                    timeFactor = -1;
+                    if (timeMachine.isDead())
+                    {
+                        timeFactor = -1;
+                    }
                 }
 
                  turrets.forEach(function(turret){

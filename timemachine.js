@@ -26,12 +26,16 @@ function TimeMachine(pos)
         if (health === 0)
         {
             reverse = true;
-            alert("REVERSE TIME");
         }
 
     }
 
+    function isDead()
+    {
+        return reverse;
+    }
 
-    return {hit:hit,rect:rect,update:update,draw:draw};
+
+    return {isDead:isDead,hit:hit,rect:rect,update:update,draw:draw};
 
 }
