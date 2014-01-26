@@ -113,6 +113,13 @@ var Turret = function(pos, ai, health, img){
                             var tolerance = (Math.PI / 4);
                             bulletSpeed = (5 / FPS);
                             break;
+                        case 'basic':
+                            var range = 10;
+                            var speed = ((Math.PI / 3) / FPS);
+                            var timer = FPS * 2;
+                            var tolerance = (Math.PI / 8);
+                            bulletSpeed = ( 7 / FPS );
+                            break;
                     }
 
                     return function(state){
