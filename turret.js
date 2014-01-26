@@ -4,7 +4,6 @@ var Turret = function(pos, ai, health, img){
     var health = health, img= img;
     var dims = [1, 1];    //setting
     var rect = Rect(pos, dims);
-    var bullets = [];
     var state = {};
 
     var update = function(timeFactor){
@@ -18,11 +17,7 @@ var Turret = function(pos, ai, health, img){
         canvas.putImageEasy(rect, img);
     }
 
-    var shoot = function(speed){
-        bullets.push(Bullet([pos[0],pos[1]], angleToVector(rect.angle).scale(speed),assets.getImage("EnemyBullet")));
-    }
-
-    var simpleShoot = function(){
+    var shoot = function(){
         room.addEnemyBullet(Bullet([pos[0],pos[1]], angleToVector(rect.angle).scale(.01),assets.getImage("EnemyBullet")));
     }
 
@@ -44,7 +39,7 @@ var Turret = function(pos, ai, health, img){
                         rect.angle += radsPerSecond;
                         if (timeTillNextShot === 0)
                         {
-                            simpleShoot();
+                            shoot();
                             timeTillNextShot = 100;
                         }
                         else
