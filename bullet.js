@@ -44,6 +44,26 @@ var Bullet = function(pos, velocity, img, growth, rgb){
                         state = "done";
                     }
                 }
+
+                for(var i = 0; i< room.players.length;i++){
+                    if(room.players[i].rect.intersectsRect(rect)){
+                        if (timeFactor > 0){
+                            if(owner=='player'){
+                                pass;
+                            }else{
+                                room.players[i].hit();
+                                hit('player');
+                            }
+                        }else{
+                            reverseHit();
+                            if(owner=='player'){
+                                room.players[i].unshoot(velocity);
+                            }else{
+                                room.players[i].reverseHit();
+                            }
+                        }
+                    }
+                }
                 break;
             case 'ring':
                 time += timeFactor;
@@ -115,6 +135,9 @@ var Bullet = function(pos, velocity, img, growth, rgb){
     var getState = function(){
         return state;
     }
+    var reverseHit = function(){
+        state = 'done'
+    }
 
-    return {getState:getState, hit:hit, rect:rect,pos:pos, velocity:velocity, vel:velocity, v:velocity, update:update, draw:draw};
+    return {reverseHit:reverseHit, getState:getState, hit:hit, rect:rect,pos:pos, velocity:velocity, vel:velocity, v:velocity, update:update, draw:draw};
 }

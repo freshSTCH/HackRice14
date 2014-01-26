@@ -30,19 +30,6 @@ function Room(lengthXTiles,lengthYTiles)
 
 
         players.forEach(function(player){
-            enemyBullets.forEach(function (bullet){
-                    if (bullet.getState()=='active' && player.rect.intersectsRect(bullet.rect))
-                    {
-                        if(timeFactor > 0){
-                            player.hit();
-                            bullet.hit('player');
-                        }else{
-                            player.reverseHit();
-                            bullet.reverseHit();
-                        }
-                    }
-            });
-
             turrets.forEach(function(turret){
                 if (turret.rect.intersectsRect(player.rect))
                 {
