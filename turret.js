@@ -37,7 +37,7 @@ var Turret = function(pos, ai, health, img){
                     speed = settings.speed || ((Math.PI / 2) / FPS);
                     timer = settings.timer || (FPS / 2);
                     tolerance = settings.tolerance || (Math.PI / 2);
-                    bulletSpeed = setttings.bulletSpeed || (1 / FPS);
+                    bulletSpeed = settings.bulletSpeed || (1 / FPS);
 
                     return function(state){
                         if (state.timer == undefined){
