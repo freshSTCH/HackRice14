@@ -8,7 +8,7 @@ var canvas = (function(elem){return (function(canvas){
 
     var mousePos = [0,0]; 
     canvas.mousePos = mousePos;
-    var mouseDown = false;
+    canvas.mouseDown = false;
     var mouseDownListeners = [];
 
     canvas.addMouseDownListener = function(callback)
