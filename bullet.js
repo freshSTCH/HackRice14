@@ -39,14 +39,29 @@ var Bullet = function(pos, velocity, img, growth, rgb){
             canvas.putImageEasy(rect,img);
         }else{
             if(rgba[3] > .05){
+                canvas.save()
+
                 canvas.beginPath();
                 canvas.arc(room.offset[0] + TILESIZE * pos[0], room.offset[1] + TILESIZE * pos[1], radius, 0, 2 * Math.PI);
 
-                canvas.strokeStyle = 'rgba(' + rgba[0] + ',' + rgba[1] + ',' + rgba[2] + ',' + rgba[3] +')';
                 canvas.lineWidth = 3;
+                canvas.strokeStyle = 'rgba(255,255,255,.5)';
+                canvas.stroke();
+                canvas.strokeStyle = 'rgba(' + rgba[0] + ',' + rgba[1] + ',' + rgba[2] + ',' + .25 * rgba[3] +')';
+                canvas.stroke();
+
+                canvas.strokeStyle = 'rgba(' + rgba[0] + ',' + rgba[1] + ',' + rgba[2] + ',' + rgba[3] +')';
+                canvas.lineWidth = 15;
+            /*
+             //turns out shadows are ugly
+                canvas.shadowColor = 'black'
                 canvas.shadowOffsetY = 10;
                 canvas.shadowBlur = 5;
+            */
                 canvas.stroke();
+
+
+                canvas.restore();
             }
         }
     }
