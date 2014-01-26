@@ -1,7 +1,7 @@
 var Turret = function(pos, ai, health, img){
     health = typeof health !== 'undefined' ? health : 3;
 
-    var pos = pos, health = health, img= img;
+    var health = health, img= img;
     var dims = [1, 1];    //setting
     var rect = Rect(pos, dims);
     var bullets = [];
@@ -73,13 +73,16 @@ var Turret = function(pos, ai, health, img){
                         }
                         state.timer -= 1;
                         for(var i = 0; i < room.players.length;i++){
-                            if(room.players[i].rect.pos.dist(pos) < range){
+                            if(room.players[i].rect.pos.dist(rect.pos) < range){
+
                                 var targetAngle = vectorToAngle(rect.pos.subtract(room.players[i].rect.pos));
+
                                 if(minAngleBetween(targetAngle, rect.angle) < speed){
                                     rect.angle = targetAngle;
                                 }else{
                                     rect.angle += dirTowardsAngle(rect.angle, targetAngle) * speed;
                                 }
+
                                 if(minAngleBetween(targetAngle, rect.angle) < tolerance){
                                     if (state.timer < 0){
                                         shoot(bulletSpeed);
