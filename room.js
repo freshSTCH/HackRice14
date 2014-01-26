@@ -147,9 +147,13 @@ function Room(lengthXTiles,lengthYTiles)
         return isGameLost() || isGameWon();
     }
 
-    function isGameLost()
+    function isPlayerDead()
     {
         return players[0].isDead();
+    }
+
+    function isParadox(){
+        return players[0].isSuperDead();
     }
 
     function isGameWon()
