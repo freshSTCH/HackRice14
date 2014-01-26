@@ -106,7 +106,7 @@ function GameLoader(callback)
     "Turret1","DamagedTurret1","NearDeathTurret1",
     "Turret2","DamagedTurret2","NearDeathTurret2"];
 
-    var roomNames = ["1"];
+    var roomNames = ["1","2"];
 
     var soundNames = ["Shoot","PlayerTakingDamage", "TimeMachineTakingDamage", "TurretDeath", "TimeMachineTakingDamage", "TimeTurningBack", "TimeTurningBackalt", "TimeMachineRightBeforeExplosion"];
 
