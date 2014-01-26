@@ -41,7 +41,7 @@ Array.prototype.unit = function(){
     
     if (mag === 0)
         mag = 1;
-    
+
     var result = [];
     for (var i=0; i<this.length; i++)
         result[i] = this[i] / mag;
@@ -89,5 +89,15 @@ function Rect(pos, dims, angle){
         return isIntersecting;
     }
 
-    return {pos:pos, dims:dims, angle:angle, a:angle, intersectsRect:intersectsRect, intersectsPoint:intersectsPoint};
+    var corners = function(){
+        return [
+            [pos[0] + dims[0]*.5,pos[1]+dims[1]*.5],
+            [pos[0] - dims[0]*.5,pos[1]+dims[1]*.5],
+            [pos[0] + dims[0]*.5,pos[1]-dims[1]*.5],
+            [pos[0] - dims[0]*.5,pos[1]-dims[1]*.5]
+
+        ];
+    }
+
+    return {corners:corners,pos:pos, dims:dims, angle:angle, a:angle, intersectsRect:intersectsRect, intersectsPoint:intersectsPoint};
 }

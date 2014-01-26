@@ -2,7 +2,7 @@ var Turret = function(pos, ai, health, img){
     health = typeof health !== 'undefined' ? health : 3;
 
     var pos = pos, health = health, img= img;
-    var dims = [20, 20];    //setting
+    var dims = [1, 1];    //setting
     var rect = Rect(pos, dims);
     var bullets = [];
     var state = {};
@@ -15,12 +15,11 @@ var Turret = function(pos, ai, health, img){
     }
 
     var draw = function(offset){
-        var drawRect = Rect(TILESIZE * rect.pos[0] + offset[0], TILESIZE * rect.pos[1] + offset[1], rect.dims[0], rect.dims[1]);
-        canvas.putImage(drawRect, img);
+        canvas.putImageEasy(rect, img);
     }
 
     var shoot = function(speed){
-        //bullets.push(Bullet(pos, angleToVector(rect.angle).scale(speed)));
+        //bullets.push(Bullet(pos, angleToVector(rect.angle).scale(speed),assets.getImage("Wall")));
     }
 
 

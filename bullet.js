@@ -1,6 +1,6 @@
 var Bullet = function(pos, velocity, img, growth){
     var pos = pos, velocity = velocity, img = img;
-     var dims = [1, 1];
+     var dims = [.2, .2];
      var rect = Rect(pos,dims);
 
     var hitpos = [];
@@ -19,6 +19,16 @@ var Bullet = function(pos, velocity, img, growth){
             }
         }
 
+
+        var corners = rect.corners();
+
+        corners.forEach(function(corner)
+        {
+            console.log(corner);
+            var rounded = corner.map(function(val){return Math.round(val);});
+            console.log(rounded);
+        });
+
         // Add sprite animation here
     }
 
@@ -33,7 +43,8 @@ var Bullet = function(pos, velocity, img, growth){
             canvas.shadowBlur = 5;
             canvas.stroke();
         }else{
-            canvas.drawImage(img, TILESIZE * pos[0] + room.offset[0], TILESIZE * pos[1] + room.offset[1])
+            //canvas.drawImage(img, TILESIZE * pos[0] + room.offset[0], TILESIZE * pos[1] + room.offset[1])
+            canvas.putImageEasy(rect,img);
         }
     }
 

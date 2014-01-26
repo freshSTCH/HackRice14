@@ -57,7 +57,7 @@ var Player = function(pos, health, settings, img){
          for(var i = 0; i < bullets.length;i++){bullets[i].draw();}
 
 
-        canvas.putImage(rect, img);
+        canvas.putImageEasy(rect, img);
     }
 
     return {health:health, rect:rect, bullets:bullets, update:update, draw:draw};
