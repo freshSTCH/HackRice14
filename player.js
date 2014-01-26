@@ -10,18 +10,13 @@ function Player(pos, health, settings, img){
 
     var imageDims = [1,1];
 
-    canvas.addMouseDownListener(function(pos)
-    {
-        var velocity = pos.scale(1/TILESIZE).subtract(rect.pos).unit().scale(0.1);
-        assets.playSound("Shoot");
-
-        room.addPlayerBullet(Bullet([rect.pos[0],rect.pos[1]],velocity,assets.getImage("Bullet")));
-    });
-
     var update = function(timeFactor){
 
-
-
+        if(canvas.mousedown && timeFactor > 1){
+            var velocity = pos.scale(1/TILESIZE).subtract(rect.pos).unit().scale(0.1);
+            assets.playSound("Shoot");
+            room.addPlayerBullet(Bullet([rect.pos[0],rect.pos[1]],velocity,assets.getImage("Bullet")));
+        }
 
         var vel = [0, 0];
         if(canvas.state[settings.right])
