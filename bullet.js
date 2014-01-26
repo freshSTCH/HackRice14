@@ -113,7 +113,7 @@ var Bullet = function(pos, velocity, img, growth, rgba, owner){
                             }
                         }
                         if (paradox) 
-                            players[0].unhitMissed();
+                            room.players[0].unhitMissed();
                     }
                 }
                 break;
