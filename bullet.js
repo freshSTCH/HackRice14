@@ -44,13 +44,15 @@ var Bullet = function(pos, velocity, img, growth, rgb){
                 canvas.beginPath();
                 canvas.arc(room.offset[0] + TILESIZE * pos[0], room.offset[1] + TILESIZE * pos[1], radius, 0, 2 * Math.PI);
 
-                canvas.lineWidth = 3;
-                canvas.strokeStyle = 'rgba(255,255,255,.5)';
-                canvas.stroke();
-                canvas.strokeStyle = 'rgba(' + rgba[0] + ',' + rgba[1] + ',' + rgba[2] + ',' + .25 * rgba[3] +')';
+                canvas.lineWidth = 15;
+                canvas.strokeStyle = 'rgba(0,0,0,' + .25 * rgba[3] + ')';
                 canvas.stroke();
 
+                canvas.lineWidth = 3;
                 canvas.strokeStyle = 'rgba(' + rgba[0] + ',' + rgba[1] + ',' + rgba[2] + ',' + rgba[3] +')';
+                canvas.stroke();
+
+                canvas.strokeStyle = 'rgba(' + rgba[0] + ',' + rgba[1] + ',' + rgba[2] + ',' + .5 * rgba[3] +')';
                 canvas.lineWidth = 15;
             /*
              //turns out shadows are ugly

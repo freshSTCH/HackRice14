@@ -45,13 +45,13 @@ var Turret = function(pos, ai, health, img){
                         }
                         for(var i = 0; i < room.players.length;i++){
                             if(room.players[i].rect.pos.dist(pos) < range){
+                                tracking = true
                                 var targetAngle = vectorToAngle(rect.pos.subtract(room.players[i].rect.pos));
                                 if(minAngleBetween(targetAngle, rect.angle) < tolerance){
 
                                     if(state.tracking = false){
                                         state.timer = 0;
                                     }
-                                    state.tracking = true;
                                     state.timer -= 1;
                                     if (state.timer < 0){
                                         shoot(bulletSpeed);
