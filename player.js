@@ -14,7 +14,7 @@ function Player(pos, health, settings, img, integrity){
 
     var catchTolerance = 0.125 * Math.PI;
 
-    var bulletSpeed = .1; //units? idk
+    var bulletSpeed = .01; //units? idk
     var timer = FPS / 2;
 
     var dead = false;
@@ -31,7 +31,7 @@ function Player(pos, health, settings, img, integrity){
             var velocity = canvas.mousePos.scale(1/TILESIZE).subtract(rect.pos).unit().scale(bulletSpeed);
             assets.playSound("Shoot");
             time = timer;
-            room.addPlayerBullet(Bullet([rect.pos[0],rect.pos[1]],velocity,assets.getImage("Bullet"), 20, [0,255,0,1], 'player'));
+            room.addPlayerBullet(Bullet([rect.pos[0],rect.pos[1]],velocity.unit().scale(bulletSpeed),assets.getImage("Bullet"), 20, [0,255,0,1], 'player'));
         }
 
         var vel = [0, 0];
