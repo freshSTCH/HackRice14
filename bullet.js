@@ -41,7 +41,7 @@ var Bullet = function(pos, velocity, img, growth, rgb){
             canvas.beginPath();
             canvas.arc(room.offset[0] + pos[0], room.offset[1] + pos[1], radius, 0, 2 * Math.PI);
 
-            canvas.strokeStyle = 'rgba(' + rgba[0] + ',' + rgba[1] + ',' rgba[2] + ',' + rgba[3] +')';
+            canvas.strokeStyle = 'rgba(' + rgba[0] + ',' + rgba[1] + ',' + rgba[2] + ',' + rgba[3] +')';
             canvas.lineWidth = 3;
             canvas.shadowOffsetY = 10;
             canvas.shadowBlur = 5;
