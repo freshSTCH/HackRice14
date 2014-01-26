@@ -36,6 +36,7 @@ var Turret = function(pos, ai, health, img){
                 return "Damaged"+img;
 
             case 0:
+            default:
                 return "NearDeath"+img;
         }
     }
@@ -54,7 +55,6 @@ var Turret = function(pos, ai, health, img){
         health--;
         if (health == 0){
             dead = true;
-            //img = ... //set the dead image here
         }
 
         assets.playSound("TurretDeath");
