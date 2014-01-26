@@ -77,6 +77,7 @@ var Bullet = function(pos, velocity, img, growth, rgba, owner){
                             }else{
                                 room.turrets[i].unhit();
                                 reverseHit('turret');
+                                room.players[0].unshootMissed();
                             }
                         }else if(owner == 'turret'){
                             if(timeFactor < 0){
@@ -172,6 +173,12 @@ var Bullet = function(pos, velocity, img, growth, rgba, owner){
     var hit = function(obj){
         hitObj = obj;
         state = 'ring';
+        if (obj == "player")
+            rgba = [255,0,0,1];
+        else if (owner == "turret")
+            rgba = [255,255,0,1];
+        else if (owner == "player")
+            rgba = [0,0,255,1];
     }
     var getState = function(){
         return state;
