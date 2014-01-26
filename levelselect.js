@@ -46,15 +46,12 @@ function LevelSelect(callback)
                         canvas.removeMouseDownListener(id);
                         callback("3");
                         break; 
-                    
-
-                   
-                     /*levels  4-6 not implemented
                    
                     case "level4":
                         canvas.removeMouseDownListener(id);
                         callback("4");
                         break;   
+                         /*levels  4-6 not implemented
                   
                    case "level5"
                         canvas.removeMouseDownListener(id);

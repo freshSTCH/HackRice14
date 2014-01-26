@@ -37,7 +37,7 @@ function Main(levelName)
     var renderLoop = function(){
 
 
-        if (!room.isParadox() && !room.isPlayerDead())
+        if (!room.isParadox() && !room.isPlayerDead() && !room.isGameWon())
         {
             room.draw();
             window.requestAnimationFrame(renderLoop)
