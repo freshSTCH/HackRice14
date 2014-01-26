@@ -1,3 +1,4 @@
+"use strict";
 var assets;
 var room;
 GameLoader(function(a){
