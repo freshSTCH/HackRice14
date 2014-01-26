@@ -4,20 +4,18 @@
     [ [9,3], {
         "ai": {
             "type": "tracker",
-            "settings":{"bulletSpeed":1}
+            "settings":"sniper"
         },
         "image": "Turret2"
         }],
 
     [ [6,13], {
         "ai": {
-            "type": "simple",
-            "settings":{"bulletSpeed":1}
+            "type": "tracker",
+            "settings":"machinegun"
         },
         "image": "Turret1"
         }]
-
-
 
         ]
     }
