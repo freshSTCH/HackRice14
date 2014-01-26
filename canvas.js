@@ -1,6 +1,7 @@
 var FPS = 50;
 var WIDTH = 640;
 var HEIGHT = 640;
+var TILESIZE = 32;
 var canvas = (function(elem){return (function(canvas){
     elem.width = WIDTH;
     elem.height = HEIGHT;

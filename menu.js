@@ -27,9 +27,6 @@ function Menu(callback)
 
         var id = canvas.addMouseDownListener(function(pos)
         {
-            console.log("DOWN");
-
-
             var buttonPressed = getButtonPressed(buttons,pos);
             console.log(buttonPressed);
             if(buttonPressed)
