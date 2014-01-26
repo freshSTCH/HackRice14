@@ -22,45 +22,45 @@ function Turret(pos, ai, health, img){
     return {pos:pos, ai:ai, health:health, rect:rect, update:update, draw:draw};
 }
 
-//ai functions
-tracking = function(range, speed, timer, tolerance){
-    if (range == undefined)
-        range = 500;
-    if (speed == undefined)
-        speed = (Math.PI / 2) / FPS;
-    if (timer == undefined)
-        timer = FPS / 2;
-    if (tolerance == undefined)
-        tolerance = Math.PI / 2
-    return function(state){
-        if (state.timer == undefined){
-            state.timer = 0;
-            state.tracking = false;
-        }
-        for(var i = 0; i < players.length;i++){
-            if(players[i].rect.pos.dist(pos) < range){
-                var diff = rect.pos.subtract(players[i].rect.pos);
-                var targetAngle = Math.atan2(diff[0],diff[1]);
-                if(minAngleBetween(targetAngle, rect.angle) < tolerance){
 
-                    if(state.tracking = false){
-                        state.timer = 0;
-                    }
-                    state.tracking = true;
-                    state.timer -= 1;
-                    if (state.timer < 0){
-                        shoot();
-                    }
-                    state.timer = timer;
+var AI = (function(){
+    var tracker = function(range, speed, timer, tolerance){
+        range = range || 500;
+        speed = speed || ((Math.PI / 2) / FPS);
+        timer = timer || FPS / 2;
+        tolerance = tolerance || Math.PI / 2
+        return function(state){
+            if (state.timer == undefined){
+                state.timer = 0;
+                state.tracking = false;
+            }
+            for(var i = 0; i < players.length;i++){
+                if(players[i].rect.pos.dist(pos) < range){
+                    var diff = rect.pos.subtract(players[i].rect.pos);
+                    var targetAngle = Math.atan2(diff[0],diff[1]);
+                    if(minAngleBetween(targetAngle, rect.angle) < tolerance){
 
-                    if(minAngleBetween(targetAngle, rect.angle) < speed){
-                        rect.angle = targetAngle;
-                    }else{
-                        rect.angle += dirTowardsAngle(rect.angle, target.angle) * speed;
+                        if(state.tracking = false){
+                            state.timer = 0;
+                        }
+                        state.tracking = true;
+                        state.timer -= 1;
+                        if (state.timer < 0){
+                            shoot();
+                        }
+                        state.timer = timer;
+
+                        if(minAngleBetween(targetAngle, rect.angle) < speed){
+                            rect.angle = targetAngle;
+                        }else{
+                            rect.angle += dirTowardsAngle(rect.angle, target.angle) * speed;
+                        }
                     }
                 }
             }
+            return state;
         }
-        return state;
     }
-}
+    //var another AI = function(....
+    return {tracker:tracker};
+})();
