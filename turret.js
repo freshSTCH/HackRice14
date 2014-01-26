@@ -19,11 +19,11 @@ var Turret = function(pos, ai, health, img){
     }
 
     var shoot = function(speed){
-        bullets.push(Bullet([pos[0],pos[1]], angleToVector(rect.angle).scale(speed),assets.getImage("Wall")));
+        bullets.push(Bullet([pos[0],pos[1]], angleToVector(rect.angle).scale(speed),assets.getImage("EnemyBullet")));
     }
 
     var simpleShoot = function(){
-        room.addEnemyBullet(Bullet([pos[0],pos[1]], angleToVector(rect.angle).scale(.01),"EnemyBullet"));
+        room.addEnemyBullet(Bullet([pos[0],pos[1]], angleToVector(rect.angle).scale(.01),assets.getImage("EnemyBullet")));
     }
 
 

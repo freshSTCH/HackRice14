@@ -16,7 +16,7 @@ function Player(pos, health, settings, img){
         assets.getSound("Shoot").currentTime = 0;
         assets.getSound("Shoot").play();
 
-        room.addPlayerBullet(Bullet([rect.pos[0],rect.pos[1]],velocity,"Bullet"));
+        room.addPlayerBullet(Bullet([rect.pos[0],rect.pos[1]],velocity,assets.getImage("Bullet")));
     });
 
     var update = function(timeFactor){
