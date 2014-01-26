@@ -5,14 +5,16 @@
         "ai": {
             "type": "tracker",
             "settings":{}
-        } 
+        },
+        "image": "Turret2"
         }],
 
     [ [6,13], {
         "ai": {
             "type": "simple",
             "settings":{}
-        } 
+        },
+        "image": "Turret"
         }]
 
 

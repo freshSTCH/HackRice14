@@ -101,7 +101,7 @@ function GameLoader(callback)
 
 
 
-    var imgNames = ["Wall","Floor","Start","End","Turret","Menu","Player","Bullet","EnemyBullet","LevelSelect","TimeMachine"];
+    var imgNames = ["Wall","Floor","Start","End","Turret","Menu","Player","Bullet","EnemyBullet","LevelSelect","TimeMachine","Turret2"];
     var roomNames = ["1"];
 
     var soundNames = ["Shoot","PlayerTakingDamage", "TimeMachineTakingDamage", "TurretDeath", "TimeMachineTakingDamage", "TimeTurningBack", "TimeTurningBackalt", "TimeMachineRightBeforeExplosion"];
