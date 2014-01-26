@@ -7,6 +7,7 @@ var Player = function(pos, health, settings, img){
     var speed = 20;
     var bullets = [];
     var img = img;
+    var settings = settings;
 
     var update = function(timeFactor){
         for(var i = 0; i < bullets.length;i++){bullets[i].update(timeFactor);}
