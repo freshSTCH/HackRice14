@@ -16,6 +16,7 @@ function Room(lengthXTiles,lengthYTiles)
 
     var enemyBullets = [];
     var playerBullets = [];
+    var timeMachine;
 
 
     var offset = [0,0];
@@ -25,6 +26,7 @@ function Room(lengthXTiles,lengthYTiles)
         players.forEach(function(player){player.update(timeFactor);});
         enemyBullets.forEach(function(bullet){bullet.update(timeFactor);});
         playerBullets.forEach(function(bullet){bullet.update(timeFactor);});
+        timeMachine.update();
 
 
         players.forEach(function(player){
@@ -45,15 +47,26 @@ function Room(lengthXTiles,lengthYTiles)
             })
         });
 
-        turrets.forEach(function(turret){
-            playerBullets.forEach(function (bullet){
-                if (turret.rect.intersectsRect(bullet.rect))
+        playerBullets.forEach(function (bullet){
+            if (bullet.isActive())
+            {
+                if (timeMachine.rect.intersectsRect(bullet.rect))
                 {
                     bullet.hit();
+                    timeMachine.hit();
+                    timeFactor = -1;
                 }
 
-            });
+                 turrets.forEach(function(turret){
+                    if (turret.rect.intersectsRect(bullet.rect))
+                    {
+                        bullet.hit();
+                    }
+                });  
+            }
         });
+
+
 
 
     };
@@ -72,7 +85,8 @@ function Room(lengthXTiles,lengthYTiles)
         enemyBullets.forEach(function(bullet) {bullet.draw(pos);});
         playerBullets.forEach(function(bullet) {bullet.draw(pos);});
         players.forEach(function(player) {player.draw(pos);});
-            //draw all the tiles
+        timeMachine.draw();
+
             
     };
 
@@ -128,7 +142,7 @@ function Room(lengthXTiles,lengthYTiles)
         StartTile=[x,y];
 
 
-        var player = Player([x,y],10,{"right":68,"left":65,"up":87,"down":83},assets.getImage("Player"));
+        var player = Player([x+.5,y+.5],10,{"right":68,"left":65,"up":87,"down":83},assets.getImage("Player"));
         players.push(player);
 
 
@@ -136,6 +150,7 @@ function Room(lengthXTiles,lengthYTiles)
     var setEnd=function(x, y){
         addTile("End",x,y);
         EndTile=[x,y];
+        timeMachine = TimeMachine([x+.5,y+.5]);
     };
 
     var hittingTileType = function(type, rect)

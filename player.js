@@ -13,7 +13,6 @@ function Player(pos, health, settings, img){
     canvas.addMouseDownListener(function(pos)
     {
         var velocity = pos.scale(1/TILESIZE).subtract(rect.pos).unit().scale(0.1);
-        console.log("Make bullet");
         assets.playSound("Shoot");
 
         room.addPlayerBullet(Bullet([rect.pos[0],rect.pos[1]],velocity,assets.getImage("Bullet")));
