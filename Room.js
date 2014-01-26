@@ -15,23 +15,28 @@ function Room(lengthXTiles,lengthYTiles)
     var turrets = [];
     var bullets = [];
 
+    var offset = [0,0];
+
     var update = function(){
         turrets.forEach(function(turret){turret.update(timeFactor);});
         players.forEach(function(player){player.update(timeFactor);});
     };
 
     var draw = function(){
-        turrets.forEach(function(turret) {turret.draw(pos);});
-        bullets.forEach(function(bullet) {bullet.draw(pos);});
-        players.forEach(function(player) {player.draw(pos);});
-            //draw all the tiles
-            for (var x=0; x<lengthXTiles; x++){
+        for (var x=0; x<lengthXTiles; x++){
                 for (var y=0; y<lengthYTiles; y++){
                     var tilename = grid[x][y];
                     var tileImage = assets.getImage(tilename);
                     canvas.drawImage(tileImage, pos[0] + x*TILESIZE, pos[1] + y*TILESIZE, TILESIZE, TILESIZE);
                 }
             }
+
+        
+        turrets.forEach(function(turret) {turret.draw(pos);});
+        bullets.forEach(function(bullet) {bullet.draw(pos);});
+        players.forEach(function(player) {player.draw(pos);});
+            //draw all the tiles
+            
     };
 
     //Grid Initialization functions
@@ -82,6 +87,6 @@ function Room(lengthXTiles,lengthYTiles)
     initializeGrid();
     //end Grid initialization
     //
-    return {players:players,initializeGrid:initializeGrid, addTile:addTile, addTurret:addTurret, getGrid:getGrid, getTurrets:getTurrets,getGridSpot:getGridSpot,setStart:setStart, setEnd:setEnd, update:update, draw:draw}
+    return {offset:offset,players:players,initializeGrid:initializeGrid, addTile:addTile, addTurret:addTurret, getGrid:getGrid, getTurrets:getTurrets,getGridSpot:getGridSpot,setStart:setStart, setEnd:setEnd, update:update, draw:draw}
 
 }

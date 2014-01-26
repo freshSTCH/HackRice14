@@ -28,7 +28,7 @@ var Player = function(pos, health, settings, img){
             for (var i=-1; i<=1; i++){
                 for (var j=-1; j<=1; j++){
                     var tile = nearestTile.add([i, j]);
-                    tilesToCheck.append(tile)
+                    tilesToCheck.push(tile)
                 }
             }
         for (var i=0; i<tilesToCheck.length; i++){
@@ -39,9 +39,9 @@ var Player = function(pos, health, settings, img){
     }
 
     var draw = function(){
-        var drawRect = Rect(tileSize * rect.pos[0] + offset[0], tileSize * rect.pos[1] + offset[1], rect.dim[0], rect.dim[1]);
+        var drawRect = Rect(TILESIZE * rect.pos[0] + room.offset[0], TILESIZE * rect.pos[1] + room.offset[1], rect.dims[0], rect.dims[1]);
         canvas.putImage(drawRect, img);
     }
 
-    return {health:health, rect:rect, bullets:bullets, input:input, update:update, draw:draw};
+    return {health:health, rect:rect, bullets:bullets, update:update, draw:draw};
 }
