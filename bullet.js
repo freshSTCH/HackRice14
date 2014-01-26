@@ -21,7 +21,6 @@ var Bullet = function(pos, velocity, img, growth, rgb){
             rgba[3] *= Math.pow(decay, timeFactor);
             if (time <= 0){
                 active = true;
-                radius = 0;
             }
         }
 
