@@ -26,10 +26,10 @@ function TimeMachine(pos)
         gameloader.playSound("TimeMachineTakingDamage")
         if (health === 0)
         {
-            gameloader.playSound("TimeMachineRightBeforeExplosion")
+            assets.playSound("TimeMachineRightBeforeExplosion")
             reverse = true;
-            //gameloader.playSound("TimeTurningBackalt")
-            gameloader.playSound("TimeTurningBack")
+            //assets.playSound("TimeTurningBackalt")
+            assets.playSound("TimeTurningBack")
 
 
         }
