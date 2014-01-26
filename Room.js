@@ -25,8 +25,8 @@ function Room(lengthXTiles,lengthYTiles,tileSize)
     };
 
     var draw = function(){
-        turrets.forEach(function(turret) {turret.draw()})
-        bullets.forEach(function(bullet) {bullet.draw()})
+        turrets.forEach(function(turret) {turret.draw(pos)})
+        bullets.forEach(function(bullet) {bullet.draw(pos)})
         //draw all the tiles
         for (var x=0; x<lengthXTiles; x++){
         	for (var y=0; y<lengthYTiles; y++){
