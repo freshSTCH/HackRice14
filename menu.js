@@ -5,7 +5,10 @@ function Menu(callback)
     function convertToRect(objData)
     {
         for (var key in objData)
+        {
+            console.log(key);
             objData[key] = Rect(objData[key][0],objData[key][1]);
+        }
     }
 
     function getButtonPressed(buttons,pos)
@@ -19,8 +22,9 @@ function Menu(callback)
 
     GetJSON("Data/menu.json",function(buttons)
     {
-
+        console.log(buttons);
         convertToRect(buttons);
+        console.log(buttons);
 
         var menuImage = assets.getImage("Menu");
         canvas.drawImage(menuImage,0,0,WIDTH,HEIGHT);
@@ -28,7 +32,7 @@ function Menu(callback)
         var id = canvas.addMouseDownListener(function(pos)
         {
             var buttonPressed = getButtonPressed(buttons,pos);
-            console.log(buttonPressed);
+            console.log(pos,buttonPressed);
             if(buttonPressed)
             {
                 switch(buttonPressed)
@@ -37,6 +41,10 @@ function Menu(callback)
                         canvas.removeMouseDownListener(id);
                         callback();
                         break; 
+
+                    case "levelButton":
+                        assets.getSound("test").play();
+                        break;
 
                     default:
                         console.error("A non existant button ",buttonPressed);
