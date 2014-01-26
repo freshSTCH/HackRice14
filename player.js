@@ -18,6 +18,7 @@ function Player(pos, health, settings, img, integrity){
     var timer = FPS / 2;
 
     var dead = false;
+    var superDead = false;
 
 
     var update = function(timeFactor){
@@ -133,6 +134,9 @@ function Player(pos, health, settings, img, integrity){
         var angleOff = minAngleBetween(angleToBullet, rect.angle);
         if (angleOff > catchTolerance)
             integrity -= 1;
+            if (integrity <= 0){
+                superDead = true;
+            }
         else{
             health += 1;
             health = max(health, maxHealth);
@@ -141,8 +145,17 @@ function Player(pos, health, settings, img, integrity){
     }
 
     function reverseHit(){
+        if (health !== 0)
+        {
+            health -=1;
+        }
+        if (health === 0)
+            dead = true;
+
         integrity -= 1;
-        health -= 1;
+        if (integrity <= 0){
+            superDead = true;
+        }
         assets.playSound("PlayerTakingDamage");
     }
 
@@ -159,5 +172,9 @@ function Player(pos, health, settings, img, integrity){
         return dead;
     }
 
-    return {unhitMissed:unhitMissed, unhit:unhit, reverseHit:reverseHit, unshoot:unshoot, isDead:isDead,undo:undo,hit:hit,rect:rect,health:health, rect:rect, bullets:bullets, update:update, draw:draw};
+    function isSuperDead(){
+        return superDead;
+    }
+
+    return {isSuperDead:isSuperDead, unhitMissed:unhitMissed, unhit:unhit, reverseHit:reverseHit, unshoot:unshoot, isDead:isDead,undo:undo,hit:hit,rect:rect,health:health, rect:rect, bullets:bullets, update:update, draw:draw};
 }
