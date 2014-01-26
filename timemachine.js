@@ -35,13 +35,14 @@ function TimeMachine(pos)
 
             case 3:
             case 2:
-            case 1:
                 return "HeavilyDamaged"+img;
+
+            case 1:
+                return "NearDeath"+img;
 
             case 0:
             default:
-                return "NearDeath"+img;
-
+                return "Dead"+img;
         }
     }
 

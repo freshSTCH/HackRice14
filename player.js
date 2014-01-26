@@ -120,26 +120,32 @@ function Player(pos, health, settings, img, integrity){
 
     function hit()
     {
-        if (health !== 0)
-        {
-            health -=1;
-        }
-        if (health === 0)
+        health -= 1;
+        if (health <= 0){
+            health = 0;
             dead = true;
+        }
         assets.playSound("PlayerTakingDamage");
     }
 
     function unshoot(vel){
         var angleToBullet = vectorToAngle(vel);
         var angleOff = minAngleBetween(angleToBullet, rect.angle);
-        if (angleOff > catchTolerance)
+        if (angleOff > catchTolerance){
+            health -= 1;
+            if (health <= 0){
+                health = 0;
+                dead = true;
+            }
             integrity -= 1;
             if (integrity <= 0){
+                integrity = 0;
                 superDead = true;
             }
+        }
         else{
             health += 1;
-            health = Math.max(health, maxHealth);
+            health = Math.min(health, maxHealth);
         }
         assets.playSound("Shoot");
     }
@@ -160,11 +166,15 @@ function Player(pos, health, settings, img, integrity){
 
     function unhit(){
         health += 1;
-        health = Math.max(health, maxHealth);
+        health = Math.min(health, maxHealth);
     }
 
     function unhitMissed(){
         integrity -= 1;
+        if (integrity <= 0){
+            integrity = 0;
+            superDead = true;
+        }
     }
 
     function isDead()
