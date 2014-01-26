@@ -7,14 +7,19 @@ function Player(pos, health, settings, img){
     var speed = 0.1;
     var bullets = [];
     var oldPos = pos;
+    var time = 0
 
     var imageDims = [1,1];
+    var bulletSpeed = .1; //units? idk
+    var timer = FPS / 2;
 
     var update = function(timeFactor){
 
-        if(canvas.mouseDown && timeFactor > 0){
-            var velocity = pos.scale(1/TILESIZE).subtract(rect.pos).unit().scale(0.1);
+        time--;
+        if(canvas.mouseDown && timeFactor > 0 && time < 0){
+            var velocity = canvas.mousePos.scale(1/TILESIZE).subtract(rect.pos).unit().scale(bulletSpeed);
             assets.playSound("Shoot");
+            time = timer;
             room.addPlayerBullet(Bullet([rect.pos[0],rect.pos[1]],velocity,assets.getImage("Bullet")));
         }
 
