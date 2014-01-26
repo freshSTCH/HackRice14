@@ -18,10 +18,8 @@ function LevelSelect(callback)
                 return key;
         }
     }
-    console.log("Beartrap1")
     GetJSON("Data/levelselect.json",function(buttons)
     {
-        console.log("Beartrap2")
         convertToRect(buttons);
 
         var levelSelectImage = assets.getImage("LevelSelect");

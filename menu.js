@@ -32,7 +32,6 @@ function Menu(callback)
             console.log(pos,buttonPressed);
             if(buttonPressed)
             {
-                console.log("beartrap0")
                 switch(buttonPressed)
                 {
                     case "playButton":
@@ -42,9 +41,7 @@ function Menu(callback)
                         break; 
 
                     case "levelButton":
-                        console.log("beartrap3")
                         assets.getSound("test").play();
-                        console.log("beartrap4")
 
                         canvas.removeMouseDownListener(id);
                         LevelSelect(callback);
