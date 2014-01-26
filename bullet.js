@@ -1,10 +1,11 @@
-var Bullet = function(pos, velocity, img, growth, rgb){
+var Bullet = function(pos, velocity, img, growth, rgb, owner){
     var pos = pos, velocity = velocity, img = img;
 
     var dims = [.3, .3];
     var rect = Rect(pos,dims);
 
     var hitObj;//room, player
+    var owner = owner;// turret, player
 
     var radius = 1;
     var growth = growth || 20; //Math.pow(2, (1/FPS));
