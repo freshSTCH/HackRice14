@@ -6,6 +6,7 @@ function Player(pos, health, settings, img){
     var rect = Rect(pos, dims);
     var speed = 0.1;
     var bullets = [];
+    var oldPos = pos;
 
     var imageDims = [1,1];
 
@@ -33,10 +34,10 @@ function Player(pos, health, settings, img){
         if(canvas.state[settings.up]) // Remember, y axis is flipped in computers because reasons
             vel[1] --;
         vel = vel.unit();
-        var oldPos = [rect.pos[0],rect.pos[1]];
+        oldPos = [rect.pos[0],rect.pos[1]];
         rect.setPos(rect.pos.add(vel.scale(Math.abs(timeFactor) * speed)));
 
-        var collided = room.hittingWall(rect);
+        var collided = (room.hittingTileType('Wall', rect) || room.hittingTileType('Obstacle', rect)) || room.hittingTileType('End', rect);
 
         if (collided){
             rect.setPos(oldPos);
@@ -45,6 +46,11 @@ function Player(pos, health, settings, img){
         // add collision detection with walls and turrets
         // Also check where YOUR bullets are... not which hit you
     };
+
+    var undo = function(){
+        pos = oldPos;
+        rect = Rect(pos, dims);
+    }
 
     var draw = function(){
 

@@ -36,6 +36,13 @@ function Room(lengthXTiles,lengthYTiles)
                 }
 
             });
+
+            turrets.forEach(function(turret){
+                if (turret.rect.intersectsRect(player.rect))
+                {
+                    player.undo();
+                }
+            })
         });
 
         turrets.forEach(function(turret){
@@ -131,7 +138,7 @@ function Room(lengthXTiles,lengthYTiles)
         EndTile=[x,y];
     };
 
-    var hittingWall = function(rect)
+    var hittingTileType = function(type, rect)
     {
         var corners = rect.corners();
 
@@ -141,24 +148,7 @@ function Room(lengthXTiles,lengthYTiles)
         {
             var rounded = corner.map(function(val){return Math.floor(val);});
             var tile = room.getTypeOfTile(rounded[0],rounded[1]);
-            if (tile === "Wall")
-                result = true;
-        });
-
-        return result;
-    }
-
-    var hittingObstacle = function(rect)
-    {
-        var corners = rect.corners();
-
-        var result = false;
-
-        corners.forEach(function(corner)
-        {
-            var rounded = corner.map(function(val){return Math.floor(val);});
-            var tile = room.getTypeOfTile(rounded[0],rounded[1]);
-            if (tile === "Obstacle")
+            if (tile === type)
                 result = true;
         });
 
