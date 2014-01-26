@@ -7,9 +7,6 @@ var Turret = function(pos, ai, health, img){
     var state = {};
 
     var update = function(timeFactor){
-        for(var i = 0; i < bullets.length;i++){
-            bullets[i].update(timeFactor);
-        }
         state = AI(state);
     }
 
