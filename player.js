@@ -19,12 +19,15 @@ function Player(pos, health, settings, img, integrity){
 
     var dead = false;
     var superDead = false;
+    var firstMouseUp = false;//has happened
 
 
     var update = function(timeFactor){
 
         time--;
-        if(canvas.mouseDown && timeFactor > 0 && time < 0){
+        if(!canvas.mouseDown)
+            firstMouseUp=true;
+        if(firstMouseUp && canvas.mouseDown && timeFactor > 0 && time < 0){
             var velocity = canvas.mousePos.scale(1/TILESIZE).subtract(rect.pos).unit().scale(bulletSpeed);
             assets.playSound("Shoot");
             time = timer;
