@@ -63,7 +63,7 @@ var Turret = function(pos, ai, health, img){
                         for(var i = 0; i < room.players.length;i++){
                             if(room.players[i].rect.pos.dist(rect.pos) < range){
 
-                                var targetAngle = vectorToAngle(rect.pos.subtract(room.players[i].rect.pos));
+                                var targetAngle = vectorToAngle(room.players[i].rect.pos.subtract(rect.pos));
 
                                 if(minAngleBetween(targetAngle, rect.angle) < speed){
                                     rect.angle = targetAngle;
