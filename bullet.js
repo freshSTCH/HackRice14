@@ -51,7 +51,6 @@ var Bullet = function(pos, velocity, img, growth, rgba, owner){
                 for(var i = 0; i< room.players.length;i++){
                     if(room.players[i].rect.intersectsRect(rect)){
                         if (timeFactor > 0){
-                            console.log(owner);
                             if(owner == 'player'){
                                 //do nothing
                             }else{
@@ -73,7 +72,7 @@ var Bullet = function(pos, velocity, img, growth, rgba, owner){
                     if(room.turrets[i].rect.intersectsRect(rect)){
                         if(owner == 'player'){
                             if (timeFactor > 0){
-                                hit();
+                                hit("turret");
                                 room.turrets[i].hit();
                             }else{
                                 room.turrets[i].unhit();
@@ -90,7 +89,7 @@ var Bullet = function(pos, velocity, img, growth, rgba, owner){
                 if(room.getTimeMachine().rect.intersectsRect(rect)){
                     //also check for owner == 'player'?
                     if (timeFactor > 0){
-                        hit();
+                        hit("timeMachine");
                     }
                     room.getTimeMachine().hit();
                     if (room.getTimeMachine().isDead()) {
@@ -114,6 +113,16 @@ var Bullet = function(pos, velocity, img, growth, rgba, owner){
                         }
                         if (paradox) 
                             room.players[0].unhitMissed();
+                    }
+                    else if (hitObj == "turret"){
+                        for (var i = 0; i < room.turrets.length; i++){
+                            if (room.turrets[i].rect.intersectsRect(rect)){
+                                room.turrets[i].unhit();
+                            }
+                        }
+                    }
+                    else if (hitObj == 'timeMachine'){
+                        room.get_timeMachine().unhit();
                     }
                 }
                 break;

@@ -4,6 +4,7 @@ function TimeMachine(pos)
     var rect = Rect(pos,dim);
     var img = "TimeMachine";
     var health = 10;
+    var maxHealth = 10;
 
     var radsPerTick = .02;
     var reverse;
@@ -66,6 +67,11 @@ function TimeMachine(pos)
 
     }
 
+    function unhit(){
+        // health += 1;
+        // health = Math.min(health, maxHealth);
+    }
+
     function isDead()
     {
         return reverse;
@@ -73,6 +79,6 @@ function TimeMachine(pos)
     }
 
 
-    return {isDead:isDead,hit:hit,rect:rect,update:update,draw:draw};
+    return {unhit:unhit, isDead:isDead,hit:hit,rect:rect,update:update,draw:draw};
 
 }
