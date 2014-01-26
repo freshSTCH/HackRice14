@@ -5,8 +5,7 @@ function GetJSON(url,callback)
 
     request.open("GET",url,true);
 
-    request.onload = function()
-    {
+    request.onload = function(){
         var json = JSON.parse(request.responseText);
 
         callback(json);
