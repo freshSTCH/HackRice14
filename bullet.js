@@ -41,7 +41,7 @@ var Bullet = function(pos, velocity, img, growth, rgba, owner){
                         hit('room');
                     }
                     else if (timeFactor < 0){
-                        reverseHit();
+                        reverseHit('room');
                         if (owner == "player"){
                             room.players[0].unshootMissed(); // CHANGE THIS IF MULTIPLAYER IS IMPLEMENTED
                         }
@@ -59,11 +59,11 @@ var Bullet = function(pos, velocity, img, growth, rgba, owner){
                                 hit('player');
                             }
                         }else{
-                            reverseHit();
+                            reverseHit('player');
                             if(owner=='player'){
                                 room.players[i].unshoot(velocity);
                             }else{
-                                room.players[i].reverseHit();
+                                room.players[i].reverseHit('player');
                             }
                         }
                     }
@@ -77,6 +77,10 @@ var Bullet = function(pos, velocity, img, growth, rgba, owner){
                                 room.turrets[i].hit();
                             }else{
                                 room.turrets[i].unhit();
+                                reverseHit('turret');
+                            }
+                        }else if(owner == 'turret'){
+                            if(timeFactor < 0){
                                 reverseHit('turret');
                             }
                         }
