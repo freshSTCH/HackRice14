@@ -28,7 +28,7 @@ function Player(pos, health, settings, img, integrity){
             var velocity = canvas.mousePos.scale(1/TILESIZE).subtract(rect.pos).unit().scale(bulletSpeed);
             assets.playSound("Shoot");
             time = timer;
-            room.addPlayerBullet(Bullet([rect.pos[0],rect.pos[1]],velocity,assets.getImage("Bullet"),'player'));
+            room.addPlayerBullet(Bullet([rect.pos[0],rect.pos[1]],velocity,assets.getImage("Bullet"), [0,255,0,1], 'player'));
         }
 
         var vel = [0, 0];

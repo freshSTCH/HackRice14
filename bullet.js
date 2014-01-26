@@ -1,4 +1,4 @@
-var Bullet = function(pos, velocity, img, growth, rgb, owner){
+var Bullet = function(pos, velocity, img, growth, rgba, owner){
     var pos = pos, velocity = velocity, img = img;
 
     var dims = [.3, .3];
@@ -49,7 +49,8 @@ var Bullet = function(pos, velocity, img, growth, rgb, owner){
                 for(var i = 0; i< room.players.length;i++){
                     if(room.players[i].rect.intersectsRect(rect)){
                         if (timeFactor > 0){
-                            if(owner=='player'){
+                            console.log(owner);
+                            if(owner == 'player'){
                                 pass;
                             }else{
                                 room.players[i].hit();
