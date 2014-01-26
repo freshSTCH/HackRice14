@@ -6,7 +6,7 @@ var Bullet = function(pos, velocity, img, growth, rgb){
 
     var hitpos = [];
     var radius = 1;
-    var growth = growth || 2; //Math.pow(2, (1/FPS));
+    var growth = growth || 20; //Math.pow(2, (1/FPS));
     var decay = decay || Math.pow(.5, (1/FPS));
     var rgba = rgba || [0,255,0,1];
     var time = 0;
