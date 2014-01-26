@@ -29,8 +29,9 @@ function Room(lengthXTiles,lengthYTiles)
 
         players.forEach(function(player){
             enemyBullets.forEach(function (bullet){
-                if (player.rect.intersectsRect(bullet.rect))
+                if (bullet.isActive() && player.rect.intersectsRect(bullet.rect))
                 {
+                    player.hit();
                     bullet.hit();
                 }
 

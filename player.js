@@ -20,6 +20,9 @@ function Player(pos, health, settings, img){
 
     var update = function(timeFactor){
 
+
+
+
         var vel = [0, 0];
         if(canvas.state[settings.right])
             vel[0] ++;
@@ -49,7 +52,37 @@ function Player(pos, health, settings, img){
 
 
         canvas.putImageEasy(Rect(rect.pos,imageDims,rect.angle), img);
+
+        canvas.font = '32pt Calibri';
+        canvas.fillStyle = 'white';
+        canvas.fillText("HP:",TILESIZE,1.5*TILESIZE);
+
+        canvas.lineWidth = 5;
+
+        canvas.fillStyle = 'red';
+        canvas.beginPath();
+        canvas.moveTo(3*TILESIZE,.5*TILESIZE);
+        canvas.lineTo((3+6/10*health)*TILESIZE,.5*TILESIZE);
+        canvas.lineTo((3+6/10*health)*TILESIZE,1.5*TILESIZE);
+        canvas.lineTo(3*TILESIZE,1.5*TILESIZE);
+        canvas.closePath();
+        canvas.fill();
+
+        canvas.fillStyle = 'white';
+        canvas.beginPath();
+        canvas.moveTo((3+6/10*health)*TILESIZE,.5*TILESIZE);
+        canvas.lineTo(9*TILESIZE,.5*TILESIZE);
+        canvas.lineTo(9*TILESIZE,1.5*TILESIZE);
+        canvas.lineTo((3+6/10*health)*TILESIZE,1.5*TILESIZE);
+        canvas.closePath();
+        canvas.fill();
+
     };
 
-    return {rect:rect,health:health, rect:rect, bullets:bullets, update:update, draw:draw};
+    function hit()
+    {
+        health -=1;
+    }
+
+    return {hit:hit,rect:rect,health:health, rect:rect, bullets:bullets, update:update, draw:draw};
 }
