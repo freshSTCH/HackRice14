@@ -1,7 +1,7 @@
 var Turret = function(pos, ai, health, img){
     health = typeof health !== 'undefined' ? health : 3;
 
-    var pos = pos, health = health, img= img;
+    var health = health, img= img;
     var dims = [1, 1];    //setting
     var rect = Rect(pos, dims);
     var bullets = [];
@@ -19,11 +19,11 @@ var Turret = function(pos, ai, health, img){
     }
 
     var shoot = function(speed){
-        bullets.push(Bullet([pos[0],pos[1]], angleToVector(rect.angle).scale(speed),assets.getImage("Wall")));
+        bullets.push(Bullet([pos[0],pos[1]], angleToVector(rect.angle).scale(speed),assets.getImage("EnemyBullet")));
     }
 
     var simpleShoot = function(){
-        room.addEnemyBullet(Bullet([pos[0],pos[1]], angleToVector(rect.angle).scale(.01),"EnemyBullet"));
+        room.addEnemyBullet(Bullet([pos[0],pos[1]], angleToVector(rect.angle).scale(.01),assets.getImage("EnemyBullet")));
     }
 
 
@@ -41,7 +41,7 @@ var Turret = function(pos, ai, health, img){
             if (timeTillNextShot === 0)
             {
                 simpleShoot();
-                timeTillNextShot = 1000;
+                timeTillNextShot = 100;
             }
             else
                 timeTillNextShot -=1;
@@ -73,13 +73,16 @@ var Turret = function(pos, ai, health, img){
                         }
                         state.timer -= 1;
                         for(var i = 0; i < room.players.length;i++){
-                            if(room.players[i].rect.pos.dist(pos) < range){
+                            if(room.players[i].rect.pos.dist(rect.pos) < range){
+
                                 var targetAngle = vectorToAngle(rect.pos.subtract(room.players[i].rect.pos));
+
                                 if(minAngleBetween(targetAngle, rect.angle) < speed){
                                     rect.angle = targetAngle;
                                 }else{
                                     rect.angle += dirTowardsAngle(rect.angle, targetAngle) * speed;
                                 }
+
                                 if(minAngleBetween(targetAngle, rect.angle) < tolerance){
                                     if (state.timer < 0){
                                         shoot(bulletSpeed);

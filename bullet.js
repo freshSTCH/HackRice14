@@ -10,8 +10,6 @@ var Bullet = function(pos, velocity, img, growth, rgb){
     var decay = decay || Math.pow(.5,(1/FPS));
     var rgba = rgba || [0,255,0,1]
 
-    img = assets.getImage(img);
-
     var active = true;
     var update = function(timeFactor){
         if(active){
@@ -28,7 +26,7 @@ var Bullet = function(pos, velocity, img, growth, rgb){
 
         if (room.hittingWall(rect))
         {
-            active = false;
+            hit();
         }
 
         // Add sprite animation here
@@ -73,5 +71,5 @@ var Bullet = function(pos, velocity, img, growth, rgb){
         active = false;
     }
 
-    return {pos:pos, velocity:velocity, vel:velocity, v:velocity, update:update, draw:draw};
+    return {hit:hit,rect:rect,pos:pos, velocity:velocity, vel:velocity, v:velocity, update:update, draw:draw};
 }
