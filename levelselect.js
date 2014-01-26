@@ -1,4 +1,4 @@
-function levelselect(callback)
+function LevelSelect(callback)
 {
     "use strict";
     //really convert to square, but whatev
@@ -18,10 +18,10 @@ function levelselect(callback)
                 return key;
         }
     }
-
+    console.log("Beartrap1")
     GetJSON("Data/levelselect.json",function(buttons)
     {
-
+        console.log("Beartrap2")
         convertToRect(buttons);
 
         var levelSelectImage = assets.getImage("LevelSelect");
@@ -52,7 +52,9 @@ function levelselect(callback)
                      case "level4":
                         canvas.removeMouseDownListener(id);
                         callback();
-                        break;                         
+                        break;
+                   
+
                      //levels 5 and 6 not implemented
                      /*case "level5"
                         canvas.removeMouseDownListener(id);
@@ -62,7 +64,13 @@ function levelselect(callback)
                         canvas.removeMouseDownListener(id);
                         callback();
                         break; 
-                    */            
+
+
+                    For the json:
+                    "level5":[[240, 210][390,85]]
+                    "level6":[[450, 210][575,85]]
+                    */
+                              
                     default:
                         console.error("A non existant button ",buttonPressed);
                         break;
