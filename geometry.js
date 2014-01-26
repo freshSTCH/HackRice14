@@ -68,7 +68,7 @@ function dirTowardsAngle(angle1, angle2){
     diff = diff > 0 ? diff : diff + 2 * Math.PI;
     if (diff < Math.PI)
         return 1;
-    return 0;
+    return -1;
 }
 
 
