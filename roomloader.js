@@ -25,6 +25,7 @@ function RoomLoader(roomName)
 
     var roomMapping = [
         [[0,0,0],      "Wall"],
+        [[127,127,127], "Obstacle"],
         [[255,255,255],"Floor"],
         [[0,0,255],   "Turret"],
         [[0,255,0],   "Start"],
@@ -74,7 +75,7 @@ function RoomLoader(roomName)
                 case "Turret":
 
                     var myMetadata = getTurretMetadata(x,y);
-                    var turret = Turret([x,y], myMetadata.ai,3,assets.getImage("Turret"));
+                    var turret = Turret([x+.5,y+.5], myMetadata.ai,3,assets.getImage("Turret"));
                     room.addTurret(turret);
                     room.addTile("Floor",x,y);
                     break;

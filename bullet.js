@@ -71,5 +71,10 @@ var Bullet = function(pos, velocity, img, growth, rgb){
         active = false;
     }
 
-    return {hit:hit,rect:rect,pos:pos, velocity:velocity, vel:velocity, v:velocity, update:update, draw:draw};
+    var isActive = function()
+    {
+        return active;
+    }
+
+    return {isActive:isActive,hit:hit,rect:rect,pos:pos, velocity:velocity, vel:velocity, v:velocity, update:update, draw:draw};
 }
