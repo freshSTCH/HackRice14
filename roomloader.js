@@ -80,6 +80,8 @@ function RoomLoader(roomName)
                     room.addTurret(turret);
                     room.addTile("Floor",x,y);
                     break;
+                case "Obstacle":
+                    room.addTile(tileName,x,y)
 
                 default:
                     console.error("No such tile?");

@@ -59,7 +59,7 @@
         ],
 
         [
-            [17,12],
+            [18,13],
             {
                 "ai": {"type": "tracker","settings":"machinegun"},
                 "image": "Turret1"
@@ -74,6 +74,8 @@
                 "image": "Turret2"
             }
         ]
+
+
 
     ]
 }
