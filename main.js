@@ -51,7 +51,10 @@ function Main(levelName)
 
 }
 
-GameLoader(function(a){
-    assets = a;
-    Menu(Main);
-});
+window.onload = function()
+{
+    GameLoader(function(a){
+        assets = a;
+        Menu(Main);
+    });
+}
