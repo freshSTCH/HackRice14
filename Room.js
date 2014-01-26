@@ -31,12 +31,16 @@ function Room(lengthXTiles,lengthYTiles)
 
         players.forEach(function(player){
             enemyBullets.forEach(function (bullet){
-                if (bullet.isActive() && player.rect.intersectsRect(bullet.rect))
-                {
-                    player.hit();
-                    bullet.hit();
-                }
-
+                    if (bullet.isActive() && player.rect.intersectsRect(bullet.rect))
+                    {
+                        if(timeFactor > 0){
+                            player.hit();
+                            bullet.hit('player');
+                        }else{
+                            player.reverseHit();
+                            bullet.reverseHit('player');
+                        }
+                    }
             });
 
             turrets.forEach(function(turret){
