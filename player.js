@@ -31,7 +31,7 @@ var Player = function(pos, health, settings){
                 }
             }
         for (var i=0; i<tilesToCheck.length; i++){
-            if tilesToCheck[i]
+//            if tilesToCheck[i]
         }
         // add collision detection with walls and turrets
         // Also check where YOUR bullets are... not which hit you
