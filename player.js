@@ -1,4 +1,4 @@
-var Player = function(pos, health, settings){
+var Player = function(pos, health, settings, img){
     health = typeof health !== 'undefined' ? health : 10;
 
     var health = health;
@@ -6,6 +6,7 @@ var Player = function(pos, health, settings){
     var rect = Rect(pos, dims);
     var speed = 20;
     var bullets = [];
+    var img = img;
 
     var update = function(timeFactor){
         for(var i = 0; i < bullets.length;i++){bullets[i].update(timeFactor);}
@@ -38,7 +39,8 @@ var Player = function(pos, health, settings){
     }
 
     var draw = function(){
-        pass;
+        var drawRect = Rect(tileSize * rect.pos[0] + offset[0], tileSize * rect.pos[1] + offset[1], rect.dim[0], rect.dim[1]);
+        canvas.putImage(drawRect, img);
     }
 
     return {health:health, rect:rect, bullets:bullets, input:input, update:update, draw:draw};
