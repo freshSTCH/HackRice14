@@ -12,6 +12,12 @@ var canvas = (function(elem){return (function(canvas){
     canvas.addMouseDownListener = function(callback)
     {
         mouseDownListeners.push(callback);
+        return mouseDownListeners.length-1;
+    };
+
+    canvas.removeMouseDownListener = function(id)
+    {
+        mouseDownListeners[id] = null;
     };
 
 
@@ -27,7 +33,8 @@ var canvas = (function(elem){return (function(canvas){
     elem.addEventListener('mousedown',function(){
         mouseDown=true; 
         mouseDownListeners.forEach(function(callback){
-            callback(mousePos);
+            if(callback)
+                callback(mousePos);
         });
     },false);
 

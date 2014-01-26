@@ -1,23 +1,54 @@
 function Menu(callback)
 {
-    GetJSON("Data/menu.json",function(data)
+    "use strict";
+
+    function convertToRect(objData)
+    {
+        for (var key in objData)
+            objData[key] = Rect(objData[key][0],objData[key][1]);
+    }
+
+    function getButtonPressed(buttons,pos)
+    {
+        for (var key in buttons)
+        {
+            if (buttons[key].intersectsPoint(pos))
+                return key;
+        }
+    }
+
+    GetJSON("Data/menu.json",function(buttons)
     {
 
-        var startRect = Rect(data.playButton[0],data.playButton[1]);
+        convertToRect(buttons);
 
-        var menuImage = assets.getImage("Menu")
+        var menuImage = assets.getImage("Menu");
         canvas.drawImage(menuImage,0,0,WIDTH,HEIGHT);
 
-        canvas.addMouseDownListener(function(pos)
+        var id = canvas.addMouseDownListener(function(pos)
         {
-            console.log("Down at ",pos);
+            console.log("DOWN");
 
-            if (startRect.intersectsPoint(pos))
+
+            var buttonPressed = getButtonPressed(buttons,pos);
+            console.log(buttonPressed);
+            if(buttonPressed)
             {
-                console.log("WIN!!");
-                callback();
+                switch(buttonPressed)
+                {
+                    case "playButton":
+                        canvas.removeMouseDownListener(id);
+                        callback();
+                        break; 
+
+                    default:
+                        console.error("A non existant button ",buttonPressed);
+                        break;
+                }
             }
         });
+
+
     });
 
 }
