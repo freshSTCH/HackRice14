@@ -1,7 +1,7 @@
 function Menu(callback)
 {
     "use strict";
-
+    //really convert to square, but whatev
     function convertToRect(objData)
     {
         for (var key in objData)
@@ -17,7 +17,7 @@ function Menu(callback)
         }
     }
 
-    GetJSON("Data/menu.json",function(buttons)
+    GetJSON("Data/levelselect.json",function(buttons)
     {
 
         convertToRect(buttons);
@@ -33,11 +33,34 @@ function Menu(callback)
             {
                 switch(buttonPressed)
                 {
-                    case "playButton":
+                    case "level1":
+                        canvas.removeMouseDownListener(id);
+                        callback();
+                        break; 
+                    
+                    case "level2"
                         canvas.removeMouseDownListener(id);
                         callback();
                         break; 
 
+                     case "level3"
+                        canvas.removeMouseDownListener(id);
+                        callback();
+                        break; 
+                     case "level4"
+                        canvas.removeMouseDownListener(id);
+                        callback();
+                        break;                         
+                     //levels 5 and 6 not implemented
+                     /*case "level5"
+                        canvas.removeMouseDownListener(id);
+                        callback();
+                        break;     
+                     case "level6"
+                        canvas.removeMouseDownListener(id);
+                        callback();
+                        break; 
+                    */            
                     default:
                         console.error("A non existant button ",buttonPressed);
                         break;
@@ -48,4 +71,3 @@ function Menu(callback)
 
     });
 
-}
