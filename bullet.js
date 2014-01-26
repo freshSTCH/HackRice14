@@ -33,7 +33,7 @@ var Bullet = function(pos, velocity, img, growth){
             canvas.shadowBlur = 5;
             canvas.stroke();
         }else{
-            canvas.drawImage(img, TILESIZE * pos[0] + offset[0], TILESIZE * pos[1] + offset[1])
+            canvas.drawImage(img, TILESIZE * pos[0] + room.offset[0], TILESIZE * pos[1] + room.offset[1])
         }
     }
 
