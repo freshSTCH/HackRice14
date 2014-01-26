@@ -44,6 +44,27 @@ Array.prototype.unit = function(){
     return result;
 }
 
+function angleToVector(angle){
+    return [Math.cos(angle), Math.sin(angle)];
+}
+
+function vectorToAngle(vector){
+    return Math.atan2(vector[1], vector[0]);
+}
+
+function minAngleBetween(angle1, angle2){
+    return Math.min(Math.abs((angle1 - angle2)%(2*Math.PI)), Math.abs((angle2 - angle1)%(2*Math.PI)));
+}
+
+function dirTowardsAngle(angle1, angle2){
+    if ((angle2 - angle1) % (2 * Math.PI) > Math.pi)
+        return -1;
+    return 1;
+}
+
+
+
+
 
 function Rect(pos, dims, angle){
     angle = typeof angle !== 'undefined' ? angle : 0;
@@ -65,14 +86,4 @@ function Rect(pos, dims, angle){
     }
 
     return {pos:pos, dims:dims, angle:angle, a:angle, intersectsRect:intersectsRect, intersectsPoint:intersectsPoint};
-}
-
-function minAngleBetween(angle1, angle2){
-    return Math.min(Math.abs((angle1 - angle2)%(2*Math.PI)), Math.abs((angle2 - angle1)%(2*Math.PI)));
-}
-
-function dirTowardsAngle(angle1, angle2){
-    if ((angle2 - angle1) % (2 * Math.PI) > Math.pi)
-        return -1;
-    return 1;
 }
