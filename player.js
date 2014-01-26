@@ -1,5 +1,5 @@
-function Player(pos, health, settings, img){
-    health =  health || 10;
+function Player(pos, health, settings, img, integrity){
+    integrity = integrity || 10;
 
 
     var dims = [0.47, 0.47];
@@ -7,9 +7,12 @@ function Player(pos, health, settings, img){
     var speed = 0.1;
     var bullets = [];
     var oldPos = pos;
-    var time = 0
+    var time = 0;
+    var maxHealth = health;
 
     var imageDims = [1,1];
+
+    var catchTolerance = 0.125 * Math.PI;
 
     var bulletSpeed = .1; //units? idk
     var timer = FPS / 2;
@@ -95,18 +98,18 @@ function Player(pos, health, settings, img){
         canvas.fillStyle = 'purple';
         canvas.beginPath();
         canvas.moveTo(13*TILESIZE,.5*TILESIZE);
-        canvas.lineTo((13+6/10*health)*TILESIZE,.5*TILESIZE);
-        canvas.lineTo((13+6/10*health)*TILESIZE,1.5*TILESIZE);
+        canvas.lineTo((13+6/10*integrity)*TILESIZE,.5*TILESIZE);
+        canvas.lineTo((13+6/10*integrity)*TILESIZE,1.5*TILESIZE);
         canvas.lineTo(13*TILESIZE,1.5*TILESIZE);
         canvas.closePath();
         canvas.fill();
 
         canvas.fillStyle = 'grey';
         canvas.beginPath();
-        canvas.moveTo((13+6/10*health)*TILESIZE,.5*TILESIZE);
+        canvas.moveTo((13+6/10*integrity)*TILESIZE,.5*TILESIZE);
         canvas.lineTo(19*TILESIZE,.5*TILESIZE);
         canvas.lineTo(19*TILESIZE,1.5*TILESIZE);
-        canvas.lineTo((13+6/10*health)*TILESIZE,1.5*TILESIZE);
+        canvas.lineTo((13+6/10*integrity)*TILESIZE,1.5*TILESIZE);
         canvas.closePath();
         canvas.fill();
 
@@ -125,10 +128,32 @@ function Player(pos, health, settings, img){
         assets.playSound("PlayerTakingDamage");
     }
 
+    function unshoot(vel){
+        var angleToBullet = vectorToAngle(vel);
+        var angleOff = minAngleBetween(angleToBullet, rect.angle);
+        if (angleOff > catchTolerance)
+            integrity -= 1;
+        else{
+            health += 1;
+            health = max(health, maxHealth);
+        }
+        assets.playSound("Shoot");
+    }
+
+    function reverseHit(){
+        integrity -= 1;
+        health -= 1;
+        assets.playSound("PlayerTakingDamage");
+    }
+
+    function unhit(){
+        pass;
+    }
+
     function isDead()
     {
         return dead;
     }
 
-    return {isDead:isDead,undo:undo,hit:hit,rect:rect,health:health, rect:rect, bullets:bullets, update:update, draw:draw};
+    return {unHit:unHit, reverseHit:reverseHit, unshoot:unshoot, isDead:isDead,undo:undo,hit:hit,rect:rect,health:health, rect:rect, bullets:bullets, update:update, draw:draw};
 }
