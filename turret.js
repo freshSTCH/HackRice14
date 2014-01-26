@@ -8,7 +8,12 @@ function Turret(pos, ai, health, img){
     var state = {};
 
 
-    var update = function(){state = ai(state);}
+    var update = function(timeFactor){
+        for(var i = 0; i < bullets.length;i++){
+            bullets[i].update(timeFactor);
+        }
+        state = ai(state);
+    }
 
     var draw = function(offset){
         var drawRect = Rect(tileSize * rect.pos[0] + offset[0], tileSize * rect.pos[1] + offset[1], rect.dim[0], rect.dim[1]);
@@ -16,7 +21,7 @@ function Turret(pos, ai, health, img){
     }
 
     var shoot = function(speed){
-        bullets.push(Bullet(pos, speed))
+        bullets.push(Bullet(pos, angleToVector(rect.angle).scale(speed)));
     }
 
     return {pos:pos, ai:ai, health:health, rect:rect, update:update, draw:draw};
@@ -38,8 +43,7 @@ var AI = (function(){
             }
             for(var i = 0; i < players.length;i++){
                 if(players[i].rect.pos.dist(pos) < range){
-                    var diff = rect.pos.subtract(players[i].rect.pos);
-                    var targetAngle = Math.atan2(diff[0],diff[1]);
+                    var targetAngle = vectorToAngle(rect.pos.subtract(players[i].rect.pos));
                     if(minAngleBetween(targetAngle, rect.angle) < tolerance){
 
                         if(state.tracking = false){
@@ -55,7 +59,7 @@ var AI = (function(){
                         if(minAngleBetween(targetAngle, rect.angle) < speed){
                             rect.angle = targetAngle;
                         }else{
-                            rect.angle += dirTowardsAngle(rect.angle, target.angle) * speed;
+                            rect.angle += dirTowardsAngle(rect.angle, targetAngle) * speed;
                         }
                     }
                 }
