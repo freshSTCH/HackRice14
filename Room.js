@@ -157,8 +157,9 @@ function Room(lengthXTiles,lengthYTiles)
         if (tile === "Start")
         {
             console.log(tile);
-            return true;
+            return false;
         }
+        return false;
 
     }
 
