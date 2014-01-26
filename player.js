@@ -92,7 +92,7 @@ function Player(pos, health, settings, img, integrity){
 
         canvas.font = '26pt Calibri';
         canvas.fillStyle = 'white';
-        canvas.fillText("CHAOS:",9.5*TILESIZE,1.5*TILESIZE);
+        canvas.fillText("STC:",10*TILESIZE,1.5*TILESIZE);
 
         canvas.lineWidth = 5;
 
@@ -177,6 +177,14 @@ function Player(pos, health, settings, img, integrity){
         }
     }
 
+    function unshootMissed(){
+        integrity -= 1;
+        if (integrity <= 0){
+            integrity = 0;
+            superDead = true;
+        }
+    }
+
     function isDead()
     {
         return dead;
@@ -186,5 +194,5 @@ function Player(pos, health, settings, img, integrity){
         return superDead;
     }
 
-    return {isSuperDead:isSuperDead, unhitMissed:unhitMissed, unhit:unhit, reverseHit:reverseHit, unshoot:unshoot, isDead:isDead,undo:undo,hit:hit,rect:rect,health:health, rect:rect, bullets:bullets, update:update, draw:draw};
+    return {unshootMissed:unshootMissed, isSuperDead:isSuperDead, unhitMissed:unhitMissed, unhit:unhit, reverseHit:reverseHit, unshoot:unshoot, isDead:isDead,undo:undo,hit:hit,rect:rect,health:health, rect:rect, bullets:bullets, update:update, draw:draw};
 }
