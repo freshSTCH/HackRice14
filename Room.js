@@ -98,7 +98,11 @@ function Room(lengthXTiles,lengthYTiles)
     };
 
     var getTypeOfTile = function(x, y){
-        return grid[x][y];
+
+        if (x<0||y<0||x>=lengthXTiles||y>=lengthYTiles)
+            return "Wall";
+        else
+            return grid[x][y];
     }
 
     var tileToRect = function(x, y){
