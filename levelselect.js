@@ -53,14 +53,14 @@ function LevelSelect(callback)
                         callback("4");
                         break;      
 
-                   case "level5"
+                    case "level5":
                         canvas.removeMouseDownListener(id);
-                        callback();
+                        callback("5");
                         break;     
 
-                     case "level6"
+                    case "level6":
                         canvas.removeMouseDownListener(id);
-                        callback();
+                        callback("6");
                         break; 
                              
                     default:
