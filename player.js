@@ -150,10 +150,14 @@ function Player(pos, health, settings, img, integrity){
         pass;
     }
 
+    function unhitMissed(){
+        integrity -= 1;
+    }
+
     function isDead()
     {
         return dead;
     }
 
-    return {unhit:unhit, reverseHit:reverseHit, unshoot:unshoot, isDead:isDead,undo:undo,hit:hit,rect:rect,health:health, rect:rect, bullets:bullets, update:update, draw:draw};
+    return {unhitMissed:unhitMissed, unhit:unhit, reverseHit:reverseHit, unshoot:unshoot, isDead:isDead,undo:undo,hit:hit,rect:rect,health:health, rect:rect, bullets:bullets, update:update, draw:draw};
 }

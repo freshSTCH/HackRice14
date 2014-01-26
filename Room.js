@@ -183,9 +183,13 @@ function Room(lengthXTiles,lengthYTiles)
         return players[0].isDead();
     }
 
+    function getTimeMachine(){
+        return timeMachine;
+    }
+
     initializeGrid();
     //end Grid initialization
     //
-    return {isGameOver:isGameOver,hittingTileType:hittingTileType,getTypeOfTile:getTypeOfTile,addEnemyBullet:addEnemyBullet,addPlayerBullet:addPlayerBullet,offset:offset,players:players,initializeGrid:initializeGrid, addTile:addTile, addTurret:addTurret, getGrid:getGrid, getTurrets:getTurrets,getGridSpot:getGridSpot,setStart:setStart, setEnd:setEnd, update:update, draw:draw}
+    return {getTimeMachine:getTimeMachine, turrets:turrets, isGameOver:isGameOver,hittingTileType:hittingTileType,getTypeOfTile:getTypeOfTile,addEnemyBullet:addEnemyBullet,addPlayerBullet:addPlayerBullet,offset:offset,players:players,initializeGrid:initializeGrid, addTile:addTile, addTurret:addTurret, getGrid:getGrid, getTurrets:getTurrets,getGridSpot:getGridSpot,setStart:setStart, setEnd:setEnd, update:update, draw:draw}
 
 }

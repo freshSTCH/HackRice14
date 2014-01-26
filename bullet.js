@@ -16,8 +16,28 @@ var Bullet = function(pos, velocity, img, growth, rgb){
     var update = function(timeFactor){
         switch(state){
             case 'stuck':
+                rect.setPos(rect.pos.add(velocity.scale(timeFactor)));
+                var unstuck = true;
+                if (room.hittingTileType("Wall", rect) || room.hittingTileType("Field", rect))
+                    unstuck = false;
+                for(var i = 0; i < room.players.length; i++){
+                    if (room.players[i].rect.intersectsRect(rect))
+                        unstuck = false;
+                }
+                for(var i = 0; i < room.turrets.length; i++){
+                    if (room.turrets[i].rect.intersectsRect(rect))
+                        unstuck = false;
+                }
+                if (room.getTimeMachine().rect.intersectsRect(rect))
+                    unstuck = false;
+                if (unstuck)
+                    state = 'active';
+                break;
             case 'active':
                 rect.setPos(rect.pos.add(velocity.scale(timeFactor)));
+                if (room.hittingTileType("Wall", rect) || room.hittingTileType("Field", rect)){
+                    hit('room');
+                }
                 break;
             case 'ring':
                 time += timeFactor;
@@ -26,22 +46,18 @@ var Bullet = function(pos, velocity, img, growth, rgb){
                 if (time <= 0){
                     state = 'stuck';
                     if (hitObj == 'player'){
+                        var paradox = false;
                         for(var i = 0; i < room.players.length; i++){
-                            if (room.players[i].rect.interectsRect(rect)){
+                            if (room.players[i].rect.intersectsRect(rect)){
                                 room.players[i].unhit();
+                                paradox = true;
                             }
                         }
+                        if (paradox) 
+                            players[0].unhitMissed();
                     }
                 }
                 break;
-        }
-
-
-        if (room.hittingTileType("Wall", rect) || room.hittingTileType("Field", rect))
-        {
-            hit('room');
-        }else if (state=='stuck'){
-            state = 'active';
         }
 
         // Add sprite animation here
