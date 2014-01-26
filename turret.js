@@ -8,13 +8,11 @@ function Turret(pos, ai, health, img){
     var state = {};
 
 
-    var update = function(){
-        state = ai(state);
-    }
+    var update = function(){state = ai(state);}
 
     var draw = function(offset){
-        var drawRect = Rect(rect.pos[0] + offset[0], rect.pos[1] + offset[1], rect.dim[0], rect.dim[1])
-            canvas.putImage(drawRect, img)
+        var drawRect = Rect(tileSize * rect.pos[0] + offset[0], tileSize * rect.pos[1] + offset[1], rect.dim[0], rect.dim[1]);
+        canvas.putImage(drawRect, img);
     }
 
     var shoot = function(){
@@ -26,6 +24,14 @@ function Turret(pos, ai, health, img){
 
 //ai functions
 tracking = function(range, speed, timer, tolerance){
+    if (range == undefined)
+        range = 500;
+    if (speed == undefined)
+        speed = (Math.PI / 2) / FPS;
+    if (timer == undefined)
+        timer = FPS / 2;
+    if (tolerance == undefined)
+        tolerance = Math.PI / 2
     return function(state){
         if (state.timer == undefined){
             state.timer = 0;
