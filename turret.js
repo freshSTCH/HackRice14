@@ -57,13 +57,14 @@ var Turret = function(pos, ai, health, img){
                                         shoot(bulletSpeed);
                                     }
                                     state.timer = timer;
-
-                                    if(minAngleBetween(targetAngle, rect.angle) < speed){
-                                        rect.angle = targetAngle;
-                                    }else{
-                                        rect.angle += dirTowardsAngle(rect.angle, targetAngle) * speed;
-                                    }
                                 }
+
+                                if(minAngleBetween(targetAngle, rect.angle) < speed){
+                                    rect.angle = targetAngle;
+                                }else{
+                                    rect.angle += dirTowardsAngle(rect.angle, targetAngle) * speed;
+                                }
+                                
                             }
                         }
                         return state;
