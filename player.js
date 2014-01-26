@@ -2,7 +2,7 @@ var Player = function(pos, health, settings, img){
     health = typeof health !== 'undefined' ? health : 10;
 
     var health = health;
-    var dims = [20, 20];
+    var dims = [1, 1];
     var rect = Rect(pos, dims);
     var speed = 20;
     var bullets = [];
@@ -39,7 +39,7 @@ var Player = function(pos, health, settings, img){
     }
 
     var draw = function(){
-        var drawRect = Rect(TILESIZE * rect.pos[0] + room.offset[0], TILESIZE * rect.pos[1] + room.offset[1], rect.dims[0], rect.dims[1]);
+        var drawRect = Rect([TILESIZE * rect.pos[0] + room.offset[0], TILESIZE * rect.pos[1] + room.offset[1]], [TILESIZE* rect.dims[0], TILESIZE*rect.dims[1]]);
         canvas.putImage(drawRect, img);
     }
 

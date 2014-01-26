@@ -74,7 +74,7 @@ function Room(lengthXTiles,lengthYTiles)
         StartTile=[x,y];
 
 
-        var player = Player([x,y],10,{},assets.getImage("Player"));
+        var player = Player([x,y],10,{"right":68,"left":65,"up":87,"down":83},assets.getImage("Player"));
         players.push(player);
 
 

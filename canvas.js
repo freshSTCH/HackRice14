@@ -26,7 +26,7 @@ var canvas = (function(elem){return (function(canvas){
 
     var rect = elem.getBoundingClientRect(),root = document.documentElement;
     window.addEventListener('keyup',function(){canvas.state[event.keyCode]=false;},false);
-    window.addEventListener('keydown',function(){canvas.state[event.keyCode]=true;},false);
+    window.addEventListener('keydown',function(){canvas.state[event.keyCode]=true;console.log(event.keyCode);},false);
 
     elem.addEventListener('mousemove',function(evt){
         mousePos[0] = evt.clientX - rect.left + root.scrollLeft;
