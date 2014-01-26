@@ -46,7 +46,7 @@ function Menu(callback)
 
                     case "instructions":
                         canvas.removeMouseDownListener(id);
-                        Instructions(callback);
+                        Instructions(function(){Menu(callback);});
                         break;
 
                     default:
