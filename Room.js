@@ -158,6 +158,6 @@ function Room(lengthXTiles,lengthYTiles)
     initializeGrid();
     //end Grid initialization
     //
-    return {hittingWall:hittingWall,getTypeOfTile:getTypeOfTile,addEnemyBullet:addEnemyBullet,addPlayerBullet:addPlayerBullet,offset:offset,players:players,initializeGrid:initializeGrid, addTile:addTile, addTurret:addTurret, getGrid:getGrid, getTurrets:getTurrets,getGridSpot:getGridSpot,setStart:setStart, setEnd:setEnd, update:update, draw:draw}
+    return {hittingTileType:hittingTileType,getTypeOfTile:getTypeOfTile,addEnemyBullet:addEnemyBullet,addPlayerBullet:addPlayerBullet,offset:offset,players:players,initializeGrid:initializeGrid, addTile:addTile, addTurret:addTurret, getGrid:getGrid, getTurrets:getTurrets,getGridSpot:getGridSpot,setStart:setStart, setEnd:setEnd, update:update, draw:draw}
 
 }
