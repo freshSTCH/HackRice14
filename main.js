@@ -19,9 +19,10 @@ function Main(levelName)
         }
         else if (room.isGameWon())
         {
-            GameWin(function(){
+            console.log("WON");
+            GameWon(function(){
                 Menu(Main);
-            })
+            });
             
         }
         else
@@ -30,10 +31,13 @@ function Main(levelName)
 
     var renderLoop = function(){
 
-        room.draw();
-
         if (!room.isGameOver())
+        {
+            room.draw();
             window.requestAnimationFrame(renderLoop)
+
+        }
+            
     }
 
     loop();
