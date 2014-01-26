@@ -11,14 +11,21 @@ function Main(levelName)
     var loop = function(){
         room.update();
 
-        if (!room.isGameOver())
-            setTimeout(loop, 1000/FPS);
-        else
+        if (room.isGameLost())
         {
             GameOver(function(){
                 Menu(Main);
-            });
+            });  
         }
+        else if (room.isGameWon())
+        {
+            GameWin(function(){
+                Menu(Main);
+            })
+            
+        }
+        else
+            setTimeout(loop, 1000/FPS);
     };
 
     var renderLoop = function(){

@@ -140,7 +140,26 @@ function Room(lengthXTiles,lengthYTiles)
 
     function isGameOver()
     {
+        return isGameLost() || isGameWon();
+    }
+
+    function isGameLost()
+    {
         return players[0].isDead();
+    }
+
+    function isGameWon()
+    {
+        var playerPosition = players[0].rect.pos;
+
+        var tile = getTypeOfTile(Math.floor(playerPosition[0]),Math.floor(playerPosition[1]));
+
+        if (tile === "Start")
+        {
+            console.log(tile);
+            return true;
+        }
+
     }
 
     var getTimeMachine = function(){
@@ -153,6 +172,6 @@ function Room(lengthXTiles,lengthYTiles)
     initializeGrid();
     //end Grid initialization
     //
-    return {reverseTimeFactor:reverseTimeFactor, getTimeMachine:getTimeMachine, turrets:turrets, isGameOver:isGameOver,hittingTileType:hittingTileType,getTypeOfTile:getTypeOfTile,addEnemyBullet:addEnemyBullet,addPlayerBullet:addPlayerBullet,offset:offset,players:players,initializeGrid:initializeGrid, addTile:addTile, addTurret:addTurret, getGrid:getGrid, getTurrets:getTurrets,getGridSpot:getGridSpot,setStart:setStart, setEnd:setEnd, update:update, draw:draw}
+    return {reverseTimeFactor:reverseTimeFactor, getTimeMachine:getTimeMachine, turrets:turrets, isGameWon:isGameWon,isGameLost:isGameLost,isGameOver:isGameOver,hittingTileType:hittingTileType,getTypeOfTile:getTypeOfTile,addEnemyBullet:addEnemyBullet,addPlayerBullet:addPlayerBullet,offset:offset,players:players,initializeGrid:initializeGrid, addTile:addTile, addTurret:addTurret, getGrid:getGrid, getTurrets:getTurrets,getGridSpot:getGridSpot,setStart:setStart, setEnd:setEnd, update:update, draw:draw}
 
 }
