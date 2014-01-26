@@ -17,7 +17,6 @@ var Bullet = function(pos, velocity, img, growth, rgba, owner){
     var update = function(timeFactor){
         switch(state){
             case 'stuck':
-                console.log(state);
                 rect.setPos(rect.pos.add(velocity.scale(timeFactor)));
                 var unstuck = true;
                 if (room.hittingTileType("Wall", rect) || room.hittingTileType("Field", rect))
@@ -72,14 +71,13 @@ var Bullet = function(pos, velocity, img, growth, rgba, owner){
                 radius = growth * Math.log(time);
                 rgba[3] *= Math.pow(decay, timeFactor);
                 if (time <= 0){
-                    console.log('gotcha');
                     state = 'stuck';
                     if (hitObj == 'player'){
-                        var paradox = false;
+                        var paradox = true;
                         for(var i = 0; i < room.players.length; i++){
                             if (room.players[i].rect.intersectsRect(rect)){
                                 room.players[i].unhit();
-                                paradox = true;
+                                paradox = false;
                             }
                         }
                         if (paradox) 
