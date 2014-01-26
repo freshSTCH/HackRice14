@@ -41,7 +41,7 @@ var Turret = function(pos, ai, health, img){
             if (timeTillNextShot === 0)
             {
                 simpleShoot();
-                timeTillNextShot = 1000;
+                timeTillNextShot = 100;
             }
             else
                 timeTillNextShot -=1;

@@ -13,6 +13,8 @@ function Player(pos, health, settings, img){
     {
         var velocity = pos.scale(1/TILESIZE).subtract(rect.pos).unit().scale(0.1);
         console.log("Make bullet");
+        assets.getSound("Shoot").currentTime = 0;
+        assets.getSound("Shoot").play();
 
         room.addPlayerBullet(Bullet([rect.pos[0],rect.pos[1]],velocity,"Bullet"));
     });
@@ -50,5 +52,5 @@ function Player(pos, health, settings, img){
         canvas.putImageEasy(Rect(rect.pos,imageDims,rect.angle), img);
     };
 
-    return {health:health, rect:rect, bullets:bullets, update:update, draw:draw};
+    return {rect:rect,health:health, rect:rect, bullets:bullets, update:update, draw:draw};
 }

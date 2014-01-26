@@ -28,7 +28,7 @@ var Bullet = function(pos, velocity, img, growth, rgb){
 
         if (room.hittingWall(rect))
         {
-            active = false;
+            hit();
         }
 
         // Add sprite animation here
@@ -73,5 +73,5 @@ var Bullet = function(pos, velocity, img, growth, rgb){
         active = false;
     }
 
-    return {pos:pos, velocity:velocity, vel:velocity, v:velocity, update:update, draw:draw};
+    return {hit:hit,rect:rect,pos:pos, velocity:velocity, vel:velocity, v:velocity, update:update, draw:draw};
 }

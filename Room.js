@@ -25,6 +25,29 @@ function Room(lengthXTiles,lengthYTiles)
         players.forEach(function(player){player.update(timeFactor);});
         enemyBullets.forEach(function(bullet){bullet.update(timeFactor);});
         playerBullets.forEach(function(bullet){bullet.update(timeFactor);});
+
+
+        players.forEach(function(player){
+            enemyBullets.forEach(function (bullet){
+                if (player.rect.intersectsRect(bullet.rect))
+                {
+                    bullet.hit();
+                }
+
+            });
+        });
+
+        turrets.forEach(function(turret){
+            playerBullets.forEach(function (bullet){
+                if (turret.rect.intersectsRect(bullet.rect))
+                {
+                    bullet.hit();
+                }
+
+            });
+        });
+
+
     };
 
     var draw = function(){
