@@ -14,7 +14,7 @@
    id="svg3774"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="machine.svg"
+   sodipodi:docname="TimeMachine.svg"
    inkscape:export-filename="C:\Users\ethan_000\Documents\GitHub\HackRice14\Images\Machine.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
@@ -27,9 +27,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="494.5768"
-     inkscape:cy="569.86472"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="734.70812"
+     inkscape:cy="497.10668"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -55,7 +55,10 @@
      inkscape:groupmode="layer"
      id="layer1">
     <g
-       id="g4367">
+       id="g4367"
+       inkscape:export-filename="C:\Users\ethan_000\Documents\GitHub\HackRice14\favicon.png"
+       inkscape:export-xdpi="10.883984"
+       inkscape:export-ydpi="10.883984">
       <g
          id="g4357">
         <path
