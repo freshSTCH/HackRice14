@@ -82,8 +82,8 @@ function Room(lengthXTiles,lengthYTiles)
     var Bullet = function(pos, velocity, img){
         var pos = pos, velocity = velocity, img = img;
 
-        var update = function(multiplier){
-            pos = pos.add(velocity.scale(multiplier));
+        var update = function(timeFactor){
+            pos = pos.add(velocity.scale(timeFactor));
             // Add sprite animation here
         }
 
@@ -173,11 +173,9 @@ function Room(lengthXTiles,lengthYTiles)
         var speed = 20;
         var bullets = [];
 
-        var input = function(inputs){
-            pass;
-        }
+        var update = function(timeFactor){
+            for(var i = 0; i < bullets.length;i++){bullets[i].update(timeFactor);}
 
-        var update = function(multiplier){
             vel = [0, 0];
             if(canvas.state[settings.right])
                 vel[0] ++;
@@ -188,7 +186,7 @@ function Room(lengthXTiles,lengthYTiles)
             if(canvas.state[settings.up]) // Remember, y axis is flipped in computers because reasons
                 vel[1] --;
             vel = vel.unit();
-            pos = pos.add(vel.scale(Math.abs(multiplier) * speed));
+            pos = pos.add(vel.scale(Math.abs(timeFactor) * speed));
 
             var nearestTile = [Math.round(pos[0]), Math.round(pos[1])];
             var tilesToCheck = []
