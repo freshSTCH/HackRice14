@@ -10,8 +10,6 @@ var Bullet = function(pos, velocity, img, growth, rgb){
     var decay = decay || Math.pow(.5,(1/FPS));
     var rgba = rgba || [0,255,0,1]
 
-    img = assets.getImage(img);
-
     var active = true;
     var update = function(timeFactor){
         if(active){
