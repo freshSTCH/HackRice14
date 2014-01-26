@@ -4,17 +4,36 @@ var HEIGHT = 640;
 var canvas = (function(elem){return (function(canvas){
     elem.width = WIDTH;
     elem.height = HEIGHT;
+
+    var mousePos = [0,0];
+    var mouseDown = false;
+    var mouseDownListeners = [];
+
+    canvas.addMouseDownListener = function(callback)
+    {
+        mouseDownListeners.push(callback);
+    };
+
+
     var rect = elem.getBoundingClientRect(),root = document.documentElement;
-    window.addEventListener('keyup',function(){canvas.state[event.keyCode]=false;}
-    window.addEventListener('keydown',function(){canvas.state[event.keyCode]=false;}
-        canvas.state[event.keyCode]=true;
-    },false);
+    window.addEventListener('keyup',function(){canvas.state[event.keyCode]=false;},false);
+    window.addEventListener('keydown',function(){canvas.state[event.keyCode]=false;},false);
+
     elem.addEventListener('mousemove',function(evt){
-        canvas.mouse[0] = evt.clientX - rect.top - root.scrollTop;
-        canvas.mouse[1] = evt.clientY - rect.left - root.scrollLeft;
+        mousePos[0] = evt.clientX - rect.top - root.scrollTop;
+        mousePos[1] = evt.clientY - rect.left - root.scrollLeft;
     },false);
-    elem.addEventListener('mousedown',function(){canvas.mouse[2]=true;},false);
-    elem.addEventListener('mouseup',function(){canvas.mouse[2]=false;},false);
+
+    elem.addEventListener('mousedown',function(){
+        mouseDown=true; 
+        mouseDownListeners.forEach(function(callback){
+            callback(mousePos);
+        });
+    },false);
+
+    elem.addEventListener('mouseup',function(){
+        mouseDown=false;
+    },false);
 
     canvas.clear=function(){canvas.clearRect(0,0,WIDTH,HEIGHT);};
     canvas.putImage=function(rect, img){
