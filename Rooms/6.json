@@ -2,7 +2,7 @@
 "turretData":
     [
         [ 
-            [1,13],
+            [8,13],
             {
                 "ai": {"type": "tracker","settings":"sniper"},
                 "image": "Turret2"
@@ -10,10 +10,68 @@
         ],
 
         [
-            [2,5],
+            [8,14],
             {
                 "ai": {"type": "tracker","settings":"machinegun"},
                 "image": "Turret1"
+            }
+        ],
+
+
+        [
+            [9,17],
+            {
+                "ai": {"type": "tracker","settings":"machinegun"},
+                "image": "Turret1"
+            }
+        ],
+
+        [
+            [10,17],
+            {
+                "ai": {"type": "tracker","settings":"machinegun"},
+                "image": "Turret1"
+            }
+        ],
+
+        [
+            [14,13],
+            {
+                "ai": {"type": "tracker","settings":"machinegun"},
+                "image": "Turret1"
+            }
+        ],
+
+        [
+            [15,12],
+            {
+                "ai": {"type": "tracker","settings":"machinegun"},
+                "image": "Turret1"
+            }
+        ],
+
+        [
+            [17,12],
+            {
+                "ai": {"type": "tracker","settings":"machinegun"},
+                "image": "Turret1"
+            }
+        ],
+
+        [
+            [17,12],
+            {
+                "ai": {"type": "tracker","settings":"machinegun"},
+                "image": "Turret1"
+            }
+        ],
+
+
+        [
+            [16,10],
+            {
+                "ai": {"type": "tracker","settings":"sniper"},
+                "image": "Turret2"
             }
         ]
 
