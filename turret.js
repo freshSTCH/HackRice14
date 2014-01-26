@@ -48,7 +48,7 @@ var Turret = function(pos, ai, health, img){
 
     var shoot = function(){
         var bulletPos = pos.add(angleToVector(rect.angle).scale(rect.dims[0] / 2));
-        room.addEnemyBullet(Bullet(bulletPos, angleToVector(rect.angle).scale(.01),assets.getImage("EnemyBullet"),'turret'));
+        room.addEnemyBullet(Bullet(bulletPos, angleToVector(rect.angle).scale(.01),assets.getImage("EnemyBullet"), 20, [0,255,0,1], 'turret'));
     }
 
     var hit = function(){

@@ -51,7 +51,7 @@ var Bullet = function(pos, velocity, img, growth, rgba, owner){
                         if (timeFactor > 0){
                             console.log(owner);
                             if(owner == 'player'){
-                                pass;
+                                //do nothing
                             }else{
                                 room.players[i].hit();
                                 hit('player');
