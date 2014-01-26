@@ -40,6 +40,8 @@ var Bullet = function(pos, velocity, img, growth, rgb){
         if (room.hittingTileType("Wall", rect) || room.hittingTileType("Field", rect))
         {
             hit('room');
+        }else if (state=='stuck'){
+            state = 'active';
         }
 
         // Add sprite animation here
@@ -84,18 +86,13 @@ var Bullet = function(pos, velocity, img, growth, rgb){
     };
 
     var hit = function(obj){
-        hitObj = obj
-    active = false;
+        hitObj = obj;
+        state = 'ring';
     }
 
-    var reverseHit = function(obj){
-        hit(obj);
+    var reverseHit = function(){
+        state = 'done';
     }
 
-    var isActive = function()
-    {
-        return active;
-    }
-
-    return {isActive:isActive,hit:hit, reverseHit:reverseHit, rect:rect,pos:pos, velocity:velocity, vel:velocity, v:velocity, update:update, draw:draw};
+    return {state:state, hit:hit, reverseHit:reverseHit, rect:rect,pos:pos, velocity:velocity, vel:velocity, v:velocity, update:update, draw:draw};
 }

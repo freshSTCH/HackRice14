@@ -31,14 +31,14 @@ function Room(lengthXTiles,lengthYTiles)
 
         players.forEach(function(player){
             enemyBullets.forEach(function (bullet){
-                    if (bullet.isActive() && player.rect.intersectsRect(bullet.rect))
+                    if (bullet.state=='active' && player.rect.intersectsRect(bullet.rect))
                     {
                         if(timeFactor > 0){
                             player.hit();
                             bullet.hit('player');
                         }else{
                             player.reverseHit();
-                            bullet.reverseHit('player');
+                            bullet.reverseHit();
                         }
                     }
             });
@@ -52,7 +52,7 @@ function Room(lengthXTiles,lengthYTiles)
         });
 
         playerBullets.forEach(function (bullet){
-            if (bullet.isActive())
+            if (bullet.state=='active')
             {
                 if (timeMachine.rect.intersectsRect(bullet.rect))
                 {
