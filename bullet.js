@@ -6,7 +6,7 @@ var Bullet = function(pos, velocity, img, growth, rgb){
 
     var hitpos = [];
     var radius = 0;
-    var growth = growth || 1; //pxls?
+    var growth = growth || Math.pow(2,(1/FPS));
     var decay = decay || Math.pow(.5,(1/FPS));
     var rgba = rgba || [0,255,0,1]
 
@@ -15,7 +15,7 @@ var Bullet = function(pos, velocity, img, growth, rgb){
         if(active){
              rect.setPos(rect.pos.add(velocity.scale(timeFactor)));
         }else{
-            radius += timeFactor * growth;
+            radius *= Math.pow(growth, timeFactor);
             rgba[3] *= Math.pow(decay, timeFactor);
             if (radius < 0){
                 active = true;

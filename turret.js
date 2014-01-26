@@ -49,10 +49,10 @@ var Turret = function(pos, ai, health, img){
             case 'tracker':
             default:
                 return (function(settings){//range, speed, timer, tolerance, bulletSpeed
-                    range = settings.range || 500;
+                    range = settings.range || 7;
                     speed = settings.speed || ((Math.PI / 2) / FPS);
-                    timer = settings.timer || (FPS / 2);
-                    tolerance = settings.tolerance || (Math.PI / 2);
+                    timer = settings.timer || FPS * 2; //bullets per sec
+                    tolerance = settings.tolerance || (Math.PI / 8);
                     bulletSpeed = settings.bulletSpeed || (1 / FPS);
 
                     return function(state){
