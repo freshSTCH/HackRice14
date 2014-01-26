@@ -72,7 +72,7 @@ function minAngleBetween(angle1, angle2){
 }
 
 function dirTowardsAngle(angle1, angle2){
-    if ((angle2 - angle1) % (2 * Math.PI) > Math.pi):
+    if ((angle2 - angle1) % (2 * Math.PI) > Math.pi)
         return -1;
     return 1;
 }
