@@ -27,8 +27,8 @@ var canvas = (function(elem){return (function(canvas){
     window.addEventListener('keydown',function(){canvas.state[event.keyCode]=false;},false);
 
     elem.addEventListener('mousemove',function(evt){
-        mousePos[0] = evt.clientX - rect.top - root.scrollTop;
-        mousePos[1] = evt.clientY - rect.left - root.scrollLeft;
+        mousePos[0] = evt.clientX - rect.left + root.scrollLeft;
+        mousePos[1] = evt.clientY - rect.top + root.scrollTop;
     },false);
 
     elem.addEventListener('mousedown',function(){

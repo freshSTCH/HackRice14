@@ -29,8 +29,10 @@ function Menu(callback)
         var id = canvas.addMouseDownListener(function(pos)
         {
             var buttonPressed = getButtonPressed(buttons,pos);
+            console.log(pos,buttonPressed);
             if(buttonPressed)
             {
+
                 switch(buttonPressed)
                 {
                     case "playButton":
