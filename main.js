@@ -19,7 +19,6 @@ function Main(levelName)
         }
         else if (room.isGameWon())
         {
-            console.log("WON");
             GameWon(function(){
                 Menu(Main);
             });
