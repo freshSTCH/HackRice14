@@ -57,13 +57,16 @@ function vectorToAngle(vector){
 }
 
 function minAngleBetween(angle1, angle2){
-    return Math.min(Math.abs((angle1 - angle2)%(2*Math.PI)), Math.abs((angle2 - angle1)%(2*Math.PI)));
+    diff = (angle1 - angle2) % (2 * Math.PI);
+    diff = diff > 0 ? diff : diff + 2 * Math.PI;
+    diff = Math.min(diff, 2*Math.PI - diff);
+    return diff;
 }
 
 function dirTowardsAngle(angle1, angle2){
-    if ((angle2 - angle1) % (2 * Math.PI) > Math.pi)
-        return -1;
-    return 1;
+    diff = (angle2 - angle1) % (2 * Math.PI);
+    diff = diff > 0 ? diff : diff + 2 * Math.PI;
+    return diff < Math.PI;
 }
 
 
