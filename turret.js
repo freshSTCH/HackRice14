@@ -24,7 +24,7 @@ var Turret = function(pos, ai, health, img){
 
     var hit = function(){
 
-        gameloader.playSound("TurretDeath");
+        assets.playSound("TurretDeath");
         //temporary; I don't have a good "normal" hit sound yet
         //AND this function needs to actually do hurt the turret
     }

@@ -76,12 +76,39 @@ function Player(pos, health, settings, img){
         canvas.closePath();
         canvas.fill();
 
+
+        canvas.font = '32pt Calibri';
+        canvas.fillStyle = 'white';
+        canvas.fillText("HP:",11*TILESIZE,1.5*TILESIZE);
+
+        canvas.lineWidth = 5;
+
+        canvas.fillStyle = 'purple';
+        canvas.beginPath();
+        canvas.moveTo(13*TILESIZE,.5*TILESIZE);
+        canvas.lineTo((13+6/10*health)*TILESIZE,.5*TILESIZE);
+        canvas.lineTo((13+6/10*health)*TILESIZE,1.5*TILESIZE);
+        canvas.lineTo(13*TILESIZE,1.5*TILESIZE);
+        canvas.closePath();
+        canvas.fill();
+
+        canvas.fillStyle = 'grey';
+        canvas.beginPath();
+        canvas.moveTo((13+6/10*health)*TILESIZE,.5*TILESIZE);
+        canvas.lineTo(19*TILESIZE,.5*TILESIZE);
+        canvas.lineTo(19*TILESIZE,1.5*TILESIZE);
+        canvas.lineTo((13+6/10*health)*TILESIZE,1.5*TILESIZE);
+        canvas.closePath();
+        canvas.fill();
+
+
+
     };
 
     function hit()
     {
         health -=1;
-        gameloader.playSound("PlayerTakingDamage");
+        assets.playSound("PlayerTakingDamage");
     }
 
     return {undo:undo,hit:hit,rect:rect,health:health, rect:rect, bullets:bullets, update:update, draw:draw};
