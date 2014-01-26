@@ -36,7 +36,7 @@ function Menu(callback)
                 {
                     case "playButton":
                         canvas.removeMouseDownListener(id);
-                        callback();
+                        callback("1");
                         break; 
 
                     case "levelButton":

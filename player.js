@@ -10,8 +10,12 @@ function Player(pos, health, settings, img){
     var time = 0
 
     var imageDims = [1,1];
+
     var bulletSpeed = .1; //units? idk
     var timer = FPS / 2;
+
+    var dead = false;
+
 
     var update = function(timeFactor){
 
@@ -113,9 +117,18 @@ function Player(pos, health, settings, img){
     function hit()
     {
         if (health !== 0)
+        {
             health -=1;
+        }
+        if (health === 0)
+            dead = true;
         assets.playSound("PlayerTakingDamage");
     }
 
-    return {undo:undo,hit:hit,rect:rect,health:health, rect:rect, bullets:bullets, update:update, draw:draw};
+    function isDead()
+    {
+        return dead;
+    }
+
+    return {isDead:isDead,undo:undo,hit:hit,rect:rect,health:health, rect:rect, bullets:bullets, update:update, draw:draw};
 }

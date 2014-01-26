@@ -29,7 +29,8 @@ var Turret = function(pos, ai, health, img){
     }
 
     var shoot = function(){
-        room.addEnemyBullet(Bullet([pos[0],pos[1]], angleToVector(rect.angle).scale(.01),assets.getImage("EnemyBullet")));
+        var bulletPos = pos.add(angleToVector(rect.angle).scale(rect.dims[0] / 2));
+        room.addEnemyBullet(Bullet(bulletPos, angleToVector(rect.angle).scale(.01),assets.getImage("EnemyBullet")));
     }
 
     var hit = function(){

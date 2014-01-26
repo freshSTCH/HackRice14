@@ -35,21 +35,21 @@ function LevelSelect(callback)
                 {
                     case "level1":
                         canvas.removeMouseDownListener(id);
-                        callback();
+                        callback("1");
                         break; 
                     
                     case "level2":
                         canvas.removeMouseDownListener(id);
-                        callback();
+                        callback("2");
                         break; 
 
                      case "level3":
                         canvas.removeMouseDownListener(id);
-                        callback();
+                        callback("3");
                         break; 
                      case "level4":
                         canvas.removeMouseDownListener(id);
-                        callback();
+                        callback("4");
                         break;
                    
 
