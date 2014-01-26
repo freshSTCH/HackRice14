@@ -1,9 +1,11 @@
-var Bullet = function(pos, velocity, img, growth){
+var Bullet = function(pos, velocity, img, growth, rgb){
     var pos = pos, velocity = velocity, img = img;
 
     var hitpos = [];
     var radius = 0;
     var growth = growth || 1; //pxls?
+    var decay = decay || Math.pow(.5,(1/FPS));
+    var rgba = rgba || [0,255,0,1]
 
     var active = True;
     var update = function(timeFactor){
@@ -11,6 +13,7 @@ var Bullet = function(pos, velocity, img, growth){
             pos = pos.add(velocity.scale(timeFactor));
         }else{
             radius += timeFactor * growth;
+            rgba[3] *= Math.pow(decay, timeFactor);
             if (radius < 0){
                 active = true;
                 radius = 0;
@@ -20,17 +23,23 @@ var Bullet = function(pos, velocity, img, growth){
     }
 
     var draw = function(){
-        if(velocity == [0,0]){
+        if(active){
+            canvas.drawImage(img, TILESIZE * pos[0] + offset[0], TILESIZE * pos[1] + offset[1]);
+        }else{
             canvas.beginPath();
             canvas.arc(room.offset[0] + pos[0], room.offset[1] + pos[1], radius, 0, 2 * Math.PI);
-            canvas.lineWidth = 1;
-            canvas.stroke();
+
+            canvas.strokeStyle = 'rgba(' + rgba[0] + ',' + rgba[1] + ',' rgba[2] + ',' + rgba[3] +')'
             canvas.lineWidth = 3;
             canvas.shadowOffsetY = 10;
             canvas.shadowBlur = 5;
             canvas.stroke();
-        }else{
-            canvas.drawImage(img, TILESIZE * pos[0] + offset[0], TILESIZE * pos[1] + offset[1])
+
+            canvas.strokeStyle = 'rgba(' + rgb[0] + ',' + rgb[1] + ',' rgb[2] + ',' + .5 * rgba[3] +')'
+            canvas.lineWidth = 1;
+            canvas.shadowBlur = 0;
+            canvas.shadowOffsetY = 0;
+            canvas.stroke();
         }
     }
 
