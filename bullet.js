@@ -1,5 +1,5 @@
-function Bullet(pos, velocity){
-    var pos = pos, velocity = velocity;
+function Bullet(pos, velocity, img){
+    var pos = pos, velocity = velocity, img = img;
 
     var update = function(multiplier){
         pos = pos.add(velocity.scale(multiplier));
@@ -7,7 +7,7 @@ function Bullet(pos, velocity){
     }
 
     var draw = function(){
-        pass;
+        canvas.drawImage(img, tileSize * pos[0] + offset[0], tileSize * pos[1] + offset[1])
     }
 
     return {pos:pos, velocity:velocity, vel:velocity, v:velocity, update:update, draw:draw};

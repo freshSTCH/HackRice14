@@ -15,8 +15,8 @@ function Turret(pos, ai, health, img){
         canvas.putImage(drawRect, img);
     }
 
-    var shoot = function(){
-        pass
+    var shoot = function(speed){
+        bullets.push(Bullet(pos, speed))
     }
 
     return {pos:pos, ai:ai, health:health, rect:rect, update:update, draw:draw};
@@ -24,11 +24,13 @@ function Turret(pos, ai, health, img){
 
 
 var AI = (function(){
-    var tracker = function(range, speed, timer, tolerance){
+    var tracker = function(range, speed, timer, tolerance, bulletSpeed){
         range = range || 500;
         speed = speed || ((Math.PI / 2) / FPS);
-        timer = timer || FPS / 2;
-        tolerance = tolerance || Math.PI / 2
+        timer = timer || (FPS / 2);
+        tolerance = tolerance || (Math.PI / 2);
+        bulletSpeed = bulletSpeed || (1 / FPS);
+
         return function(state){
             if (state.timer == undefined){
                 state.timer = 0;
@@ -46,7 +48,7 @@ var AI = (function(){
                         state.tracking = true;
                         state.timer -= 1;
                         if (state.timer < 0){
-                            shoot();
+                            shoot(bulletSpeed);
                         }
                         state.timer = timer;
 
