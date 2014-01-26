@@ -105,7 +105,7 @@ function GameLoader(callback)
     var imgNames = ["Wall","Floor","Start","End","Turret","Menu","Player","Bullet","EnemyBullet","LevelSelect","TimeMachine"];
     var roomNames = ["1"];
 
-    var soundNames = ["test","test2","Shoot"];
+    var soundNames = ["PlayerTakingDamage, TimeMachineTakingDamage,TurretExplosion"];
 
     load(imgNames,imageNameTransform,Image,"load",function(imgLoaded) {
         console.log("The images are now loaded.");

@@ -86,6 +86,7 @@ function Player(pos, health, settings, img){
     function hit()
     {
         health -=1;
+        gameloader.playSound("PlayerTakingDamage");
     }
 
     return {undo:undo,hit:hit,rect:rect,health:health, rect:rect, bullets:bullets, update:update, draw:draw};
