@@ -1,5 +1,7 @@
 var Bullet = function(pos, velocity, img, growth){
     var pos = pos, velocity = velocity, img = img;
+     var dims = [1, 1];
+     var rect = Rect(pos,dims);
 
     var hitpos = [];
     var radius = 0;
@@ -8,7 +10,7 @@ var Bullet = function(pos, velocity, img, growth){
     var active = True;
     var update = function(timeFactor){
         if(active){
-            pos = pos.add(velocity.scale(timeFactor));
+             rect.pos = rect.pos.add(velocity.scale(timeFactor));
         }else{
             radius += timeFactor * growth;
             if (radius < 0){
@@ -16,6 +18,7 @@ var Bullet = function(pos, velocity, img, growth){
                 radius = 0;
             }
         }
+
         // Add sprite animation here
     }
 

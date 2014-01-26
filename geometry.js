@@ -38,7 +38,6 @@ Array.prototype.dist = function(b){
 
 Array.prototype.unit = function(){
     var mag = this.magnitude();
-    mag = (mag > 0) ? mag : 1;
     var result = [];
     for (var i=0; i<this.length; i++)
         result[i] = this[i] / mag;

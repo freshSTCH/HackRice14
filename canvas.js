@@ -48,10 +48,12 @@ var canvas = (function(elem){return (function(canvas){
 
     canvas.clear=function(){canvas.clearRect(0,0,WIDTH,HEIGHT);};
     canvas.putImage=function(rect, img){
+
+        if (!rect.pos) debugger;
         canvas.save();
-        canvas.translate(Math.round(rect.pos[0]),Math.round(rect.pos[1]));
+        canvas.translate(Math.round(rect.pos[0]*TILESIZE),Math.round(rect.pos[1]*TILESIZE));
         if(rect.angle){canvas.rotate(rect.angle);}
-        canvas.drawImage(img,Math.round(-.5 * rect.dims[0]), Math.round(-.5 * rect.dims[1]), rect.dims[0], rect.dims[1]);
+        canvas.drawImage(img,Math.round(-.5 * rect.dims[0]*TILESIZE), Math.round(-.5 * rect.dims[1]*TILESIZE), rect.dims[0]*TILESIZE, rect.dims[1]*TILESIZE);
         canvas.restore();
     };
 return canvas;}(elem.getContext("2d")));}(document.getElementById("canvas")));

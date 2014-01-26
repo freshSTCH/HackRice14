@@ -1,5 +1,5 @@
 var Player = function(pos, health, settings, img){
-    health = typeof health !== 'undefined' ? health : 10;
+    health =  health || 10;
 
     var health = health;
     var dims = [1, 1];
@@ -9,8 +9,15 @@ var Player = function(pos, health, settings, img){
     var img = img;
     var settings = settings;
 
+    canvas.addMouseDownListener(function(pos)
+    {
+        var velocity = pos.scale(1/TILESIZE).subtract(rect.pos).unit().scale(.1);
+        console.log("Make bullet");
+
+        room.addBullet(Bullet(rect.pos,velocity,assets.getImage("Wall")));
+    });
+
     var update = function(timeFactor){
-        for(var i = 0; i < bullets.length;i++){bullets[i].update(timeFactor);}
 
         var vel = [0, 0];
         if(canvas.state[settings.right])
@@ -42,8 +49,11 @@ var Player = function(pos, health, settings, img){
     }
 
     var draw = function(){
-        var drawRect = Rect([room.TILESIZE * rect.pos[0] + room.offset[0], room.TILESIZE * rect.pos[1] + room.offset[1]], [room.TILESIZE * rect.dims[0], room.TILESIZE*rect.dims[1]]);
-        canvas.putImage(drawRect, img);
+
+         for(var i = 0; i < bullets.length;i++){bullets[i].draw();}
+
+
+        canvas.putImage(rect, img);
     }
 
     return {health:health, rect:rect, bullets:bullets, update:update, draw:draw};

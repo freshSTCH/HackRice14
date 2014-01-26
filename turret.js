@@ -20,7 +20,7 @@ var Turret = function(pos, ai, health, img){
     }
 
     var shoot = function(speed){
-        bullets.push(Bullet(pos, angleToVector(rect.angle).scale(speed)));
+        //bullets.push(Bullet(pos, angleToVector(rect.angle).scale(speed)));
     }
 
 
