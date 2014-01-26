@@ -10,7 +10,7 @@
 
     [ [6,13], {
         "ai": {
-            "type": "simpleAI",
+            "type": "simple",
             "settings":{}
         } 
         }]

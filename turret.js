@@ -26,38 +26,34 @@ var Turret = function(pos, ai, health, img){
         room.addEnemyBullet(Bullet([pos[0],pos[1]], angleToVector(rect.angle).scale(.01),assets.getImage("EnemyBullet")));
     }
 
+    var hit = function(){
 
-
-
-    function simpleAI(settings)
-    {
-        var radsPerSecond = .01;
-
-        var timeTillNextShot = 0;
-
-        function update()
-        {
-            rect.angle += radsPerSecond;
-            if (timeTillNextShot === 0)
-            {
-                simpleShoot();
-                timeTillNextShot = 100;
-            }
-            else
-                timeTillNextShot -=1;
-
-        }
-
-        return update;
     }
 
     //AI's
     var AI = (function(ai){
         switch(ai.type){
-            case 'simpleAI':
-                return simpleAI(ai.settings);
-                break;
-             
+            case 'simple':
+                return (function (settings) {
+                    var radsPerSecond = .01;
+
+                    var timeTillNextShot = 0;
+
+                    function update()
+                    {
+                        rect.angle += radsPerSecond;
+                        if (timeTillNextShot === 0)
+                        {
+                            simpleShoot();
+                            timeTillNextShot = 100;
+                        }
+                        else
+                            timeTillNextShot -=1;
+                    }
+                    return update;
+                })(ai.settings);
+            break;
+                             
             case 'tracker':
             default:
                 return (function(settings){//range, speed, timer, tolerance, bulletSpeed
@@ -94,7 +90,7 @@ var Turret = function(pos, ai, health, img){
                         return state;
                     }
                 })(ai.settings);
-                break;
+            break;
         }
     })(ai);
     return {pos:pos, ai:ai, health:health, rect:rect, update:update, draw:draw};
