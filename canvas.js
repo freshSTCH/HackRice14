@@ -6,7 +6,8 @@ var canvas = (function(elem){return (function(canvas){
     elem.width = WIDTH;
     elem.height = HEIGHT;
 
-    var mousePos = [0,0];
+    var mousePos = [0,0]; 
+    canvas.mousePos = mousePos;
     var mouseDown = false;
     var mouseDownListeners = [];
 
