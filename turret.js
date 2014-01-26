@@ -19,7 +19,7 @@ var Turret = function(pos, ai, health, img){
     }
 
     var shoot = function(speed){
-        bullets.push(Bullet(pos, angleToVector(rect.angle).scale(speed),assets.getImage("Wall")));
+        bullets.push(Bullet([pos[0],pos[1]], angleToVector(rect.angle).scale(speed),assets.getImage("Wall")));
     }
 
     var simpleShoot = function(){
@@ -70,30 +70,22 @@ var Turret = function(pos, ai, health, img){
                     return function(state){
                         if (state.timer == undefined){
                             state.timer = 0;
-                            state.tracking = false;
                         }
+                        state.timer -= 1;
                         for(var i = 0; i < room.players.length;i++){
                             if(room.players[i].rect.pos.dist(pos) < range){
-                                tracking = true
                                 var targetAngle = vectorToAngle(rect.pos.subtract(room.players[i].rect.pos));
-                                if(minAngleBetween(targetAngle, rect.angle) < tolerance){
-
-                                    if(state.tracking = false){
-                                        state.timer = 0;
-                                    }
-                                    state.timer -= 1;
-                                    if (state.timer < 0){
-                                        shoot(bulletSpeed);
-                                    }
-                                    state.timer = timer;
-                                }
-
                                 if(minAngleBetween(targetAngle, rect.angle) < speed){
                                     rect.angle = targetAngle;
                                 }else{
                                     rect.angle += dirTowardsAngle(rect.angle, targetAngle) * speed;
                                 }
-                                
+                                if(minAngleBetween(targetAngle, rect.angle) < tolerance){
+                                    if (state.timer < 0){
+                                        shoot(bulletSpeed);
+                                        state.timer = timer;
+                                    }
+                                }
                             }
                         }
                         return state;
