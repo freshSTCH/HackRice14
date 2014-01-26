@@ -52,7 +52,7 @@ function Player(pos, health, settings, img){
 
         canvas.putImageEasy(Rect(rect.pos,imageDims,rect.angle), img);
 
-        canvas.font = '32pt Calibri';
+        canvas.font = '26pt Calibri';
         canvas.fillStyle = 'white';
         canvas.fillText("HP:",TILESIZE,1.5*TILESIZE);
 
@@ -77,9 +77,9 @@ function Player(pos, health, settings, img){
         canvas.fill();
 
 
-        canvas.font = '32pt Calibri';
+        canvas.font = '26pt Calibri';
         canvas.fillStyle = 'white';
-        canvas.fillText("HP:",11*TILESIZE,1.5*TILESIZE);
+        canvas.fillText("CHAOS:",9.5*TILESIZE,1.5*TILESIZE);
 
         canvas.lineWidth = 5;
 
@@ -107,7 +107,8 @@ function Player(pos, health, settings, img){
 
     function hit()
     {
-        health -=1;
+        if (health !== 0)
+            health -=1;
         assets.playSound("PlayerTakingDamage");
     }
 
