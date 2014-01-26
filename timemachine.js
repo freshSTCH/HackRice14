@@ -23,9 +23,15 @@ function TimeMachine(pos)
     function hit()
     {
         health -=1;
+        gameloader.playSound("TimeMachineTakingDamage")
         if (health === 0)
         {
+            gameloader.playSound("TimeMachineRightBeforeExplosion")
             reverse = true;
+            //gameloader.playSound("TimeTurningBackalt")
+            gameloader.playSound("TimeTurningBack")
+
+
         }
 
     }
@@ -33,6 +39,7 @@ function TimeMachine(pos)
     function isDead()
     {
         return reverse;
+
     }
 
 
