@@ -54,7 +54,7 @@ function RoomLoader(roomName)
                     break;
 
                 case "Turret":
-                    var turret = Turret([x,y], AI.tracking(),3,assets.getImage("Turret"));
+                    var turret = Turret([x,y], AI.tracker(),3,assets.getImage("Turret"));
                     room.addTurret(turret);
                     room.addTile("Floor",x,y);
                     break;
