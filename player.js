@@ -159,7 +159,8 @@ function Player(pos, health, settings, img, integrity){
     }
 
     function unhit(){
-        pass;
+        health += 1;
+        health = Math.max(health, maxHealth);
     }
 
     function unhitMissed(){
