@@ -18,6 +18,7 @@ function Room(lengthXTiles,lengthYTiles)
     var pos = [0,0];
     var players = [];
     var turrets = [];
+    var bullets = [];
 
     var update = function(){
         for (var i = 0; i < turrets.length; i++){turrets[i].update(timeFactor);}
@@ -77,6 +78,6 @@ function Room(lengthXTiles,lengthYTiles)
     initializeGrid();
     //end Grid initialization
     //
-    return {initializeGrid:initializeGrid, addTile:addTile, addTurret:addTurret, getGrid:getGrid, getTurrets:getTurrets,getGridSpot:getGridSpot,setStart:setStart, setEnd:setEnd, update:update, draw:draw}
+    return {players:players,initializeGrid:initializeGrid, addTile:addTile, addTurret:addTurret, getGrid:getGrid, getTurrets:getTurrets,getGridSpot:getGridSpot,setStart:setStart, setEnd:setEnd, update:update, draw:draw}
 
 }

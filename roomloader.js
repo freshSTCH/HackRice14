@@ -21,7 +21,7 @@ function RoomLoader(roomName)
         console.error("There is no turret metadata for "+x+" , " + y);
     }
 
-    var room = Room(pixels.width,pixels.height);
+    room = Room(pixels.width,pixels.height);
 
     var roomMapping = [
         [[0,0,0],      "Wall"],

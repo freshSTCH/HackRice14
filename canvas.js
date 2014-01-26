@@ -46,7 +46,7 @@ var canvas = (function(elem){return (function(canvas){
     canvas.clear=function(){canvas.clearRect(0,0,WIDTH,HEIGHT);};
     canvas.putImage=function(rect, img){
         canvas.save();
-        canvas.translate(Math.round(x),Math.round(y));
+        canvas.translate(Math.round(rect.pos[0]),Math.round(rect.pos[1]));
         if(rect.angle){canvas.rotate(rect.angle);}
         canvas.drawImage(img,Math.round(-.5 * rect.dims[0]), Math.round(-.5 * rect.dims[1]), rect.dims[0], rect.dims[1]);
         canvas.restore();
