@@ -42,7 +42,7 @@ var Bullet = function(pos, velocity, img, growth, rgba, owner){
                         hit('room');
                     }
                     else if (timeFactor < 0){
-                        state = "done";
+                        reverseHit();
                     }
                 }
 
@@ -64,6 +64,31 @@ var Bullet = function(pos, velocity, img, growth, rgba, owner){
                                 room.players[i].reverseHit();
                             }
                         }
+                    }
+                }
+
+                for(var i = 0; i< room.turrets.length;i++){
+                    if(room.turrets[i].rect.intersectsRect(rect)){
+                        if(owner == 'player'){
+                            if (timeFactor > 0){
+                                hit();
+                                room.turrets[i].hit();
+                            }else{
+                                room.turrets[i].unhit();
+                                reverseHit('turret');
+                            }
+                        }
+                    }
+                }
+
+                if(room.getTimeMachine().rect.intersectsRect(rect)){
+                    //also check for owner == 'player'?
+                    if (timeFactor > 0){
+                        hit();
+                    }
+                    room.getTimeMachine().hit();
+                    if (room.getTimeMachine().isDead()) {
+                        room.reverseTimeFactor(); // the time machine should do this internally... but whatever
                     }
                 }
                 break;
