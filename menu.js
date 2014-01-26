@@ -36,12 +36,16 @@ function Menu(callback)
                 switch(buttonPressed)
                 {
                     case "playButton":
+                        assets.getSound("test").play();
                         canvas.removeMouseDownListener(id);
                         callback();
                         break; 
 
                     case "levelButton":
                         assets.getSound("test").play();
+                        canvas.removeMouseDownListener(id);
+
+                        LevelSelect(callback);
                         break;
 
                     default:
