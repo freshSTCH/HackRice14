@@ -32,13 +32,18 @@ Array.prototype.magnitude = function(){
     return Math.sqrt(this.dot(this));
 }
 
+Array.prototype.dist = function(b){
+    return this.subtract(b).magnitude()
+}
+
 Array.prototype.unit = function(){
-    var mag = this.magnitude;
+    var mag = this.magnitude();
     var result = [];
     for (var i=0; i<this.length; i++)
         result[i] = this[i] / mag;
     return result;
 }
+
 
 function Rect(pos, dims, angle){
     angle = typeof angle !== 'undefined' ? angle : 0;
@@ -60,4 +65,14 @@ function Rect(pos, dims, angle){
     }
 
     return {pos:pos, dims:dims, angle:angle, a:angle, intersectsRect:intersectsRect, intersectsPoint:intersectsPoint};
+}
+
+function minAngleBetween(angle1, angle2){
+    return Math.min(Math.abs((angle1 - angle2)%(2*Math.PI)), Math.abs((angle2 - angle1)%(2*Math.PI)));
+}
+
+function dirTowardsAngle(angle1, angle2){
+    if ((angle2 - angle1) % (2 * Math.PI) > Math.pi):
+        return -1;
+    return 1;
 }
