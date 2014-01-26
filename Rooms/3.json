@@ -4,23 +4,23 @@
     [ [3,16], {
         "ai": {
             "type": "tracker",
-            "settings":{}
+            "settings":"machinegun"
         },
         "image": "Turret1"
         }],
 
     [ [12,12], {
-        "ai": {
+        "ai":  {
             "type": "tracker",
-            "settings":{"machinegun"}
+            "settings":"snipers"
         },
         "image": "Turret2"
-        }]
+        }],
 
     [ [11,5], {
         "ai": {
-            "type": "simple",
-            "settings":{}
+            "type": "tracker",
+            "settings":"basic"
         },
         "image": "Turret2"
         }]
