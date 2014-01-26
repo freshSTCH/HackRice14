@@ -44,6 +44,11 @@ function Menu(callback)
                         LevelSelect(callback);
                         break;
 
+                    case "instructions":
+                        canvas.removeMouseDownListener(id);
+                        Instructions(callback);
+                        break;
+
                     default:
                         console.error("A non existant button ",buttonPressed);
                         break;

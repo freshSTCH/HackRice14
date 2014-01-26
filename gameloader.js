@@ -129,7 +129,7 @@ function GameLoader(callback)
 
 
 
-    var imgNames = ["Wall","Floor","Start","End","Menu","Player","Bullet","EnemyBullet","LevelSelect","GameOver","GameWon","PlayerDead","Paradox",
+    var imgNames = ["Instructions","Wall","Floor","Start","End","Menu","Player","Bullet","EnemyBullet","LevelSelect","GameOver","GameWon","PlayerDead","Paradox",
     "Turret1","DamagedTurret1","NearDeathTurret1",
     "Turret2","DamagedTurret2","NearDeathTurret2",
     "TimeMachine","SlightlyDamagedTimeMachine","ModeratelyDamagedTimeMachine","HeavilyDamagedTimeMachine","NearDeathTimeMachine","DeadTimeMachine"];
