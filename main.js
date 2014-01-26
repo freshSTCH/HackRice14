@@ -11,11 +11,17 @@ function Main(levelName)
     var loop = function(){
         room.update();
 
-        if (room.isGameLost())
+        if (room.isPlayerDead())
         {
-            GameOver(function(){
+            PlayerDead(function(){
                 Menu(Main);
             });  
+        }
+        else if (room.isParadox())
+        {
+            Paradox(function(){
+                Menu(Main);
+            }); 
         }
         else if (room.isGameWon())
         {
@@ -30,7 +36,7 @@ function Main(levelName)
 
     var renderLoop = function(){
 
-        if (!room.isGameOver())
+        if (!room.isParadox() || !room.isPlayerDead())
         {
             room.draw();
             window.requestAnimationFrame(renderLoop)
