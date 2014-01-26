@@ -1,4 +1,4 @@
-function Menu(callback)
+function levelselect(callback)
 {
     "use strict";
     //really convert to square, but whatev
@@ -22,8 +22,8 @@ function Menu(callback)
 
         convertToRect(buttons);
 
-        var menuImage = assets.getImage("Menu");
-        canvas.drawImage(menuImage,0,0,WIDTH,HEIGHT);
+        var levelSelectImage = assets.getImage("LevelSelect");
+        canvas.drawImage(levelSelectImage,0,0,WIDTH,HEIGHT);
 
         var id = canvas.addMouseDownListener(function(pos)
         {
